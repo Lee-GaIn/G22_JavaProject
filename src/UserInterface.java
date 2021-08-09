@@ -1,5 +1,3 @@
-import java.awt.*;
-import java.time.LocalDate;
 import java.util.Scanner;
 
 public class UserInterface {
@@ -9,13 +7,22 @@ public class UserInterface {
         System.out.printf("Do you want to analyze the data? (Y/N)>> ");
         String ans = sc.nextLine();
         while (ans.equalsIgnoreCase("Y")){
+            // Data part
             Data d1 = Data.createDataObj();
-            // testing ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~`
-            System.out.println(d1.getGeographicArea());
-            for(LocalDate ld : d1.getTimeRange()){
-                System.out.println(ld.toString());
-            }
-            // testing ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~`
+//            testing ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~`
+//            System.out.println(d1.getGeographicArea());
+//            for(LocalDate ld : d1.getTimeRange()){
+//                System.out.println(ld.toString());
+//            }
+//            testing ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~`
+
+            // Summary part
+            Summary.createSummaryObj(d1);
+
+            // Display part
+
+
+            // etc
             System.out.printf("Do you want to analyze the data again? (Y/N)>> ");
             ans = sc.nextLine();
         }

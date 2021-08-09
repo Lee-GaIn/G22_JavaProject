@@ -3,27 +3,14 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
-class test {
-    public static void main(String[] args) {
-        // This class was created for only testing. It will be deleted before submitting.:>>
-
-        // This is an example for the first setter
-        String user = "2020/10/20,2021/05/12";
-        String area = "USA";
-        Data d1= new Data(area, user);
-        System.out.println(d1.getGeographicArea());
-        for(LocalDate s:d1.getTimeRange()){
-            System.out.println(s.toString());
-        }
-    }
-}
 public class Data {
 
     private String geographicArea;
     private ArrayList<LocalDate> timeRange = new ArrayList<LocalDate>(2);
+                                                            // startDate and endDate
 
     // Constructor
-    public Data(String geographicArea, String userTime){
+    private Data(String geographicArea, String userTime){
         this.geographicArea = geographicArea;
         setTimeRange(userTime);
     }
@@ -110,6 +97,7 @@ public class Data {
         }
         return new Data(geographicArea, date);
     }
+
     private LocalDate strToLocalDate(String aDate){
         // This method receives string "aDate" (yyyy/mm/dd) as an parameter
         // and returns LocalDate.
