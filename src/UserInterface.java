@@ -8,13 +8,12 @@ public class UserInterface {
         String ans = sc.nextLine();
         while (ans.equalsIgnoreCase("Y")){
             // Data part
-            Data d1 = Data.createDataObj();
-//            testing ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~`
+            Date d1 = Date.createDateObj();
+            // FIXME: 2021-08-09 Lee Gain
 //            System.out.println(d1.getGeographicArea());
 //            for(LocalDate ld : d1.getTimeRange()){
 //                System.out.println(ld.toString());
 //            }
-//            testing ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~`
 
             // Summary part
             Summary.createSummaryObj(d1);

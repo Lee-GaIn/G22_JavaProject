@@ -3,14 +3,14 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
-public class Data {
-
+public class Date {
     private String geographicArea;
     private ArrayList<LocalDate> timeRange = new ArrayList<LocalDate>(2);
                                                             // startDate and endDate
+                                                            // FIXME: 2021-08-09 Lee Gain
 
     // Constructor
-    private Data(String geographicArea, String userTime){
+    private Date(String geographicArea, String userTime){
         this.geographicArea = geographicArea;
         setTimeRange(userTime);
     }
@@ -52,8 +52,7 @@ public class Data {
     }
 
     // Method
-
-    public static Data createDataObj(){
+    public static Date createDateObj(){
         String date = "";
         Scanner sc = new Scanner(System.in);
 
@@ -95,10 +94,10 @@ public class Data {
             default:
                 // make exception later
         }
-        return new Data(geographicArea, date);
+        return new Date(geographicArea, date);
     }
 
-    private LocalDate strToLocalDate(String aDate){
+    public LocalDate strToLocalDate(String aDate){
         // This method receives string "aDate" (yyyy/mm/dd) as an parameter
         // and returns LocalDate.
 
