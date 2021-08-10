@@ -7,7 +7,6 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 public class Summary {
-
     public static Summary createSummaryObj(Date userDateObj){
         Scanner sc = new Scanner(System.in);
         // part 1
