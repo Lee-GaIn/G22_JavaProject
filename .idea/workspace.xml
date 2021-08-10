@@ -2,17 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="46361059-fd6d-4bf8-970c-a6001dea7b57" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/G22_JavaProject.iml" beforeDir="false" afterPath="$PROJECT_DIR$/G22_JavaProject.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/G22_JavaProject/Data.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/G22_JavaProject/Data.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/G22_JavaProject/Summary.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/G22_JavaProject/Summary.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/G22_JavaProject/UserInterface.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/G22_JavaProject/UserInterface.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/G22_JavaProject/test.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/G22_JavaProject/test.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Data.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Date.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Summary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Summary.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UserInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UserInterface.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
