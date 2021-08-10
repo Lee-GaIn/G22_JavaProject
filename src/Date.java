@@ -5,7 +5,7 @@ import java.util.regex.Pattern;
 
 public class Date {
     private String geographicArea;
-    private ArrayList<LocalDate> timeRange = new ArrayList<LocalDate>(2);
+    private ArrayList<LocalDate> timeRange = new ArrayList<>(2);
                                                             // startDate and endDate
                                                             // FIXME: 2021-08-09 Lee Gain
 
@@ -62,11 +62,13 @@ public class Date {
         String geographicArea = sc.nextLine();
 
         // Choose date
-        System.out.printf("\nAvailable form for determining date.\n" +
-                "\t[1] A pair of start date and end date\n" +
-                "\t[2] A number of days or weeks from a specific date\n" +
-                "\t[3] A number of days or weeks to a specific date\n\n");
-        System.out.printf("Please enter a number to decide the form of date range(1/2/3)>> ");
+        System.out.printf("\n************************************************************\n" +
+                        "Available form for determining date.\n" +
+                            "\t[1] A pair of start date and end date \n" +
+                            "\t[2] A number of days or weeks from a specific date \n" +
+                            "\t[3] A number of days or weeks to a specific date \n" +
+                         "************************************************************\n" +
+                        "Please enter a number to decide the form of date range(1/2/3)>> ");
         int dateMethod = Integer.parseInt(sc.nextLine());
         switch (dateMethod){
             case 1:
