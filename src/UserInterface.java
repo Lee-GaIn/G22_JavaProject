@@ -9,11 +9,7 @@ public class UserInterface {
         while (ans.equalsIgnoreCase("Y")){
             // Data part
             Date d1 = Date.createDateObj();
-            // FIXME: 2021-08-09 Lee Gain
-//            System.out.println(d1.getGeographicArea());
-//            for(LocalDate ld : d1.getTimeRange()){
-//                System.out.println(ld.toString());
-//            }
+            d1.display();
 
             // Summary part
             Summary.createSummaryObj(d1);

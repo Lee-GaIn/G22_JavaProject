@@ -57,12 +57,12 @@ public class Date {
         Scanner sc = new Scanner(System.in);
 
         // Choose geographic area.
-        System.out.printf("Please enter a continent or country name you want to choose." +
+        System.out.printf("[STEP 1] \nPlease enter a continent or country name you want to choose." +
                             "(Vietnam, Asia...)>> ");
-        String geographicArea = sc.nextLine();
+        String geographicArea = sc.nextLine().trim();
 
         // Choose date
-        String menu = "\n************************************************************\n" +
+        String menu = "************************************************************\n" +
                 "Available form for determining date.\n" +
                 "\t[1] A pair of start date and end date \n" +
                 "\t[2] A number of days or weeks from a specific date \n" +
@@ -115,8 +115,7 @@ public class Date {
     }
 
     public void display(){
-        System.out.println("Geographic Area: %s" + geographicArea);
-        System.out.println("Start date: " + timeRange.get(0));
-        System.out.println("End date: " + timeRange.get(1));
+
+        System.out.printf("\nGeographic Area: %s \nStart date: %s \nEnd date: %s \n", geographicArea, timeRange.get(0), timeRange.get(1));
     }
 }
