@@ -12,10 +12,43 @@ public class Summary {
         // part 1
 
         // part 2
-        // My part accepts grouped date array list as ArrayList<ArrayList<LocalDate>>.
-        // (ex)ArrayList{ArrayList{Localdate1, Localdate2, Localdate3}, ArrayList{Localdate4, Localdate5, Localdate6}, ...}
-        // like nested array (ex String[][])
+        // FIXME: for Khanh Linh and Ngoc Tuan
+        // My part accepts grouped ArrayList<DataGroup>.
+        // 1. After you finish grouping a number of Localdate instances, please make a new Data instance (I made)
+        //    which accept Localdate as one of the fields (check constructor for Data class).
+        // 2. After that, make new DataGroup instance(I made) and put Data instances by using the addData method or constructor
+        //    if Data instances are in the same group.
+        // 3. For more detail, please read the Data class and DataGroup class that I made below
 
+        // (ex) l1 and l2 are in the same group (dg1), l3 and l4 are in the same group (dg2)
+//        LocalDate l1 = LocalDate.of(2021, 5, 20);
+//        LocalDate l2 = LocalDate.of(2021, 5, 24);
+//        LocalDate l3 = LocalDate.of(2021, 5, 26);
+//        LocalDate l4 = LocalDate.of(2021, 4, 3);
+//
+//        // 1.
+//        Data d1 = new Data(l1);
+//        Data d2 = new Data(l2);
+//        Data d3 = new Data(l3);
+//        Data d4 = new Data(l4);
+//
+//        // 2.
+//        // You can use either of two ways.
+//        // The first way
+//        DataGroup dg1 = new DataGroup();
+//        dg1.addData(d1);
+//        dg1.addData(d2);
+//
+//        // The second way
+//        ArrayList<Data> dataArr = new ArrayList<Data>(){{add(d3); add(d4);}};
+//        DataGroup dg2 = new DataGroup(dataArr);
+//
+//        // 3.
+//        // Please return this so that my code can be implemented.
+//        ArrayList<DataGroup> result = new ArrayList<DataGroup>(){{add(dg1); add(dg2);}};
+
+
+        // FIXME: for Anh Minh Chu
         // and returns analyzedData as ArrayList<DataGroup>.
         // Each data Group has a group.
         // Each group has several data
@@ -38,27 +71,50 @@ public class Summary {
         LocalDate l8 = LocalDate.of(2021, 5, 30);
         LocalDate l9 = LocalDate.of(2021, 6, 2);
 
-        ArrayList<LocalDate> a1 = new ArrayList<>(){{add(l1); add(l2); add(l3);}};
-        ArrayList<LocalDate> a2 = new ArrayList<>(){{add(l4); add(l5); add(l6);}};
-        ArrayList<LocalDate> a3 = new ArrayList<>(){{add(l7); add(l8); add(l9);}};
-        ArrayList<ArrayList<LocalDate>> groupForTesting = new ArrayList<>(){{add(a1); add(a2); add(a3);}};
 
-        System.out.printf("\n************************************************************\n +" +
+        Data d1 = new Data(l1);
+        Data d2 = new Data(l2);
+        Data d3 = new Data(l3);
+
+        Data d4 = new Data(l4);
+        Data d5 = new Data(l5);
+        Data d6 = new Data(l6);
+
+        Data d7 = new Data(l7);
+        Data d8 = new Data(l8);
+        Data d9 = new Data(l9);
+
+        DataGroup dg1 = new DataGroup();
+        dg1.addData(d1);
+        dg1.addData(d2);
+        dg1.addData(d3);
+
+        ArrayList<Data> dataArr = new ArrayList<>(){{add(d4); add(d5); add(d6);}};
+        DataGroup dg2 = new DataGroup(dataArr);
+
+        DataGroup dg3 = new DataGroup();
+        dg3.addData(d7);
+        dg3.addData(d8);
+        dg3.addData(d9);
+
+        ArrayList<DataGroup> groupForTesting = new ArrayList<>(){{add(dg1); add(dg2); add(dg3);}};
+
+        String menu = "\n************************************************************\n " +
                         "Available metric\n" +
                             "\t[1] Positive case\n" +
                             "\t[2] Deaths\n" +
                             "\t[3] People vaccinated\n" +
                         "************************************************************\n" +
-                        "Please choose your metric(1/2/3)>> ");
+                        "Please choose your metric(1/2/3)>> ";
+        System.out.printf(menu);
         int metric = Integer.parseInt(sc.nextLine());
         System.out.println();
         ArrayList<DataGroup> analyzedData = getData(userDateObj, metric, groupForTesting);
 
         // FIXME: 2021-08-10 Lee Gain
         for(DataGroup dg : analyzedData){
-            for(Data d : dg.getGroupedData()){
-                d.displayData();
-            }
+            dg.display();
+            System.out.println("=================================");
         }
         // part 3
 
@@ -68,12 +124,12 @@ public class Summary {
 
 
     // part 2
-    private static ArrayList<DataGroup> getData(Date dtObj, int metric, ArrayList<ArrayList<LocalDate>> groupedDate) throws Exception{
+    private static ArrayList<DataGroup> getData(Date dtObj, int metric, ArrayList<DataGroup> dgArr) throws Exception{
         ArrayList<DataGroup> dataGroups = new ArrayList<>();
         String geographicArea = dtObj.getGeographicArea();
         ArrayList<String[]> dbOfGeographicArea = getDatabase(geographicArea);
 
-        for(ArrayList<LocalDate> dateList: groupedDate){
+        for(DataGroup dateList: dgArr){
             DataGroup dg = getDataByDateGroup(dbOfGeographicArea , dateList, metric);
             dataGroups.add(dg);
         }
@@ -91,8 +147,9 @@ public class Summary {
         while(line != null){
             String[] tempRow = line.split(",");
             String[] row = new String[8];
-            if(tempRow[1].equals(geographicArea) ||
-                tempRow[2].equals(geographicArea)){
+
+            if(tempRow[1].equalsIgnoreCase(geographicArea) ||
+                tempRow[2].equalsIgnoreCase(geographicArea)){
                 for(int i = 0; i < tempRow.length; i++){
                     row[i] = tempRow[i];
                 }
@@ -103,11 +160,14 @@ public class Summary {
         return db;
     }
 
-    private static DataGroup getDataByDateGroup(ArrayList<String[]> dbOfGeographicArea, ArrayList<LocalDate> dateList, int metric){
+    private static DataGroup getDataByDateGroup(ArrayList<String[]> dbOfGeographicArea, DataGroup dataGroup, int metric){
         // it returns database(particular country - date) for each group
-        DataGroup dg =  new DataGroup();
-        for(LocalDate date : dateList){
+        ArrayList<Data> dataArr = dataGroup.getGroupedData();
+        int dataArrLeng = dataArr.toArray().length;
+
+        for(int i = 0; i < dataArrLeng; i++){
             for(String[] row : dbOfGeographicArea){
+                LocalDate date = dataArr.get(i).getDate();
                 String[] dateInCsv = row[3].split("/");
                 int year = Integer.parseInt(dateInCsv[2]);
                 int month = Integer.parseInt(dateInCsv[0]);
@@ -115,7 +175,7 @@ public class Summary {
                 LocalDate tempDate = LocalDate.of(year, month, day);
 
                 if(tempDate.isEqual(date)){
-                    Data data = new Data(date);
+                    Data data = dataArr.get(i);
                     switch (metric){
                         //positive
                         case 1:
@@ -140,11 +200,10 @@ public class Summary {
                             break;
                         default:
                     }
-                    dg.addData(data);
                 }
             }
         }
-        return  dg;
+        return  dataGroup;
     }
 
     //part 3
@@ -197,14 +256,27 @@ class Data {
 }
 
 class DataGroup {
-    private ArrayList<Data> groupedData = new ArrayList<Data>();
+    private ArrayList<Data> groupedData = new ArrayList<>();
 
-    //getter
+    // Constructor
+    DataGroup(){}
+    DataGroup(ArrayList<Data> groupedData){
+        this.groupedData = groupedData;
+    }
+
+    //Getter and Setter
     public ArrayList<Data> getGroupedData() {
         return groupedData;
     }
 
     public void addData(Data dt){
         groupedData.add(dt);
+    }
+
+    public void display(){
+        for(Data d : groupedData){
+            d.displayData();
+            System.out.println();
+        }
     }
 }
