@@ -62,13 +62,14 @@ public class Date {
         String geographicArea = sc.nextLine();
 
         // Choose date
-        System.out.printf("\n************************************************************\n" +
-                        "Available form for determining date.\n" +
-                            "\t[1] A pair of start date and end date \n" +
-                            "\t[2] A number of days or weeks from a specific date \n" +
-                            "\t[3] A number of days or weeks to a specific date \n" +
-                         "************************************************************\n" +
-                        "Please enter a number to decide the form of date range(1/2/3)>> ");
+        String menu = "\n************************************************************\n" +
+                "Available form for determining date.\n" +
+                "\t[1] A pair of start date and end date \n" +
+                "\t[2] A number of days or weeks from a specific date \n" +
+                "\t[3] A number of days or weeks to a specific date \n" +
+                "************************************************************\n" +
+                "Please enter a number to decide the form of date range(1/2/3)>> ";
+        System.out.printf(menu);
         int dateMethod = Integer.parseInt(sc.nextLine());
         switch (dateMethod){
             case 1:
@@ -111,5 +112,11 @@ public class Date {
         LocalDate date = LocalDate.of(year, month, day);
 
         return date;
+    }
+
+    public void display(){
+        System.out.println("Geographic Area: %s" + geographicArea);
+        System.out.println("Start date: " + timeRange.get(0));
+        System.out.println("End date: " + timeRange.get(1));
     }
 }
