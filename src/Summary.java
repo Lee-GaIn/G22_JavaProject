@@ -53,15 +53,15 @@ public class Summary {
         // Each data Group has a group.
         // Each group has several data
         // Each data has Localdate and the number of (positive case OR new death OR people vaccinated).
-        // If user choose only searching positive case, both new death and people vaccinated fields is 0 except for positive case fields
-        // If user ~~                    new death, both positive case and people vaccinated fields is 0 except for new death fields
-        // If user ~~                    people vaccinated, both positive case and new death fields is 0 except for people vaccinated fields
+        // If user choose only searching "NEW" positive cases, both new death and people vaccinated fields is 0 except for "NEW" positive cases fields
+        // If user ~~                    new deaths, both positive cases and people vaccinated fields is 0 except for new deaths fields
+        // If user ~~                    people vaccinated, both "NEW" positive case and new deaths fields is 0 except for people vaccinated fields
         // Please read Data class and DataGroup class that I made below
 
         // FIXME: 2021-08-09 Lee Gain
         LocalDate l1 = LocalDate.of(2021, 5, 20);
         LocalDate l2 = LocalDate.of(2021, 5, 24);
-        LocalDate l3 = LocalDate.of(2021, 5, 26);
+        LocalDate l3 = LocalDate.of(2021, 10, 26);
 
         LocalDate l4 = LocalDate.of(2021, 4, 3);
         LocalDate l5 = LocalDate.of(2021, 5, 3);
@@ -147,9 +147,10 @@ public class Summary {
         while(line != null){
             String[] tempRow = line.split(",");
             String[] row = new String[8];
+            String continentList = "Africa-Asia-Europe-North America-Oceania-South America";
+            boolean isContinent = geographicArea.contains(continentList);
 
-            if(tempRow[1].equalsIgnoreCase(geographicArea) ||
-                tempRow[2].equalsIgnoreCase(geographicArea)){
+            if(tempRow[2].equalsIgnoreCase(geographicArea)){
                 for(int i = 0; i < tempRow.length; i++){
                     row[i] = tempRow[i];
                 }
@@ -176,6 +177,7 @@ public class Summary {
 
                 if(tempDate.isEqual(date)){
                     Data data = dataArr.get(i);
+
                     switch (metric){
                         //positive
                         case 1:
