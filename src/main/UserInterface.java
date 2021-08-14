@@ -1,3 +1,5 @@
+package main;
+
 import java.util.Scanner;
 
 public class UserInterface {
@@ -11,7 +13,7 @@ public class UserInterface {
             Date d1 = Date.createDateObj();
             d1.display();
 
-            // Summary part
+            // main.Summary part
             Summary.createSummaryObj(d1);
 
             // Display part

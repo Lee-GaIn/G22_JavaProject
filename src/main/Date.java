@@ -1,3 +1,5 @@
+package main;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -17,13 +19,13 @@ public class Date {
 
     // Getter and Setter
     private void setTimeRange(String userTime){
-        // regular expression for yyyy/mm/dd "((2020|2021)/([0]?[1-9]|1[012])/([0]?[1-9]|[12][0-9]|3[01]))"
+        // regular expression for mm/dd/yyyy "([0]?[1-9]|1[012])/([0]?[1-9]|[12][0-9]|3[01])/(2020|2021)"
         // Use it if you need, I will delete above comment before submitting :>>
 
         // yyyy/mm/dd ~ yyyy/mm/dd
         // userTime = yyyy/mm/dd,yyyy/mm/dd
-        String dateToDate = "^((2020|2021)/([0]?[1-9]|1[012])/([0]?[1-9]|[12][0-9]|3[01]))," +
-                "((2020|2021)/([0]?[1-9]|1[012])/([0]?[1-9]|[12][0-9]|3[01]))$";
+        String dateToDate = "^(([0]?[1-9]|1[012])/([0]?[1-9]|[12][0-9]|3[01])/(2020|2021))," +
+                "(([0]?[1-9]|1[012])/([0]?[1-9]|[12][0-9]|3[01])/(2020|2021))$";
         if(Pattern.matches(dateToDate, userTime)){
             String[] datesArr = userTime.split(",");
             for(int i = 0; i < datesArr.length; i++){
@@ -73,14 +75,14 @@ public class Date {
         int dateMethod = Integer.parseInt(sc.nextLine());
         switch (dateMethod){
             case 1:
-                System.out.printf("\nPlease enter a start date(yyyy/mm/dd)>> ");
+                System.out.printf("\nPlease enter a start date(mm/dd/yyyy)>> ");
                 String startDate1 = sc.nextLine();
-                System.out.printf("Please enter an end date(yyyy/mm/dd)>> ");
+                System.out.printf("Please enter an end date(mm/dd/yyyy)>> ");
                 String endDate1 = sc.nextLine();
                 date = startDate1 + "," + endDate1;
                 break;
             case 2:
-                System.out.printf("\nPlease enter a start date(yyyy/mm/dd)>> ");
+                System.out.printf("\nPlease enter a start date(mm/dd/yyyy)>> ");
                 String startDate2 = sc.nextLine();
                 System.out.printf("Please enter a number of days or weeks(n days, n weeks)>> ");
                 String particularDate2 = sc.nextLine();
@@ -90,24 +92,25 @@ public class Date {
             case 3:
                 System.out.printf("\nPlease enter a number of days or weeks(n days, n weeks)>> ");
                 String particularDate3 = sc.nextLine();
-                System.out.printf("Please enter an end date(yyyy/mm/dd)>> ");
+                System.out.printf("Please enter an end date(mm/dd/yyyy)>> ");
                 String endDate3 = sc.nextLine();
                 date = particularDate3 + "," + endDate3;
                 break;
             default:
                 // make exception later
+                // FIXME: 2021-08-14 
         }
         return new Date(geographicArea, date);
     }
 
-    public LocalDate strToLocalDate(String aDate){
-        // This method receives string "aDate" (yyyy/mm/dd) as an parameter
+    public static LocalDate strToLocalDate(String aDate){
+        // This method receives string "aDate" (mm/dd/yyyy) as an parameter
         // and returns LocalDate.
 
         String[] aDateArr = aDate.split("/");
-        int year = Integer.parseInt(aDateArr[0]);
-        int month = Integer.parseInt(aDateArr[1]);
-        int day = Integer.parseInt(aDateArr[2]);
+        int year = Integer.parseInt(aDateArr[2]);
+        int month = Integer.parseInt(aDateArr[0]);
+        int day = Integer.parseInt(aDateArr[1]);
 
         LocalDate date = LocalDate.of(year, month, day);
 
