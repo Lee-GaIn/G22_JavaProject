@@ -2,21 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="46361059-fd6d-4bf8-970c-a6001dea7b57" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/data/Data.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/data/DataGroup.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/G22_JavaProject/Data.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/G22_JavaProject/DataGroup.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/G22_JavaProject/Date.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/G22_JavaProject/Summary$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/G22_JavaProject/Summary$2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/G22_JavaProject/Summary.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/G22_JavaProject/UserInterface.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/G22_JavaProject/test.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Date.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Date.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Summary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Summary.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UserInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/UserInterface.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/G22_JavaProject/data/Data.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/G22_JavaProject/data/Data.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/G22_JavaProject/main/Summary.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/G22_JavaProject/main/Summary.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/Data.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/Data.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Summary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Summary.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -116,6 +106,20 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/UserInterface.java</url>
+          <line>5</line>
+          <properties class="main.UserInterface" method="main">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
