@@ -61,17 +61,17 @@ public class Summary {
         // Please read Data class and DataGroup class that I made below
 
         // FIXME: 2021-08-09 Lee Gain
-        LocalDate l1 = LocalDate.of(2020, 4, 3);
-        LocalDate l2 = LocalDate.of(2020, 5, 3);
-        LocalDate l3 = LocalDate.of(2021, 10, 26);
+        LocalDate l1 = LocalDate.of(2021, 5, 20);
+        LocalDate l2 = LocalDate.of(2021, 5, 21);
+        LocalDate l3 = LocalDate.of(2021, 5, 22);
 
-        LocalDate l4 = LocalDate.of(2020, 5, 20);
-        LocalDate l5 = LocalDate.of(2020, 5, 24);
-        LocalDate l6 = LocalDate.of(2020, 5, 27);
+        LocalDate l4 = LocalDate.of(2021, 5, 23);
+        LocalDate l5 = LocalDate.of(2021, 5, 24);
+        LocalDate l6 = LocalDate.of(2021, 5, 25);
 
-        LocalDate l7 = LocalDate.of(2020, 6, 11);
-        LocalDate l8 = LocalDate.of(2020, 7, 22);
-        LocalDate l9 = LocalDate.of(2021, 7, 1);
+        LocalDate l7 = LocalDate.of(2021, 5, 26);
+        LocalDate l8 = LocalDate.of(2021, 5, 27);
+        LocalDate l9 = LocalDate.of(2021, 5, 28);
 
 
         Data d1 = new Data(l1);
@@ -119,16 +119,39 @@ public class Summary {
 
 
         // part 3
-        String menu = "\n************************************************************\n " +
+        String MetricMenu = "\n************************************************************\n " +
                 "Available metric\n" +
                 "\t[1] Positive case\n" +
                 "\t[2] Deaths\n" +
                 "\t[3] People vaccinated\n" +
                 "************************************************************\n" +
                 "Please choose your metric(1/2/3)>> ";
-        System.out.printf(menu);
+        System.out.printf(MetricMenu);
         int metric = Integer.parseInt(sc.nextLine());
         System.out.println();
+
+        String resultTypesMenu = "\n************************************************************\n " +
+                "Available result types\n" +
+                "\t[1] New Total\n" +
+                "\t[2] Up To\n" +
+                "************************************************************\n" +
+                "Please choose your result types(1/2)>> ";
+        System.out.printf(resultTypesMenu);
+        int resultType = Integer.parseInt(sc.nextLine());
+        System.out.println();
+
+        switch (resultType){
+            case 1:
+                getNewTotal(analyzedData, metric);
+                break;
+            case 2:
+                getUpTo(analyzedData, metric);
+                break;
+            default:
+                //error control
+                // FIXME: 2021-08-14
+        }
+
 
     }
     // part 1
@@ -176,17 +199,34 @@ public class Summary {
         // it returns database(particular country - date) for each group
         ArrayList<Data> dataArr = dg.getGroupedData();
         int dataArrLength = dataArr.toArray().length;
+        int dbArrLength = dbOfGeographicArea.toArray().length;
 
         for (int i = 0; i < dataArrLength; i++) {
-            for (String[] row : dbOfGeographicArea) {
-                LocalDate tempDate = Date.strToLocalDate(row[3]);
+            for (int j = 0; j < dbArrLength; j++) {
+                String[] curRow = dbOfGeographicArea.get(j);
+                LocalDate tempDate = Date.strToLocalDate(curRow[3]);
                 LocalDate userDate = dataArr.get(i).getDate();
 
                 if (tempDate.isEqual(userDate)) {
+                    int positiveCases = Integer.parseInt(curRow[4]);
+                    int newDeaths = Integer.parseInt(curRow[5]);
+                    int peopleVaccinated = Integer.parseInt(curRow[6]);
+                    int newPeopleVaccinated = Integer.parseInt(curRow[6]);
+                    if(j != 0){
+                        String[] prevRow = dbOfGeographicArea.get(j - 1);
+                        int prevPV = Integer.parseInt(prevRow[6]);
+                        newPeopleVaccinated = newPeopleVaccinated - prevPV;
+
+                        if(peopleVaccinated < 0){
+                            peopleVaccinated = prevPV;
+                        }
+                    }
+
                     Data data = dataArr.get(i);
-                    data.setPositiveCases(Integer.parseInt(row[4]));
-                    data.setNewDeaths(Integer.parseInt(row[5]));
-                    data.setPeopleVaccinated(Integer.parseInt(row[6]));
+                    data.setPositiveCases(positiveCases);
+                    data.setNewDeaths(newDeaths);
+                    data.setPeopleVaccinated(peopleVaccinated);
+                    data.setNewPeopleVaccinated(newPeopleVaccinated);
                 }
             }
         }
@@ -194,8 +234,33 @@ public class Summary {
         return dg;
     }
 
-
     //part 3
+    private static void getNewTotal(ArrayList<DataGroup> db, int metric){
+        switch (metric){
+            case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            default:
+                //err
+                // FIXME: 2021-08-14
+        }
+    }
 
+    private static void getUpTo(ArrayList<DataGroup> db, int metric){
+        switch (metric){
+            case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            default:
+                //err
+                // FIXME: 2021-08-14
+        }
+    }
 
 }

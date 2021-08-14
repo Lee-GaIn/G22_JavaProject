@@ -7,6 +7,7 @@ public class Data {
     private int newCases;
     private int newDeaths;
     private int peopleVaccinated;
+    private int newPeopleVaccinated;
 
     //Constructor
     public Data(LocalDate date) {
@@ -15,15 +16,27 @@ public class Data {
 
     //Getter and Setter
     public void setPositiveCases(int newCases) {
-        this.newCases = newCases;
+        if(newCases < 0){
+            return;
+        }
+            this.newCases = newCases;
     }
 
     public void setNewDeaths(int newDeaths) {
-        this.newDeaths = newDeaths;
+        if(newDeaths < 0){
+            return;
+        }this.newDeaths = newDeaths;
     }
 
     public void setPeopleVaccinated(int peopleVaccinated) {
         this.peopleVaccinated = peopleVaccinated;
+    }
+
+    public void setNewPeopleVaccinated(int newPeopleVaccinated) {
+        if(newPeopleVaccinated < 0){
+            return;
+        }
+        this.newPeopleVaccinated = newPeopleVaccinated;
     }
 
     public LocalDate getDate() {
@@ -42,10 +55,14 @@ public class Data {
         return peopleVaccinated;
     }
 
+    public int getNewPeopleVaccinated() {
+        return newPeopleVaccinated;
+    }
+
     //Method
     public void displayData() {
-        System.out.printf("Date: %s\nNew Cases: %d\nNew Deaths: %d\nPeople Vaccinated: %d\n",
-                getDate(), getNewCases(), getNewDeaths(), getPeopleVaccinated());
+        System.out.printf("Date: %s\nNew Cases: %d\nNew Deaths: %d\nPeople Vaccinated: %d\nNew total of people vaccinated: %d\n",
+                getDate(), getNewCases(), getNewDeaths(), getPeopleVaccinated(), getNewPeopleVaccinated());
     }
 }
 
