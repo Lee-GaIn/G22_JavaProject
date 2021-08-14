@@ -6,6 +6,7 @@
       <change beforePath="$PROJECT_DIR$/out/production/G22_JavaProject/data/Data.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/G22_JavaProject/data/Data.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/G22_JavaProject/main/Summary.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/G22_JavaProject/main/Summary.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/data/Data.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/Data.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Date.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Date.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Summary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Summary.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -106,20 +107,6 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/main/UserInterface.java</url>
-          <line>5</line>
-          <properties class="main.UserInterface" method="main">
-            <option name="EMULATED" value="true" />
-          </properties>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
