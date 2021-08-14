@@ -118,7 +118,6 @@ public class Date {
     }
 
     public void display(){
-
         System.out.printf("\nGeographic Area: %s \nStart date: %s \nEnd date: %s \n", geographicArea, timeRange.get(0), timeRange.get(1));
     }
 }

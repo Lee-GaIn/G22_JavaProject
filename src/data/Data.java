@@ -60,6 +60,10 @@ public class Data {
     }
 
     //Method
+    public String dateToString(){
+        return date.toString();
+    }
+
     public void displayData() {
         System.out.printf("Date: %s\nNew Cases: %d\nNew Deaths: %d\nPeople Vaccinated: %d\nNew total of people vaccinated: %d\n",
                 getDate(), getNewCases(), getNewDeaths(), getPeopleVaccinated(), getNewPeopleVaccinated());

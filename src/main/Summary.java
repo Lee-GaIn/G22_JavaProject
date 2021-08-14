@@ -8,8 +8,29 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Summary {
+    private String[] timeRange = new String[2];
+    private int value;
 
-    public static void createSummaryObj(Date userDateObj) throws Exception {
+    // Constructor
+    Summary(){}
+
+    Summary(String[] timeRange, int value){
+        this.timeRange = timeRange;
+        this.value = value;
+    }
+
+    // Getter and Setter
+    public String[] getTimeRange() {
+        return timeRange;
+    }
+
+    public int getValue() {
+        return value;
+    }
+
+
+    // Method
+    public static ArrayList<Summary> createSummaryObj(Date userDateObj) throws Exception {
         Scanner sc = new Scanner(System.in);
         // part 1
 
@@ -61,17 +82,17 @@ public class Summary {
         // Please read Data class and DataGroup class that I made below
 
         // FIXME: 2021-08-09 Lee Gain
-        LocalDate l1 = LocalDate.of(2021, 5, 20);
-        LocalDate l2 = LocalDate.of(2021, 5, 21);
-        LocalDate l3 = LocalDate.of(2021, 5, 22);
+        LocalDate l1 = LocalDate.of(2021, 5, 18);
+        LocalDate l2 = LocalDate.of(2021, 5, 19);
+        LocalDate l3 = LocalDate.of(2021, 5, 20);
 
-        LocalDate l4 = LocalDate.of(2021, 5, 23);
-        LocalDate l5 = LocalDate.of(2021, 5, 24);
-        LocalDate l6 = LocalDate.of(2021, 5, 25);
+        LocalDate l4 = LocalDate.of(2021, 5, 21);
+        LocalDate l5 = LocalDate.of(2021, 5, 22);
+        LocalDate l6 = LocalDate.of(2021, 5, 23);
 
-        LocalDate l7 = LocalDate.of(2021, 5, 26);
-        LocalDate l8 = LocalDate.of(2021, 5, 27);
-        LocalDate l9 = LocalDate.of(2021, 5, 28);
+        LocalDate l7 = LocalDate.of(2021, 5, 24);
+        LocalDate l8 = LocalDate.of(2021, 5, 25);
+        LocalDate l9 = LocalDate.of(2021, 5, 26);
 
 
         Data d1 = new Data(l1);
@@ -121,7 +142,7 @@ public class Summary {
         // part 3
         String MetricMenu = "\n************************************************************\n " +
                 "Available metric\n" +
-                "\t[1] Positive case\n" +
+                "\t[1] Positive cases\n" +
                 "\t[2] Deaths\n" +
                 "\t[3] People vaccinated\n" +
                 "************************************************************\n" +
@@ -140,20 +161,43 @@ public class Summary {
         int resultType = Integer.parseInt(sc.nextLine());
         System.out.println();
 
-        switch (resultType){
-            case 1:
-                getNewTotal(analyzedData, metric);
-                break;
-            case 2:
-                getUpTo(analyzedData, metric);
-                break;
-            default:
-                //error control
-                // FIXME: 2021-08-14
+        ArrayList<Summary> summaryList = new ArrayList<>();
+        for(DataGroup dg : analyzedData) {
+            ArrayList<Data> dtArr = dg.getGroupedData();
+            String firstDate = dtArr.get(0).dateToString();
+            String lastDate = dtArr.get(dtArr.toArray().length - 1).dateToString();
+            String[] timeRange = new String[]{firstDate, lastDate};
+            int value = 0;
+            switch (resultType) {
+                case 1:
+                    value = getNewTotal(dtArr, metric);
+                    break;
+                case 2:
+                    value = getUpTo(dtArr, metric);
+                    break;
+                default:
+                    //error control
+                    // FIXME: 2021-08-14
+            }
+            Summary s1 = new Summary(timeRange, value);
+            summaryList.add(s1);
         }
 
+        // FIXME: 2021-08-14
+        for(Summary s: summaryList){
+            s.displaySummary();
+        }
 
+        return summaryList;
     }
+
+    private String timeRangeToString(){
+        return timeRange[0] + "~" + timeRange[1];
+    }
+
+    public void displaySummary(){ System.out.printf("Time range: %s\nValue: %d\n",timeRangeToString(), getValue());
+    }
+
     // part 1
 
 
@@ -235,32 +279,46 @@ public class Summary {
     }
 
     //part 3
-    private static void getNewTotal(ArrayList<DataGroup> db, int metric){
-        switch (metric){
-            case 1:
-                break;
-            case 2:
-                break;
-            case 3:
-                break;
-            default:
-                //err
-                // FIXME: 2021-08-14
+    private static int getNewTotal(ArrayList<Data> db, int metric){
+        int value = 0;
+        for(Data dt : db){
+            switch (metric){
+                case 1:
+                    value += dt.getNewCases();
+                    break;
+                case 2:
+                    value += dt.getNewDeaths();
+                    break;
+                case 3:
+                    value += dt.getNewPeopleVaccinated();
+                    break;
+                default:
+                    //err
+                    // FIXME: 2021-08-14
+            }
         }
+        return value;
     }
 
-    private static void getUpTo(ArrayList<DataGroup> db, int metric){
-        switch (metric){
-            case 1:
-                break;
-            case 2:
-                break;
-            case 3:
-                break;
-            default:
-                //err
-                // FIXME: 2021-08-14
+    private static int getUpTo(ArrayList<Data> db, int metric){
+        //        "\t[1] new cases\n" +
+//                "\t[2] Deaths\n" +
+//                "\t[3] People vaccinated\n" +
+        int value = 0;
+        for(Data dt : db) {
+            switch (metric) {
+                case 1:
+                    break;
+                case 2:
+                    break;
+                case 3:
+                    value += dt.getPeopleVaccinated();
+                    break;
+                default:
+                    //err
+                    // FIXME: 2021-08-14
+            }
         }
+        return 1;
     }
-
 }
