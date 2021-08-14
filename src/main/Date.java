@@ -35,11 +35,11 @@ public class Date {
         }
 
         // A number of days or weeks from a particular date
-        // userTime = yyyy/mm/dd,n days OR n weeks, yyyy/mm/dd
+        // userTime = mm/dd/yyyy,n days OR mm/dd/yyyy,n weeks
 
 
         // A number of days or weeks to a particular date
-        // userTime = n days,yyyy/mm/dd OR n weeks,yyyy/mm/dd
+        // userTime = n days,mm/dd/yyyy OR n weeks,mm/dd/yyyy
 
         // exception
 
