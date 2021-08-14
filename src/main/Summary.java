@@ -32,6 +32,7 @@ public class Summary {
     // Method
     public static ArrayList<Summary> createSummaryObj(Date userDateObj) throws Exception {
         Scanner sc = new Scanner(System.in);
+        System.out.printf("[STEP 2] \n");
         // part 1
 
         // part 2
@@ -305,20 +306,22 @@ public class Summary {
 //                "\t[2] Deaths\n" +
 //                "\t[3] People vaccinated\n" +
         int value = 0;
-        for(Data dt : db) {
+        int dbLength = db.toArray().length;
+        for(int i = 0; i < dbLength; i++) {
             switch (metric) {
                 case 1:
                     break;
                 case 2:
                     break;
                 case 3:
-                    value += dt.getPeopleVaccinated();
+                    Data lastDateData = db.get(dbLength - 1);
+                    value = lastDateData.getPeopleVaccinated();
                     break;
                 default:
                     //err
                     // FIXME: 2021-08-14
             }
         }
-        return 1;
+        return value;
     }
 }
