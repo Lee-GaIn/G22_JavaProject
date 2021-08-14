@@ -2,13 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="46361059-fd6d-4bf8-970c-a6001dea7b57" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/data/Data.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/data/DataGroup.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/G22_JavaProject/Data.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/G22_JavaProject/Data.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/G22_JavaProject/DataGroup.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/G22_JavaProject/DataGroup.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/G22_JavaProject/Summary.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/G22_JavaProject/Summary.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Date.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Date.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Summary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Summary.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UserInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UserInterface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/G22_JavaProject/Data.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/G22_JavaProject/DataGroup.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/G22_JavaProject/Date.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/G22_JavaProject/Summary$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/G22_JavaProject/Summary$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/G22_JavaProject/Summary.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/G22_JavaProject/UserInterface.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/G22_JavaProject/test.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Date.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Date.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Summary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Summary.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UserInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/UserInterface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/test.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,21 +66,21 @@
   </component>
   <component name="RunManager" selected="Application.UserInterface">
     <configuration name="Summary" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Summary" />
+      <option name="MAIN_CLASS_NAME" value="main.Summary" />
       <module name="G22_JavaProject" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <configuration name="UserInterface" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="UserInterface" />
+      <option name="MAIN_CLASS_NAME" value="main.UserInterface" />
       <module name="G22_JavaProject" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <configuration name="test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="test" />
+      <option name="MAIN_CLASS_NAME" value="main.test" />
       <module name="G22_JavaProject" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -81,8 +89,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.UserInterface" />
-        <item itemvalue="Application.Summary" />
         <item itemvalue="Application.test" />
+        <item itemvalue="Application.Summary" />
       </list>
     </recent_temporary>
   </component>
