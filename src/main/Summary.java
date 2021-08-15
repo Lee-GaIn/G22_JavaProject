@@ -3,7 +3,6 @@ package main;
 import data.*;
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -52,14 +51,13 @@ public class Summary {
         DataGroup baseDayGroup = methodOne(userTimeRange);
         // it accepts userTimeRange
         // and returns DataGroup
-        // [startdate, startdate+1, ,startdate+2, ..., enddate]
+        // {startdate, startdate+1, ,startdate+2, ..., enddate}
 
         ArrayList<DataGroup> groupedDayList = new ArrayList<>();
         // final result
 
         switch (groupingCondition){
             case 1:
-                System.out.println(1);
                 groupedDayList = methodForNoGrouping(baseDayGroup);
                 break;
             case 2:
