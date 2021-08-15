@@ -3,6 +3,7 @@ package main;
 import data.*;
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -32,8 +33,53 @@ public class Summary {
     // Method
     public static ArrayList<Summary> createSummaryObj(Date userDateObj) throws Exception {
         Scanner sc = new Scanner(System.in);
-        System.out.printf("[STEP 2] \n");
         // part 1
+         String groupingConditionMenu = "[STEP 2]" +
+                "\n************************************************************\n " +
+                "Grouping condition\n" +
+                "\t[1] No grouping\n" +
+                "\t[2] Number of groups\n" +
+                "\t[3] Number of days\n" +
+                "************************************************************\n" +
+                "Please choose your grouping condition(1/2/3)>> ";
+        System.out.printf(groupingConditionMenu);
+        int groupingCondition = Integer.parseInt(sc.nextLine());
+        System.out.println();
+
+        ArrayList<LocalDate> userTimeRange = userDateObj.getTimeRange();
+        // It contains startdate[0] and enddate[1]
+
+        DataGroup baseDayGroup = methodOne(userTimeRange);
+        // it accepts userTimeRange
+        // and returns DataGroup
+        // [startdate, startdate+1, ,startdate+2, ..., enddate]
+
+        ArrayList<DataGroup> groupedDayList = new ArrayList<>();
+        // final result
+
+        switch (groupingCondition){
+            case 1:
+                System.out.println(1);
+                groupedDayList = methodForNoGrouping(baseDayGroup);
+                break;
+            case 2:
+                System.out.printf("Please enter the number of groups you want to create. (Integer value)>> ");
+                int numOfGroups = Integer.parseInt(sc.nextLine());
+                System.out.println();
+
+                groupedDayList = methodForNumOfGroups(baseDayGroup, numOfGroups);
+                break;
+            case 3:
+                System.out.printf("Please enter the number of days in a group. (Integer value)>> ");
+                int numOfDays = Integer.parseInt(sc.nextLine());
+                System.out.println();
+
+                groupedDayList = methodForNumOfDays(baseDayGroup, numOfDays);
+                break;
+            default:
+                // write some code after studying exceptions on the lecture.
+        }
+
 
         // part 2
         // FIXME: for Khanh Linh and Ngoc Tuan
@@ -72,66 +118,56 @@ public class Summary {
 //        ArrayList<DataGroup> result = new ArrayList<DataGroup>(){{add(dg1); add(dg2);}};
 
 
-        // FIXME: for Anh Minh Chu
-        // and returns analyzedData as ArrayList<DataGroup>.
-        // Each data Group has a group.
-        // Each group has several data
-        // Each data has Localdate and the number of (positive case OR new death OR people vaccinated).
-        // If user choose only searching "NEW" positive cases, both new death and people vaccinated fields is 0 except for "NEW" positive cases fields
-        // If user ~~                    new deaths, both positive cases and people vaccinated fields is 0 except for new deaths fields
-        // If user ~~                    people vaccinated, both "NEW" positive case and new deaths fields is 0 except for people vaccinated fields
-        // Please read Data class and DataGroup class that I made below
-
         // FIXME: 2021-08-09 Lee Gain
-        LocalDate l1 = LocalDate.of(2021, 5, 18);
-        LocalDate l2 = LocalDate.of(2021, 5, 19);
-        LocalDate l3 = LocalDate.of(2021, 5, 20);
+//        LocalDate l1 = LocalDate.of(2021, 5, 18);
+//        LocalDate l2 = LocalDate.of(2021, 5, 19);
+//        LocalDate l3 = LocalDate.of(2021, 5, 20);
+//
+//        LocalDate l4 = LocalDate.of(2021, 5, 21);
+//        LocalDate l5 = LocalDate.of(2021, 5, 22);
+//        LocalDate l6 = LocalDate.of(2021, 5, 23);
+//
+//        LocalDate l7 = LocalDate.of(2021, 5, 24);
+//        LocalDate l8 = LocalDate.of(2021, 5, 25);
+//        LocalDate l9 = LocalDate.of(2021, 5, 26);
+//
+//
+//        Data d1 = new Data(l1);
+//        Data d2 = new Data(l2);
+//        Data d3 = new Data(l3);
+//
+//        Data d4 = new Data(l4);
+//        Data d5 = new Data(l5);
+//        Data d6 = new Data(l6);
+//
+//        Data d7 = new Data(l7);
+//        Data d8 = new Data(l8);
+//        Data d9 = new Data(l9);
+//
+//        DataGroup dg1 = new DataGroup();
+//        dg1.addData(d1);
+//        dg1.addData(d2);
+//        dg1.addData(d3);
+//
+//        ArrayList<Data> dataArr = new ArrayList<>() {{
+//            add(d4);
+//            add(d5);
+//            add(d6);
+//        }};
+//        DataGroup dg2 = new DataGroup(dataArr);
+//
+//        DataGroup dg3 = new DataGroup();
+//        dg3.addData(d7);
+//        dg3.addData(d8);
+//        dg3.addData(d9);
+//
+//        ArrayList<DataGroup> groupForTesting = new ArrayList<>() {{
+//            add(dg1);
+//            add(dg2);
+//            add(dg3);
+//        }};
 
-        LocalDate l4 = LocalDate.of(2021, 5, 21);
-        LocalDate l5 = LocalDate.of(2021, 5, 22);
-        LocalDate l6 = LocalDate.of(2021, 5, 23);
-
-        LocalDate l7 = LocalDate.of(2021, 5, 24);
-        LocalDate l8 = LocalDate.of(2021, 5, 25);
-        LocalDate l9 = LocalDate.of(2021, 5, 26);
-
-
-        Data d1 = new Data(l1);
-        Data d2 = new Data(l2);
-        Data d3 = new Data(l3);
-
-        Data d4 = new Data(l4);
-        Data d5 = new Data(l5);
-        Data d6 = new Data(l6);
-
-        Data d7 = new Data(l7);
-        Data d8 = new Data(l8);
-        Data d9 = new Data(l9);
-
-        DataGroup dg1 = new DataGroup();
-        dg1.addData(d1);
-        dg1.addData(d2);
-        dg1.addData(d3);
-
-        ArrayList<Data> dataArr = new ArrayList<>() {{
-            add(d4);
-            add(d5);
-            add(d6);
-        }};
-        DataGroup dg2 = new DataGroup(dataArr);
-
-        DataGroup dg3 = new DataGroup();
-        dg3.addData(d7);
-        dg3.addData(d8);
-        dg3.addData(d9);
-
-        ArrayList<DataGroup> groupForTesting = new ArrayList<>() {{
-            add(dg1);
-            add(dg2);
-            add(dg3);
-        }};
-
-        ArrayList<DataGroup> analyzedData = getData(userDateObj, groupForTesting);
+        ArrayList<DataGroup> analyzedData = getData(userDateObj, groupedDayList);
 
         // FIXME: 2021-08-10 Lee Gain
         for (DataGroup dg : analyzedData) {
@@ -141,14 +177,14 @@ public class Summary {
 
 
         // part 3
-        String MetricMenu = "\n************************************************************\n " +
+        String metricMenu = "\n************************************************************\n " +
                 "Available metric\n" +
                 "\t[1] Positive cases\n" +
                 "\t[2] Deaths\n" +
                 "\t[3] People vaccinated\n" +
                 "************************************************************\n" +
                 "Please choose your metric(1/2/3)>> ";
-        System.out.printf(MetricMenu);
+        System.out.printf(metricMenu);
         int metric = Integer.parseInt(sc.nextLine());
         System.out.println();
 
@@ -200,6 +236,15 @@ public class Summary {
     }
 
     // part 1
+    private static DataGroup methodOne(ArrayList<LocalDate> userTimeRange){}
+
+    private static  ArrayList<DataGroup> methodForNoGrouping(DataGroup userTimeRange){}
+
+    private static  ArrayList<DataGroup> methodForNumOfGroups(DataGroup userTimeRange, int numOfGroups){}
+
+    private static  ArrayList<DataGroup> methodForNumOfDays(DataGroup userTimeRange, int numOfDays){}
+
+
 
 
     // part 2
