@@ -42,17 +42,17 @@ public class Date {
             String date = dateAndNum[0];
             if (dateAndNum[1].contains("days")) {
                 String[] numOnly = dateAndNum[1].split(" ");
-                int days_num = Integer.parseInt(numOnly[0]) - 1;
+                int numOfDays = Integer.parseInt(numOnly[0]) - 1;
                 LocalDate startDate = strToLocalDate(date);
-                LocalDate endDate = startDate.plusDays(days_num);
+                LocalDate endDate = startDate.plusDays(numOfDays);
                 timeRange.add(startDate);
                 timeRange.add(endDate);
             }
             if (dateAndNum[1].contains("weeks")) {
                 String[] numOnly = dateAndNum[1].split(" ");
-                int weeks_num = Integer.parseInt(numOnly[0]) * 7 - 1;
+                int numOfWeeks = Integer.parseInt(numOnly[0]) * 7 - 1;
                 LocalDate startDate = strToLocalDate(date);
-                LocalDate endDate = startDate.plusDays(weeks_num);
+                LocalDate endDate = startDate.plusDays(numOfWeeks);
                 timeRange.add(startDate);
                 timeRange.add(endDate);
             }
