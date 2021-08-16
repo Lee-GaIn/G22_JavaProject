@@ -60,7 +60,27 @@ public class Date {
 
         // A number of days or weeks to a particular date
         // userTime = n days,mm/dd/yyyy OR n weeks,mm/dd/yyyy
-
+        String dateValid = "^(([0]?[1-9]|1[012])/([0]?[1-9]|[12][0-9]|3[01])/(2020|2021))";
+        String[] dateSplit = userTime.split(",");
+        if (Pattern.matches(dateValid, dateSplit[1])) {
+            String getDate = dateSplit[1];
+            if (dateSplit[0].contains("days")) {
+                String[] getNum = dateSplit[0].split(" ");
+                int numDays = Integer.parseInt(getNum[0]) - 1;
+                LocalDate endDate = strToLocalDate(getDate);
+                LocalDate particularDate = endDate.minusDays(numDays);
+                timeRange.add(particularDate);
+                timeRange.add(endDate);
+            }
+            if (dateSplit[0].contains("weeks")) {
+                String[] getNum = dateSplit[0].split(" ");
+                int numWeeks = Integer.parseInt(getNum[0]) * 7 - 1;
+                LocalDate endDate = strToLocalDate(getDate);
+                LocalDate particularDate = endDate.minusDays(numWeeks);
+                timeRange.add(particularDate);
+                timeRange.add(endDate);
+            }
+        }
         // exception
 
     }
