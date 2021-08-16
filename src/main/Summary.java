@@ -46,7 +46,7 @@ public class Summary {
         ArrayList<LocalDate> userTimeRange = userDateObj.getTimeRange();
         // It contains startdate[0] and enddate[1]
 
-//        DataGroup baseDayGroup = methodOne(userTimeRange);
+//        DataGroup baseDayGroup = ListOfDates(userTimeRange);
 //        // it accepts userTimeRange
 //        // and returns DataGroup
 //        // {startdate, startdate+1, ,startdate+2, ..., enddate}
@@ -233,7 +233,7 @@ public class Summary {
 
     // part 1
 
-    private static DataGroup methodOne(ArrayList<LocalDate> userTimeRange) {
+    private static DataGroup ListOfDates(ArrayList<LocalDate> userTimeRange) {
         DataGroup dg = new DataGroup();
         LocalDate start = userTimeRange.get(0);
         dg.addData(new Data(start));
