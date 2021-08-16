@@ -369,16 +369,18 @@ public class Summary {
                 if (tempDate.isEqual(userDate)) {
                     int newCases = Integer.parseInt(curRow[4]);
                     int newDeaths = Integer.parseInt(curRow[5]);
-                    int newPeopleVaccinated = Integer.parseInt(curRow[6]);
-                    int peopleVaccinated = Integer.parseInt(curRow[6]);
+                    int newPeopleVaccinated = (curRow[6] != null && !(curRow[6].isEmpty())) ? Integer.parseInt(curRow[6]) : 0;
+                    int peopleVaccinated = (curRow[6] != null && !(curRow[6].isEmpty())) ? Integer.parseInt(curRow[6]) : 0;
                     if(j != 0){
                         String[] prevRow = dbOfGeographicArea.get(j - 1);
                         int prevPV = Integer.parseInt(prevRow[6]);
-                        newPeopleVaccinated = newPeopleVaccinated - prevPV;
 
                         if(peopleVaccinated <= 0){
                             peopleVaccinated = prevPV;
+                            newPeopleVaccinated = prevPV;
                         }
+
+                        newPeopleVaccinated = newPeopleVaccinated - prevPV;
                     }
 
                     Data data = dataArr.get(i);
