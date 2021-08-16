@@ -6,19 +6,19 @@ import java.util.Scanner;
 import java.util.regex.Pattern;
 
 public class Date {
-    private String geographicArea;
-    private ArrayList<LocalDate> timeRange = new ArrayList<>(2);
-                                                            // startDate and endDate
-                                                            // FIXME: 2021-08-09 Lee Gain
+    private static String geographicArea;
+    private static ArrayList<LocalDate> timeRange = new ArrayList<>(2);
+    // startDate and endDate
+    // FIXME: 2021-08-09 Lee Gain
 
     // Constructor
-    private Date(String geographicArea, String userTime){
+    private Date(String geographicArea, String userTime) {
         this.geographicArea = geographicArea;
         setTimeRange(userTime);
     }
 
     // Getter and Setter
-    private void setTimeRange(String userTime){
+    private void setTimeRange(String userTime) {
         // regular expression for mm/dd/yyyy "([0]?[1-9]|1[012])/([0]?[1-9]|[12][0-9]|3[01])/(2020|2021)"
         // Use it if you need, I will delete above comment before submitting :>>
 
@@ -26,9 +26,9 @@ public class Date {
         // userTime = yyyy/mm/dd,yyyy/mm/dd
         String dateToDate = "^(([0]?[1-9]|1[012])/([0]?[1-9]|[12][0-9]|3[01])/(2020|2021))," +
                 "(([0]?[1-9]|1[012])/([0]?[1-9]|[12][0-9]|3[01])/(2020|2021))$";
-        if(Pattern.matches(dateToDate, userTime)){
+        if (Pattern.matches(dateToDate, userTime)) {
             String[] datesArr = userTime.split(",");
-            for(int i = 0; i < datesArr.length; i++){
+            for (int i = 0; i < datesArr.length; i++) {
                 LocalDate date = strToLocalDate(datesArr[i]);
                 timeRange.add(i, date);
             }
@@ -36,7 +36,27 @@ public class Date {
 
         // A number of days or weeks from a particular date
         // userTime = mm/dd/yyyy,n days OR mm/dd/yyyy,n weeks
-
+        String dateCheck = "^(([0]?[1-9]|1[012])/([0]?[1-9]|[12][0-9]|3[01])/(2020|2021))";
+        String[] dateAndNum = userTime.split(",");
+        if (Pattern.matches(dateCheck, dateAndNum[0])) {
+            String date = dateAndNum[0];
+            if (dateAndNum[1].contains("days")) {
+                String[] numOnly = dateAndNum[1].split(" ");
+                int numOfDays = Integer.parseInt(numOnly[0]) - 1;
+                LocalDate startDate = strToLocalDate(date);
+                LocalDate endDate = startDate.plusDays(numOfDays);
+                timeRange.add(startDate);
+                timeRange.add(endDate);
+            }
+            if (dateAndNum[1].contains("weeks")) {
+                String[] numOnly = dateAndNum[1].split(" ");
+                int numOfWeeks = Integer.parseInt(numOnly[0]) * 7 - 1;
+                LocalDate startDate = strToLocalDate(date);
+                LocalDate endDate = startDate.plusDays(numOfWeeks);
+                timeRange.add(startDate);
+                timeRange.add(endDate);
+            }
+        }
 
         // A number of days or weeks to a particular date
         // userTime = n days,mm/dd/yyyy OR n weeks,mm/dd/yyyy
@@ -45,22 +65,22 @@ public class Date {
 
     }
 
-    public String getGeographicArea(){
+    public String getGeographicArea() {
         return geographicArea;
     }
 
-    public ArrayList<LocalDate> getTimeRange(){
+    public ArrayList<LocalDate> getTimeRange() {
         return timeRange;
     }
 
     // Method
-    public static Date createDateObj(){
+    public static Date createDateObj() {
         String date = "";
         Scanner sc = new Scanner(System.in);
 
         // Choose geographic area.
         System.out.printf("[STEP 1] \nPlease enter a continent or country name you want to choose." +
-                            "(Vietnam, Asia...)>> ");
+                "(Vietnam, Asia...)>> ");
         String geographicArea = sc.nextLine().trim();
 
         // Choose date
@@ -73,7 +93,7 @@ public class Date {
                 "Please enter a number to decide the form of date range(1/2/3)>> ";
         System.out.printf(menu);
         int dateMethod = Integer.parseInt(sc.nextLine());
-        switch (dateMethod){
+        switch (dateMethod) {
             case 1:
                 System.out.printf("\nPlease enter a start date(mm/dd/yyyy)>> ");
                 String startDate1 = sc.nextLine();
@@ -87,7 +107,7 @@ public class Date {
                 System.out.printf("Please enter a number of days or weeks(n days, n weeks)>> ");
                 String particularDate2 = sc.nextLine();
 
-                date = startDate2 + "," + particularDate2 ;
+                date = startDate2 + "," + particularDate2;
                 break;
             case 3:
                 System.out.printf("\nPlease enter a number of days or weeks(n days, n weeks)>> ");
@@ -103,7 +123,7 @@ public class Date {
         return new Date(geographicArea, date);
     }
 
-    public static LocalDate strToLocalDate(String aDate){
+    public static LocalDate strToLocalDate(String aDate) {
         // This method receives string "aDate" (mm/dd/yyyy) as an parameter
         // and returns LocalDate.
 
@@ -117,7 +137,7 @@ public class Date {
         return date;
     }
 
-    public void display(){
+    public void display() {
         System.out.printf("\nGeographic Area: %s \nStart date: %s \nEnd date: %s \n", geographicArea, timeRange.get(0), timeRange.get(1));
     }
 }
