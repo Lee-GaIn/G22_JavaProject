@@ -12,8 +12,6 @@ public class Summary {
     private int value;
 
     // Constructor
-    Summary(){}
-
     Summary(String[] timeRange, int value){
         this.timeRange = timeRange;
         this.value = value;
@@ -33,6 +31,51 @@ public class Summary {
     public static ArrayList<Summary> createSummaryObj(Date userDateObj) throws Exception {
         Scanner sc = new Scanner(System.in);
         // part 1
+         String groupingConditionMenu = "[STEP 2]" +
+                "\n************************************************************\n " +
+                "Grouping condition\n" +
+                "\t[1] No grouping\n" +
+                "\t[2] Number of groups\n" +
+                "\t[3] Number of days\n" +
+                "************************************************************\n" +
+                "Please choose your grouping condition(1/2/3)>> ";
+        System.out.printf(groupingConditionMenu);
+        int groupingCondition = Integer.parseInt(sc.nextLine());
+        System.out.println();
+
+        ArrayList<LocalDate> userTimeRange = userDateObj.getTimeRange();
+        // It contains startdate[0] and enddate[1]
+
+//        DataGroup baseDayGroup = ListOfDates(userTimeRange);
+//        // it accepts userTimeRange
+//        // and returns DataGroup
+//        // {startdate, startdate+1, ,startdate+2, ..., enddate}
+//
+//        ArrayList<DataGroup> groupedDayList = new ArrayList<>();
+//        // final result
+//
+//        switch (groupingCondition){
+//            case 1:
+//                groupedDayList = methodForNoGrouping(baseDayGroup);
+//                break;
+//            case 2:
+//                System.out.printf("Please enter the number of groups you want to create. (Integer value)>> ");
+//                int numOfGroups = Integer.parseInt(sc.nextLine());
+//                System.out.println();
+//
+//                groupedDayList = methodForNumOfGroups(baseDayGroup, numOfGroups);
+//                break;
+//            case 3:
+//                System.out.printf("Please enter the number of days in a group. (Integer value)>> ");
+//                int numOfDays = Integer.parseInt(sc.nextLine());
+//                System.out.println();
+//
+//                groupedDayList = methodForNumOfDays(baseDayGroup, numOfDays);
+//                break;
+//            default:
+//                // write some code after studying exceptions on the lecture.
+//        }
+
 
         // part 2
         // FIXME: for Khanh Linh and Ngoc Tuan
@@ -70,16 +113,6 @@ public class Summary {
 //        // Please return this so that my code can be implemented.
 //        ArrayList<DataGroup> result = new ArrayList<DataGroup>(){{add(dg1); add(dg2);}};
 
-
-        // FIXME: for Anh Minh Chu
-        // and returns analyzedData as ArrayList<DataGroup>.
-        // Each data Group has a group.
-        // Each group has several data
-        // Each data has Localdate and the number of (positive case OR new death OR people vaccinated).
-        // If user choose only searching "NEW" positive cases, both new death and people vaccinated fields is 0 except for "NEW" positive cases fields
-        // If user ~~                    new deaths, both positive cases and people vaccinated fields is 0 except for new deaths fields
-        // If user ~~                    people vaccinated, both "NEW" positive case and new deaths fields is 0 except for people vaccinated fields
-        // Please read Data class and DataGroup class that I made below
 
         // FIXME: 2021-08-09 Lee Gain
         LocalDate l1 = LocalDate.of(2021, 5, 18);
@@ -124,13 +157,13 @@ public class Summary {
         dg3.addData(d8);
         dg3.addData(d9);
 
-        ArrayList<DataGroup> groupForTesting = new ArrayList<>() {{
+        ArrayList<DataGroup> groupedDayList = new ArrayList<>() {{
             add(dg1);
             add(dg2);
             add(dg3);
         }};
 
-        ArrayList<DataGroup> analyzedData = getData(userDateObj, groupForTesting);
+        ArrayList<DataGroup> analyzedData = getData(userDateObj, groupedDayList);
 
         // FIXME: 2021-08-10 Lee Gain
         for (DataGroup dg : analyzedData) {
@@ -140,14 +173,14 @@ public class Summary {
 
 
         // part 3
-        String MetricMenu = "\n************************************************************\n " +
+        String metricMenu = "\n************************************************************\n " +
                 "Available metric\n" +
                 "\t[1] Positive cases\n" +
                 "\t[2] Deaths\n" +
                 "\t[3] People vaccinated\n" +
                 "************************************************************\n" +
                 "Please choose your metric(1/2/3)>> ";
-        System.out.printf(MetricMenu);
+        System.out.printf(metricMenu);
         int metric = Integer.parseInt(sc.nextLine());
         System.out.println();
 
@@ -185,7 +218,7 @@ public class Summary {
 
         // FIXME: 2021-08-14
         for(Summary s: summaryList){
-            s.displaySummary();
+            System.out.println(s);
         }
 
         return summaryList;
@@ -195,11 +228,84 @@ public class Summary {
         return timeRange[0] + "~" + timeRange[1];
     }
 
-    public void displaySummary(){ System.out.printf("Time range: %s\nValue: %d\n",timeRangeToString(), getValue());
+    public String toString(){ return String.format("Time range: %s\nValue: %d\n",timeRangeToString(), getValue());
     }
 
     // part 1
 
+    private static DataGroup ListOfDates(ArrayList<LocalDate> userTimeRange) {
+        DataGroup dg = new DataGroup();
+        LocalDate start = userTimeRange.get(0);
+        dg.addData(new Data(start));
+        LocalDate end = userTimeRange.get(1);
+
+        int count = 1;
+        LocalDate nextDate = start.plusDays(count);
+        while (nextDate.isBefore(end))
+        {
+            count++;
+            dg.addData(new Data(nextDate));
+            nextDate = start.plusDays(count);
+        }
+        dg.addData(new Data(end));
+        return dg;
+    }
+
+
+    private static ArrayList<DataGroup> methodForNoGrouping(DataGroup userTimeRange) {
+        ArrayList<DataGroup> noGroup = new ArrayList<>();
+        for (int i = 0; i< userTimeRange.getSize(); i++)
+        {
+            DataGroup dg = new DataGroup();
+            dg.addData(userTimeRange.getData(i));
+            noGroup.add(dg);
+        }
+        return noGroup;
+    }
+
+    private static ArrayList<DataGroup> methodForNumOfGroups(DataGroup userTimeRange, int numOfGroups) {
+        ArrayList<DataGroup> groups = new ArrayList<>();
+        int numGroups = numOfGroups;
+        int size = userTimeRange.getSize();
+        int count = 0;
+        for (int i = 0; i< numOfGroups; i++)
+        {
+            int numElements = size/numGroups;
+            if (size%numGroups !=0)
+            {
+                numElements++;
+            }
+            DataGroup dg = new DataGroup();
+            for (int j = 0; j< numElements; j++)
+            {
+                dg.addData(userTimeRange.getData(count));
+                count++;
+            }
+            groups.add(dg);
+            numGroups--;
+            size-=numElements;
+        }
+        return groups;
+    }
+
+    private static ArrayList<DataGroup> methodForNumOfDays(DataGroup userTimeRange, int numOfDays) {
+        ArrayList<DataGroup> groups = new ArrayList<DataGroup>();
+        int i = 0;
+        while (i < userTimeRange.getSize())
+        {
+            DataGroup dg = new DataGroup();
+            for (int j = 0; j< numOfDays; j++)
+            {
+                if (i < userTimeRange.getSize())
+                {
+                    dg.addData(userTimeRange.getData(i));
+                    i++;
+                }
+            }
+            groups.add(dg);
+        }
+        return groups;
+    }
 
     // part 2
     private static ArrayList<DataGroup> getData(Date userDate, ArrayList<DataGroup> dgArr) throws Exception {
@@ -221,12 +327,22 @@ public class Summary {
         FileReader csv = new FileReader("src\\..\\lib\\covid-data.csv");
         BufferedReader fileContainer = new BufferedReader(csv);
         String line = fileContainer.readLine();
+        String prevVaccinatedPpl = "0";
 
         while (line != null) {
             String[] tempRow = line.split(",");
             String[] row = new String[]{"","","","","0","0","0","0"};
 
             if (tempRow[2].equalsIgnoreCase(geographicArea)) {
+                boolean isEmptyVP = (tempRow[6].equals("") || tempRow[6].isEmpty());
+
+                if(!isEmptyVP){
+                    prevVaccinatedPpl = tempRow[6];
+
+                }else{
+                    tempRow[6] = prevVaccinatedPpl;
+                }
+
                 for (int i = 0; i < tempRow.length; i++) {
                     if(tempRow[i] != null && !(tempRow[i].isEmpty())){
                         row[i] = tempRow[i];
@@ -244,6 +360,8 @@ public class Summary {
         ArrayList<Data> dataArr = dg.getGroupedData();
         int dataArrLength = dataArr.toArray().length;
         int dbArrLength = dbOfGeographicArea.toArray().length;
+        int totalCases = 0;
+        int totalDeaths = 0;
 
         for (int i = 0; i < dataArrLength; i++) {
             for (int j = 0; j < dbArrLength; j++) {
@@ -251,26 +369,41 @@ public class Summary {
                 LocalDate tempDate = Date.strToLocalDate(curRow[3]);
                 LocalDate userDate = dataArr.get(i).getDate();
 
+                if(curRow[4] != null && !(curRow[4].isEmpty())){
+                    totalCases += Integer.parseInt(curRow[4]);
+                }
+                if(curRow[5] != null && !(curRow[5].isEmpty())){
+                    totalDeaths += Integer.parseInt(curRow[5]);
+                }
+
                 if (tempDate.isEqual(userDate)) {
-                    int positiveCases = Integer.parseInt(curRow[4]);
+                    int newCases = Integer.parseInt(curRow[4]);
                     int newDeaths = Integer.parseInt(curRow[5]);
-                    int peopleVaccinated = Integer.parseInt(curRow[6]);
                     int newPeopleVaccinated = Integer.parseInt(curRow[6]);
+                    int peopleVaccinated = Integer.parseInt(curRow[6]);
                     if(j != 0){
                         String[] prevRow = dbOfGeographicArea.get(j - 1);
                         int prevPV = Integer.parseInt(prevRow[6]);
-                        newPeopleVaccinated = newPeopleVaccinated - prevPV;
 
-                        if(peopleVaccinated < 0){
+                        if(peopleVaccinated <= 0){
                             peopleVaccinated = prevPV;
+                            newPeopleVaccinated = prevPV;
                         }
+
+                        newPeopleVaccinated = newPeopleVaccinated - prevPV;
                     }
 
                     Data data = dataArr.get(i);
-                    data.setPositiveCases(positiveCases);
+                    data.setnewCases(newCases);
                     data.setNewDeaths(newDeaths);
-                    data.setPeopleVaccinated(peopleVaccinated);
                     data.setNewPeopleVaccinated(newPeopleVaccinated);
+                    data.setTotalCases(totalCases);
+                    data.setTotalDeaths(totalDeaths);
+                    data.setPeopleVaccinated(peopleVaccinated);
+
+                    totalCases = 0;
+                    totalDeaths = 0;
+                    break;
                 }
             }
         }
@@ -305,20 +438,23 @@ public class Summary {
 //                "\t[2] Deaths\n" +
 //                "\t[3] People vaccinated\n" +
         int value = 0;
-        for(Data dt : db) {
-            switch (metric) {
-                case 1:
-                    break;
-                case 2:
-                    break;
-                case 3:
-                    value += dt.getPeopleVaccinated();
-                    break;
-                default:
-                    //err
-                    // FIXME: 2021-08-14
-            }
+        int dbLength = db.toArray().length;
+        Data lastDateData = db.get(dbLength - 1);
+        switch (metric) {
+            case 1:
+                value = lastDateData.getTotalCases();
+                break;
+            case 2:
+                value = lastDateData.getTotalDeaths();
+                break;
+            case 3:
+                value = lastDateData.getPeopleVaccinated();
+                break;
+            default:
+                //err
+                // FIXME: 2021-08-14
         }
-        return 1;
+
+        return value;
     }
 }

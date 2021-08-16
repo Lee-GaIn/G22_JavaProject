@@ -25,8 +25,16 @@ public class DataGroup {
 
     public void displayDG() {
         for (Data d : groupedData) {
-            d.displayData();
+            System.out.println(d);;
             System.out.println();
         }
+    }
+
+    public Data getData(int group) {
+        return groupedData.get(group);
+    }
+
+    public int getSize() {
+        return groupedData.size();
     }
 }
