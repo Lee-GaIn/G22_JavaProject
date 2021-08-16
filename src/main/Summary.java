@@ -327,12 +327,22 @@ public class Summary {
         FileReader csv = new FileReader("src\\..\\lib\\covid-data.csv");
         BufferedReader fileContainer = new BufferedReader(csv);
         String line = fileContainer.readLine();
+        String prevVaccinatedPpl = "0";
 
         while (line != null) {
             String[] tempRow = line.split(",");
             String[] row = new String[]{"","","","","0","0","0","0"};
 
             if (tempRow[2].equalsIgnoreCase(geographicArea)) {
+                boolean isEmptyVP = (tempRow[6].equals("") || tempRow[6].isEmpty());
+
+                if(!isEmptyVP){
+                    prevVaccinatedPpl = tempRow[6];
+
+                }else{
+                    tempRow[6] = prevVaccinatedPpl;
+                }
+
                 for (int i = 0; i < tempRow.length; i++) {
                     if(tempRow[i] != null && !(tempRow[i].isEmpty())){
                         row[i] = tempRow[i];
@@ -369,8 +379,8 @@ public class Summary {
                 if (tempDate.isEqual(userDate)) {
                     int newCases = Integer.parseInt(curRow[4]);
                     int newDeaths = Integer.parseInt(curRow[5]);
-                    int newPeopleVaccinated = (curRow[6] != null && !(curRow[6].isEmpty())) ? Integer.parseInt(curRow[6]) : 0;
-                    int peopleVaccinated = (curRow[6] != null && !(curRow[6].isEmpty())) ? Integer.parseInt(curRow[6]) : 0;
+                    int newPeopleVaccinated = Integer.parseInt(curRow[6]);
+                    int peopleVaccinated = Integer.parseInt(curRow[6]);
                     if(j != 0){
                         String[] prevRow = dbOfGeographicArea.get(j - 1);
                         int prevPV = Integer.parseInt(prevRow[6]);
