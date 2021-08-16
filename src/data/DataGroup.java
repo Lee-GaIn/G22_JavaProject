@@ -29,4 +29,12 @@ public class DataGroup {
             System.out.println();
         }
     }
+
+    public Data getData(int group) {
+        return groupedData.get(group);
+    }
+
+    public int getSize() {
+        return groupedData.size();
+    }
 }
