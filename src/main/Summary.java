@@ -234,16 +234,78 @@ public class Summary {
     }
 
     // part 1
-    private static DataGroup methodOne(ArrayList<LocalDate> userTimeRange){}
+    private static DataGroup methodOne(ArrayList<LocalDate> userTimeRange) {
+        DataGroup dg = new DataGroup();
+        LocalDate start = userTimeRange.get(0);
+        dg.addData(new Data(start));
+        LocalDate end = userTimeRange.get(1);
 
-    private static  ArrayList<DataGroup> methodForNoGrouping(DataGroup userTimeRange){}
+        int count = 1;
+        LocalDate nextDate = start.plusDays(count);
+        while (nextDate.isBefore(end))
+        {
+            count++;
+            dg.addData(new Data(nextDate));
+            nextDate = start.plusDays(count);
+        }
+        dg.addData(new Data(end));
+        return dg;
+    }
 
-    private static  ArrayList<DataGroup> methodForNumOfGroups(DataGroup userTimeRange, int numOfGroups){}
+    private static ArrayList<DataGroup> methodForNoGrouping(DataGroup userTimeRange) {
+        ArrayList<DataGroup> noGroup = new ArrayList<>();
+        for (int i = 0; i< userTimeRange.getSize(); i++)
+        {
+            DataGroup dg = new DataGroup();
+            dg.addData(userTimeRange.getData(i));
+            noGroup.add(dg);
+        }
+        return noGroup;
+    }
 
-    private static  ArrayList<DataGroup> methodForNumOfDays(DataGroup userTimeRange, int numOfDays){}
+    private static ArrayList<DataGroup> methodForNumOfGroups(DataGroup userTimeRange, int numOfGroups) {
+        ArrayList<DataGroup> groups = new ArrayList<>();
+        int numGroups = numOfGroups;
+        int size = userTimeRange.getSize();
+        int count = 0;
+        for (int i = 0; i< numOfGroups; i++)
+        {
+            int numElements = size/numGroups;
+            if (size%numGroups !=0)
+            {
+                numElements++;
+            }
+            DataGroup dg = new DataGroup();
+            for (int j = 0; j< numElements; j++)
+            {
+                dg.addData(userTimeRange.getData(count));
+                count++;
+            }
+            groups.add(dg);
+            numGroups--;
+            size-=numElements;
+        }
+        return groups;
+    }
 
-
-
+    private static ArrayList<DataGroup> methodForNumOfDays(DataGroup userTimeRange, int numOfDays) {
+        ArrayList<DataGroup> groups = new ArrayList<DataGroup>();
+        int i = 0;
+        while (i < userTimeRange.getSize())
+        {
+            DataGroup dg = new DataGroup();
+            for (int j = 0; j< numOfDays; j++)
+            {
+                if (i < userTimeRange.getSize())
+                {
+                    dg.addData(userTimeRange.getData(i));
+                    i++;
+                }
+            }
+            groups.add(dg);
+        }
+        return groups;
+    }
 
     // part 2
     private static ArrayList<DataGroup> getData(Date userDate, ArrayList<DataGroup> dgArr) throws Exception {
