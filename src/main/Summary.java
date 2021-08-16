@@ -46,36 +46,36 @@ public class Summary {
         ArrayList<LocalDate> userTimeRange = userDateObj.getTimeRange();
         // It contains startdate[0] and enddate[1]
 
+//        DataGroup baseDayGroup = ListOfDates(userTimeRange);
+//        // it accepts userTimeRange
+//        // and returns DataGroup
+//        // {startdate, startdate+1, ,startdate+2, ..., enddate}
+//
+//        ArrayList<DataGroup> groupedDayList = new ArrayList<>();
+//        // final result
+//
+//        switch (groupingCondition){
+//            case 1:
+//                groupedDayList = noGrouping(baseDayGroup);
+//                break;
+//            case 2:
+//                System.out.printf("Please enter the number of groups you want to create. (Integer value)>> ");
+//                int numOfGroups = Integer.parseInt(sc.nextLine());
+//                System.out.println();
+//
+//                groupedDayList = groupByGroupNum(baseDayGroup, numOfGroups);
+//                break;
+//            case 3:
+//                System.out.printf("Please enter the number of days in a group. (Integer value)>> ");
+//                int numOfDays = Integer.parseInt(sc.nextLine());
+//                System.out.println();
+//
+//                groupedDayList = groupByDayNum(baseDayGroup, numOfDays);
+//                break;
+//            default:
+//                // write some code after studying exceptions on the lecture.
+//        }
 
-       DataGroup baseDayGroup = ListOfDates(userTimeRange);
-       // it accepts userTimeRange
-       // and returns DataGroup
-       // {startdate, startdate+1, ,startdate+2, ..., enddate}
-
-       ArrayList<DataGroup> groupedDayList = new ArrayList<>();
-       // final result
-
-       switch (groupingCondition){
-           case 1:
-               groupedDayList = methodForNoGrouping(baseDayGroup);
-               break;
-           case 2:
-               System.out.printf("Please enter the number of groups you want to create. (Integer value)>> ");
-               int numOfGroups = Integer.parseInt(sc.nextLine());
-               System.out.println();
-
-               groupedDayList = methodForNumOfGroups(baseDayGroup, numOfGroups);
-               break;
-           case 3:
-               System.out.printf("Please enter the number of days in a group. (Integer value)>> ");
-               int numOfDays = Integer.parseInt(sc.nextLine());
-               System.out.println();
-
-               groupedDayList = methodForNumOfDays(baseDayGroup, numOfDays);
-               break;
-           default:
-               // write some code after studying exceptions on the lecture.
-       }
 
         // part 2
         // FIXME: for Khanh Linh and Ngoc Tuan
@@ -115,53 +115,53 @@ public class Summary {
 
 
         // FIXME: 2021-08-09 Lee Gain
-//        LocalDate l1 = LocalDate.of(2021, 5, 18);
-//        LocalDate l2 = LocalDate.of(2021, 5, 19);
-//        LocalDate l3 = LocalDate.of(2021, 5, 20);
-//
-//        LocalDate l4 = LocalDate.of(2021, 5, 21);
-//        LocalDate l5 = LocalDate.of(2021, 5, 22);
-//        LocalDate l6 = LocalDate.of(2021, 5, 23);
-//
-//        LocalDate l7 = LocalDate.of(2021, 5, 24);
-//        LocalDate l8 = LocalDate.of(2021, 5, 25);
-//        LocalDate l9 = LocalDate.of(2021, 5, 26);
-//
-//
-//        Data d1 = new Data(l1);
-//        Data d2 = new Data(l2);
-//        Data d3 = new Data(l3);
-//
-//        Data d4 = new Data(l4);
-//        Data d5 = new Data(l5);
-//        Data d6 = new Data(l6);
-//
-//        Data d7 = new Data(l7);
-//        Data d8 = new Data(l8);
-//        Data d9 = new Data(l9);
-//
-//        DataGroup dg1 = new DataGroup();
-//        dg1.addData(d1);
-//        dg1.addData(d2);
-//        dg1.addData(d3);
-//
-//        ArrayList<Data> dataArr = new ArrayList<>() {{
-//            add(d4);
-//            add(d5);
-//            add(d6);
-//        }};
-//        DataGroup dg2 = new DataGroup(dataArr);
-//
-//        DataGroup dg3 = new DataGroup();
-//        dg3.addData(d7);
-//        dg3.addData(d8);
-//        dg3.addData(d9);
-//
-//        ArrayList<DataGroup> groupedDayList = new ArrayList<>() {{
-//            add(dg1);
-//            add(dg2);
-//            add(dg3);
-//        }};
+        LocalDate l1 = LocalDate.of(2021, 5, 18);
+        LocalDate l2 = LocalDate.of(2021, 5, 19);
+        LocalDate l3 = LocalDate.of(2021, 5, 20);
+
+        LocalDate l4 = LocalDate.of(2021, 5, 21);
+        LocalDate l5 = LocalDate.of(2021, 5, 22);
+        LocalDate l6 = LocalDate.of(2021, 5, 23);
+
+        LocalDate l7 = LocalDate.of(2021, 5, 24);
+        LocalDate l8 = LocalDate.of(2021, 5, 25);
+        LocalDate l9 = LocalDate.of(2021, 5, 26);
+
+
+        Data d1 = new Data(l1);
+        Data d2 = new Data(l2);
+        Data d3 = new Data(l3);
+
+        Data d4 = new Data(l4);
+        Data d5 = new Data(l5);
+        Data d6 = new Data(l6);
+
+        Data d7 = new Data(l7);
+        Data d8 = new Data(l8);
+        Data d9 = new Data(l9);
+
+        DataGroup dg1 = new DataGroup();
+        dg1.addData(d1);
+        dg1.addData(d2);
+        dg1.addData(d3);
+
+        ArrayList<Data> dataArr = new ArrayList<>() {{
+            add(d4);
+            add(d5);
+            add(d6);
+        }};
+        DataGroup dg2 = new DataGroup(dataArr);
+
+        DataGroup dg3 = new DataGroup();
+        dg3.addData(d7);
+        dg3.addData(d8);
+        dg3.addData(d9);
+
+        ArrayList<DataGroup> groupedDayList = new ArrayList<>() {{
+            add(dg1);
+            add(dg2);
+            add(dg3);
+        }};
 
         ArrayList<DataGroup> analyzedData = getData(userDateObj, groupedDayList);
 
@@ -252,7 +252,7 @@ public class Summary {
     }
 
 
-    private static ArrayList<DataGroup> methodForNoGrouping(DataGroup userTimeRange) {
+    private static ArrayList<DataGroup> noGrouping(DataGroup userTimeRange) {
         ArrayList<DataGroup> noGroup = new ArrayList<>();
         for (int i = 0; i< userTimeRange.getSize(); i++)
         {
@@ -263,7 +263,7 @@ public class Summary {
         return noGroup;
     }
 
-    private static ArrayList<DataGroup> methodForNumOfGroups(DataGroup userTimeRange, int numOfGroups) {
+    private static ArrayList<DataGroup> groupByGroupNum(DataGroup userTimeRange, int numOfGroups) {
         ArrayList<DataGroup> groups = new ArrayList<>();
         int numGroups = numOfGroups;
         int size = userTimeRange.getSize();
@@ -288,8 +288,8 @@ public class Summary {
         return groups;
     }
 
-    private static ArrayList<DataGroup> methodForNumOfDays(DataGroup userTimeRange, int numOfDays) {
-        ArrayList<DataGroup> groups = new ArrayList<DataGroup>();
+    private static ArrayList<DataGroup> groupByDayNum(DataGroup userTimeRange, int numOfDays) {
+        ArrayList<DataGroup> groups = new ArrayList<>();
         int i = 0;
         while (i < userTimeRange.getSize())
         {
