@@ -42,7 +42,7 @@ public class Date {
             String date = dateAndNum[0];
             if (dateAndNum[1].contains("days")) {
                 String[] numOnly = dateAndNum[1].split(" ");
-                int numOfDays = Integer.parseInt(numOnly[0]) - 1;
+                int numOfDays = Integer.parseInt(numOnly[0]);
                 LocalDate startDate = strToLocalDate(date);
                 LocalDate endDate = startDate.plusDays(numOfDays);
                 timeRange.add(startDate);
@@ -50,7 +50,7 @@ public class Date {
             }
             if (dateAndNum[1].contains("weeks")) {
                 String[] numOnly = dateAndNum[1].split(" ");
-                int numOfWeeks = Integer.parseInt(numOnly[0]) * 7 - 1;
+                int numOfWeeks = Integer.parseInt(numOnly[0]) * 7;
                 LocalDate startDate = strToLocalDate(date);
                 LocalDate endDate = startDate.plusDays(numOfWeeks);
                 timeRange.add(startDate);
@@ -66,7 +66,7 @@ public class Date {
             String getDate = dateSplit[1];
             if (dateSplit[0].contains("days")) {
                 String[] getNum = dateSplit[0].split(" ");
-                int numDays = Integer.parseInt(getNum[0]) - 1;
+                int numDays = Integer.parseInt(getNum[0]);
                 LocalDate endDate = strToLocalDate(getDate);
                 LocalDate particularDate = endDate.minusDays(numDays);
                 timeRange.add(particularDate);
@@ -74,7 +74,7 @@ public class Date {
             }
             if (dateSplit[0].contains("weeks")) {
                 String[] getNum = dateSplit[0].split(" ");
-                int numWeeks = Integer.parseInt(getNum[0]) * 7 - 1;
+                int numWeeks = Integer.parseInt(getNum[0]) * 7;
                 LocalDate endDate = strToLocalDate(getDate);
                 LocalDate particularDate = endDate.minusDays(numWeeks);
                 timeRange.add(particularDate);
