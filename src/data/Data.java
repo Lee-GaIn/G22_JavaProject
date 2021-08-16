@@ -6,8 +6,10 @@ public class Data {
     private LocalDate date;
     private int newCases;
     private int newDeaths;
-    private int peopleVaccinated;
     private int newPeopleVaccinated;
+    private int peopleVaccinated;
+    private int totalCases;
+    private int totalDeaths;
 
     //Constructor
     public Data(LocalDate date) {
@@ -15,7 +17,7 @@ public class Data {
     }
 
     //Getter and Setter
-    public void setPositiveCases(int newCases) {
+    public void setnewCases(int newCases) {
         if(newCases < 0){
             return;
         }
@@ -28,15 +30,23 @@ public class Data {
         }this.newDeaths = newDeaths;
     }
 
-    public void setPeopleVaccinated(int peopleVaccinated) {
-        this.peopleVaccinated = peopleVaccinated;
-    }
-
     public void setNewPeopleVaccinated(int newPeopleVaccinated) {
         if(newPeopleVaccinated < 0){
             return;
         }
         this.newPeopleVaccinated = newPeopleVaccinated;
+    }
+
+    public void setPeopleVaccinated(int peopleVaccinated) {
+        this.peopleVaccinated = peopleVaccinated;
+    }
+
+    public void setTotalCases(int totalCases) {
+        this.totalCases = totalCases;
+    }
+
+    public void setTotalDeaths(int totalDeaths) {
+        this.totalDeaths = totalDeaths;
     }
 
     public LocalDate getDate() {
@@ -51,12 +61,20 @@ public class Data {
         return newCases;
     }
 
+    public int getNewPeopleVaccinated() {
+        return newPeopleVaccinated;
+    }
+
     public int getPeopleVaccinated() {
         return peopleVaccinated;
     }
 
-    public int getNewPeopleVaccinated() {
-        return newPeopleVaccinated;
+    public int getTotalCases() {
+        return totalCases;
+    }
+
+    public int getTotalDeaths() {
+        return totalDeaths;
     }
 
     //Method
@@ -64,9 +82,11 @@ public class Data {
         return date.toString();
     }
 
-    public void displayData() {
-        System.out.printf("Date: %s\nNew Cases: %d\nNew Deaths: %d\nPeople Vaccinated: %d\nNew total of people vaccinated: %d\n",
-                getDate(), getNewCases(), getNewDeaths(), getPeopleVaccinated(), getNewPeopleVaccinated());
+    public String toString() {
+        return String.format("Date: %s\nNew Cases: %d\nNew Deaths: %d\nNew total of people vaccinated: %d\n" +
+                            "Total of positive cases: %d\nTotal of deaths: %d\nPeople Vaccinated: %d",
+                            getDate(), getNewCases(), getNewDeaths(), getNewPeopleVaccinated(),
+                            getTotalCases(),getTotalDeaths(),getPeopleVaccinated());
     }
 }
 
