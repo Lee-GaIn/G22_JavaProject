@@ -26,7 +26,6 @@ public class Summary {
         return value;
     }
 
-
     // Method
     public static ArrayList<Summary> createSummaryObj(Date userDateObj) throws Exception {
         Scanner sc = new Scanner(System.in);
@@ -44,6 +43,7 @@ public class Summary {
         System.out.println();
 
         ArrayList<LocalDate> userTimeRange = userDateObj.getTimeRange();
+<<<<<<< Updated upstream
         // It contains startdate[0] and enddate[1]
 
 
@@ -162,10 +162,46 @@ public class Summary {
 //            add(dg2);
 //            add(dg3);
 //        }};
+=======
+        DataGroup baseDayGroup = ListOfDates(userTimeRange);
+        ArrayList<DataGroup> groupedDayList = new ArrayList<>();
+
+        switch (groupingCondition){
+            case 1:
+                groupedDayList = noGrouping(baseDayGroup);
+                break;
+            case 2:
+                System.out.printf("Please enter the number of groups you want to create. (Integer value)>> ");
+                int numOfGroups = Integer.parseInt(sc.nextLine());
+                System.out.println();
+
+                groupedDayList = groupByGroupNum(baseDayGroup, numOfGroups);
+                break;
+            case 3:
+                System.out.printf("Please enter the number of days in a group. (Integer value)>> ");
+                int numOfDays = Integer.parseInt(sc.nextLine());
+                System.out.println();
+
+                groupedDayList = groupByDayNum(baseDayGroup, numOfDays);
+                break;
+            default:
+                // write some code after studying exceptions on the lecture.
+        }
+
+        // FIXME: 2021-08-17
+        System.out.println("Grouping result +++++++++++++++++++++++++++++++++++++++++++");
+        for(DataGroup dg : groupedDayList){
+            System.out.println("-----------");
+            dg.displayDG();
+            System.out.println("-----------");
+        }
+        System.out.println("The number of group : " + groupedDayList.toArray().length);
+>>>>>>> Stashed changes
 
         ArrayList<DataGroup> analyzedData = getData(userDateObj, groupedDayList);
 
         // FIXME: 2021-08-10 Lee Gain
+        System.out.println("Analyzed result+++++++++++++++++++++++++++++++++++++++++++");
         for (DataGroup dg : analyzedData) {
             dg.displayDG();
             System.out.println("=================================");
@@ -217,6 +253,7 @@ public class Summary {
         }
 
         // FIXME: 2021-08-14
+        System.out.println("Final result+++++++++++++++++++++++++++++++++++++++++++");
         for(Summary s: summaryList){
             System.out.println(s);
         }
