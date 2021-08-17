@@ -1,6 +1,10 @@
 package data;
 
+import main.Date;
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class Data {
     private LocalDate date;
@@ -17,35 +21,35 @@ public class Data {
     }
 
     //Getter and Setter
-    public void setnewCases(int newCases) {
+    private void setNewCases(int newCases) {
         if(newCases < 0){
             return;
         }
             this.newCases = newCases;
     }
 
-    public void setNewDeaths(int newDeaths) {
+    private void setNewDeaths(int newDeaths) {
         if(newDeaths < 0){
             return;
         }this.newDeaths = newDeaths;
     }
 
-    public void setNewPeopleVaccinated(int newPeopleVaccinated) {
+    private void setNewPeopleVaccinated(int newPeopleVaccinated) {
         if(newPeopleVaccinated < 0){
             return;
         }
         this.newPeopleVaccinated = newPeopleVaccinated;
     }
 
-    public void setPeopleVaccinated(int peopleVaccinated) {
+    private void setPeopleVaccinated(int peopleVaccinated) {
         this.peopleVaccinated = peopleVaccinated;
     }
 
-    public void setTotalCases(int totalCases) {
+    private void setTotalCases(int totalCases) {
         this.totalCases = totalCases;
     }
 
-    public void setTotalDeaths(int totalDeaths) {
+    private void setTotalDeaths(int totalDeaths) {
         this.totalDeaths = totalDeaths;
     }
 
@@ -87,6 +91,109 @@ public class Data {
                             "Total of positive cases: %d\nTotal of deaths: %d\nPeople Vaccinated: %d",
                             getDate(), getNewCases(), getNewDeaths(), getNewPeopleVaccinated(),
                             getTotalCases(),getTotalDeaths(),getPeopleVaccinated());
+    }
+
+    public static ArrayList<DataGroup> getData(Date userDate, ArrayList<DataGroup> dgArr) throws Exception {
+        ArrayList<DataGroup> updatedDataGroups = new ArrayList<>();
+        String geographicArea = userDate.getGeographicArea();
+        ArrayList<String[]> dbOfGeographicArea = getDatabase(geographicArea);
+
+        for (DataGroup dg : dgArr) {
+            DataGroup dgWithInfo = getDataByDateGroup(dbOfGeographicArea, dg);
+            updatedDataGroups.add(dgWithInfo);
+        }
+
+        return updatedDataGroups;
+    }
+
+    private static ArrayList<String[]> getDatabase(String geographicArea) throws Exception {
+        // it returns database for particular country or continent
+        ArrayList<String[]> db = new ArrayList<>();
+        FileReader csv = new FileReader("src\\..\\lib\\covid-data.csv");
+        BufferedReader fileContainer = new BufferedReader(csv);
+        String line = fileContainer.readLine();
+        String prevVaccinatedPpl = "0";
+
+        while (line != null) {
+            String[] tempRow = line.split(",");
+            String[] row = new String[]{"","","","","0","0","0","0"};
+
+            if (tempRow[2].equalsIgnoreCase(geographicArea)) {
+                boolean isEmptyVP = (tempRow[6].equals("") || tempRow[6].isEmpty());
+
+                if(!isEmptyVP){
+                    prevVaccinatedPpl = tempRow[6];
+
+                }else{
+                    tempRow[6] = prevVaccinatedPpl;
+                }
+
+                for (int i = 0; i < tempRow.length; i++) {
+                    if(tempRow[i] != null && !(tempRow[i].isEmpty())){
+                        row[i] = tempRow[i];
+                    }
+                }
+                db.add(row);
+            }
+            line = fileContainer.readLine();
+        }
+        return db;
+    }
+
+    private static DataGroup getDataByDateGroup(ArrayList<String[]> dbOfGeographicArea, DataGroup dg) {
+        // it returns database(particular country - date) for each group
+        ArrayList<Data> dataArr = dg.getGroupedData();
+        int dataArrLength = dataArr.toArray().length;
+        int dbArrLength = dbOfGeographicArea.toArray().length;
+        int totalCases = 0;
+        int totalDeaths = 0;
+
+        for (int i = 0; i < dataArrLength; i++) {
+            for (int j = 0; j < dbArrLength; j++) {
+                String[] curRow = dbOfGeographicArea.get(j);
+                LocalDate tempDate = Date.strToLocalDate(curRow[3]);
+                LocalDate userDate = dataArr.get(i).getDate();
+
+                if(curRow[4] != null && !(curRow[4].isEmpty())){
+                    totalCases += Integer.parseInt(curRow[4]);
+                }
+                if(curRow[5] != null && !(curRow[5].isEmpty())){
+                    totalDeaths += Integer.parseInt(curRow[5]);
+                }
+
+                if (tempDate.isEqual(userDate)) {
+                    int newCases = Integer.parseInt(curRow[4]);
+                    int newDeaths = Integer.parseInt(curRow[5]);
+                    int newPeopleVaccinated = Integer.parseInt(curRow[6]);
+                    int peopleVaccinated = Integer.parseInt(curRow[6]);
+                    if(j != 0){
+                        String[] prevRow = dbOfGeographicArea.get(j - 1);
+                        int prevPV = Integer.parseInt(prevRow[6]);
+
+                        if(peopleVaccinated <= 0){
+                            peopleVaccinated = prevPV;
+                            newPeopleVaccinated = prevPV;
+                        }
+
+                        newPeopleVaccinated = newPeopleVaccinated - prevPV;
+                    }
+
+                    Data data = dataArr.get(i);
+                    data.setNewCases(newCases);
+                    data.setNewDeaths(newDeaths);
+                    data.setNewPeopleVaccinated(newPeopleVaccinated);
+                    data.setTotalCases(totalCases);
+                    data.setTotalDeaths(totalDeaths);
+                    data.setPeopleVaccinated(peopleVaccinated);
+
+                    totalCases = 0;
+                    totalDeaths = 0;
+                    break;
+                }
+            }
+        }
+
+        return dg;
     }
 }
 

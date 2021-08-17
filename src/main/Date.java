@@ -1,14 +1,18 @@
 package main;
 
+import data.Data;
+import data.DataGroup;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
 public class Date {
-    private static String geographicArea;
-    private static ArrayList<LocalDate> timeRange = new ArrayList<>(2);
-    // startDate and endDate
+    private String geographicArea;
+//    private static ArrayList<LocalDate> timeRange = new ArrayList<>(2);
+    private LocalDate[] timeRange = new LocalDate[2];
+                                         // [0] startdate [1] enddate
     // FIXME: 2021-08-09 Lee Gain
 
     // Constructor
@@ -19,23 +23,18 @@ public class Date {
 
     // Getter and Setter
     private void setTimeRange(String userTime) {
-        // regular expression for mm/dd/yyyy "([0]?[1-9]|1[012])/([0]?[1-9]|[12][0-9]|3[01])/(2020|2021)"
-        // Use it if you need, I will delete above comment before submitting :>>
-
-        // yyyy/mm/dd ~ yyyy/mm/dd
-        // userTime = yyyy/mm/dd,yyyy/mm/dd
+        // Set time range for option [1] A pair of start date and end date
         String dateToDate = "^(([0]?[1-9]|1[012])/([0]?[1-9]|[12][0-9]|3[01])/(2020|2021))," +
                 "(([0]?[1-9]|1[012])/([0]?[1-9]|[12][0-9]|3[01])/(2020|2021))$";
         if (Pattern.matches(dateToDate, userTime)) {
             String[] datesArr = userTime.split(",");
             for (int i = 0; i < datesArr.length; i++) {
                 LocalDate date = strToLocalDate(datesArr[i]);
-                timeRange.add(i, date);
+                timeRange[i] = date;
             }
         }
 
-        // A number of days or weeks from a particular date
-        // userTime = mm/dd/yyyy,n days OR mm/dd/yyyy,n weeks
+        // Set time range for option [2] A number of days or weeks from a specific date
         String dateCheck = "^(([0]?[1-9]|1[012])/([0]?[1-9]|[12][0-9]|3[01])/(2020|2021))";
         String[] dateAndNum = userTime.split(",");
         if (Pattern.matches(dateCheck, dateAndNum[0])) {
@@ -58,8 +57,7 @@ public class Date {
             }
         }
 
-        // A number of days or weeks to a particular date
-        // userTime = n days,mm/dd/yyyy OR n weeks,mm/dd/yyyy
+        // Set time range for option [3] A number of days or weeks to a specific date
         String dateValid = "^(([0]?[1-9]|1[012])/([0]?[1-9]|[12][0-9]|3[01])/(2020|2021))";
         String[] dateSplit = userTime.split(",");
         if (Pattern.matches(dateValid, dateSplit[1])) {
@@ -89,19 +87,24 @@ public class Date {
         return geographicArea;
     }
 
-    public ArrayList<LocalDate> getTimeRange() {
+    public LocalDate[] getTimeRange() {
         return timeRange;
     }
 
     // Method
+    public String toString() {
+        return String.format("\nGeographic Area: %s \nStart date: %s \nEnd date: %s \n", geographicArea, timeRange[0], timeRange[1]);
+    }
+
     public static Date createDateObj() {
         String date = "";
         Scanner sc = new Scanner(System.in);
 
         // Choose geographic area.
-        System.out.printf("[STEP 1] \nPlease enter a continent or country name you want to choose." +
+        UserInterface.displayMenu("[STEP 1] \nPlease enter a continent or country name you want to choose." +
                 "(Vietnam, Asia...)>> ");
         String geographicArea = sc.nextLine().trim();
+        UserInterface.displayMenu("\n");
 
         // Choose date
         String menu = "************************************************************\n" +
@@ -111,28 +114,29 @@ public class Date {
                 "\t[3] A number of days or weeks to a specific date \n" +
                 "************************************************************\n" +
                 "Please enter a number to decide the form of date range(1/2/3)>> ";
-        System.out.printf(menu);
-        int dateMethod = Integer.parseInt(sc.nextLine());
+        UserInterface.displayMenu(menu);
+        int dateMethod = UserInterface.getIntUserInput();
+
         switch (dateMethod) {
             case 1:
-                System.out.printf("\nPlease enter a start date(mm/dd/yyyy)>> ");
+                UserInterface.displayMenu("Please enter a start date(mm/dd/yyyy)>> ");
                 String startDate1 = sc.nextLine();
-                System.out.printf("Please enter an end date(mm/dd/yyyy)>> ");
+                UserInterface.displayMenu("Please enter an end date(mm/dd/yyyy)>> ");
                 String endDate1 = sc.nextLine();
                 date = startDate1 + "," + endDate1;
                 break;
             case 2:
-                System.out.printf("\nPlease enter a start date(mm/dd/yyyy)>> ");
+                UserInterface.displayMenu("Please enter a start date(mm/dd/yyyy)>> ");
                 String startDate2 = sc.nextLine();
-                System.out.printf("Please enter a number of days or weeks(n days, n weeks)>> ");
+                UserInterface.displayMenu("Please enter a number of days or weeks(n days, n weeks)>> ");
                 String particularDate2 = sc.nextLine();
 
                 date = startDate2 + "," + particularDate2;
                 break;
             case 3:
-                System.out.printf("\nPlease enter a number of days or weeks(n days, n weeks)>> ");
+                UserInterface.displayMenu("Please enter a number of days or weeks(n days, n weeks)>> ");
                 String particularDate3 = sc.nextLine();
-                System.out.printf("Please enter an end date(mm/dd/yyyy)>> ");
+                UserInterface.displayMenu("Please enter an end date(mm/dd/yyyy)>> ");
                 String endDate3 = sc.nextLine();
                 date = particularDate3 + "," + endDate3;
                 break;
@@ -152,12 +156,79 @@ public class Date {
         int month = Integer.parseInt(aDateArr[0]);
         int day = Integer.parseInt(aDateArr[1]);
 
-        LocalDate date = LocalDate.of(year, month, day);
-
-        return date;
+        return LocalDate.of(year, month, day);
     }
 
-    public void display() {
-        System.out.printf("\nGeographic Area: %s \nStart date: %s \nEnd date: %s \n", geographicArea, timeRange.get(0), timeRange.get(1));
+    static DataGroup ListOfDates(ArrayList<LocalDate> userTimeRange) {
+        DataGroup dg = new DataGroup();
+        LocalDate start = userTimeRange.get(0);
+        dg.addData(new Data(start));
+        LocalDate end = userTimeRange.get(1);
+
+        int count = 1;
+        LocalDate nextDate = start.plusDays(count);
+        while (nextDate.isBefore(end))
+        {
+            count++;
+            dg.addData(new Data(nextDate));
+            nextDate = start.plusDays(count);
+        }
+        dg.addData(new Data(end));
+        return dg;
+    }
+
+    static ArrayList<DataGroup> noGrouping(DataGroup userTimeRange) {
+        ArrayList<DataGroup> noGroup = new ArrayList<>();
+        for (int i = 0; i< userTimeRange.getSize(); i++)
+        {
+            DataGroup dg = new DataGroup();
+            dg.addData(userTimeRange.getData(i));
+            noGroup.add(dg);
+        }
+        return noGroup;
+    }
+
+    static ArrayList<DataGroup> groupByGroupNum(DataGroup userTimeRange, int numOfGroups) {
+        ArrayList<DataGroup> groups = new ArrayList<>();
+        int numGroups = numOfGroups;
+        int size = userTimeRange.getSize();
+        int count = 0;
+        for (int i = 0; i< numOfGroups; i++)
+        {
+            int numElements = size/numGroups;
+            if (size%numGroups !=0)
+            {
+                numElements++;
+            }
+            DataGroup dg = new DataGroup();
+            for (int j = 0; j< numElements; j++)
+            {
+                dg.addData(userTimeRange.getData(count));
+                count++;
+            }
+            groups.add(dg);
+            numGroups--;
+            size-=numElements;
+        }
+        return groups;
+    }
+
+    static ArrayList<DataGroup> groupByDayNum(DataGroup userTimeRange, int numOfDays) {
+        ArrayList<DataGroup> groups = new ArrayList<>();
+        int i = 0;
+        while (i < userTimeRange.getSize())
+        {
+            DataGroup dg = new DataGroup();
+            for (int j = 0; j< numOfDays; j++)
+            {
+                if (i < userTimeRange.getSize())
+                {
+                    dg.addData(userTimeRange.getData(i));
+                    i++;
+                }
+            }
+            groups.add(dg);
+        }
+        return groups;
     }
 }
