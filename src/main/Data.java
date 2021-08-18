@@ -1,22 +1,18 @@
 package main;
 
-import data.Data;
-import data.DataGroup;
+import processeddata.DataGroup;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
-public class Date {
+public class Data {
     private String geographicArea;
-//    private static ArrayList<LocalDate> timeRange = new ArrayList<>(2);
     private LocalDate[] timeRange = new LocalDate[2];
-                                         // [0] startdate [1] enddate
-    // FIXME: 2021-08-09 Lee Gain
 
     // Constructor
-    private Date(String geographicArea, String userTime) {
+    private Data(String geographicArea, String userTime) {
         this.geographicArea = geographicArea;
         setTimeRange(userTime);
     }
@@ -57,7 +53,7 @@ public class Date {
             }
         }
 
-        // Set time range for option [3] A number of days or weeks to a specific date
+//      Set time range for option [3] A number of days or weeks to a specific date
         String dateValid = "^(([0]?[1-9]|1[012])/([0]?[1-9]|[12][0-9]|3[01])/(2020|2021))";
         String[] dateSplit = userTime.split(",");
         if (Pattern.matches(dateValid, dateSplit[1])) {
@@ -96,7 +92,7 @@ public class Date {
         return String.format("\nGeographic Area: %s \nStart date: %s \nEnd date: %s \n", geographicArea, timeRange[0], timeRange[1]);
     }
 
-    public static Date createDateObj() {
+    public static Data createDataObj() {
         String date = "";
         Scanner sc = new Scanner(System.in);
 
@@ -107,13 +103,14 @@ public class Date {
         UserInterface.displayMenu("\n");
 
         // Choose date
-        String menu = "************************************************************\n" +
-                "Available form for determining date.\n" +
-                "\t[1] A pair of start date and end date \n" +
-                "\t[2] A number of days or weeks from a specific date \n" +
-                "\t[3] A number of days or weeks to a specific date \n" +
-                "************************************************************\n" +
-                "Please enter a number to decide the form of date range(1/2/3)>> ";
+        String menu = """
+                    ************************************************************
+                    Available form for determining date.
+                    \t[1] A pair of start date and end date
+                    \t[2] A number of days or weeks from a specific date
+                    \t[3] A number of days or weeks to a specific date
+                    ************************************************************
+                    Please enter a number to decide the form of date range(1/2/3)>>\s""";
         UserInterface.displayMenu(menu);
         int dateMethod = UserInterface.getIntUserInput();
 
@@ -144,7 +141,7 @@ public class Date {
                 // make exception later
                 // FIXME: 2021-08-14 
         }
-        return new Date(geographicArea, date);
+        return new Data(geographicArea, date);
     }
 
     public static LocalDate strToLocalDate(String aDate) {
@@ -176,6 +173,7 @@ public class Date {
         dg.addData(new Data(end));
         return dg;
     }
+
 
     static ArrayList<DataGroup> noGrouping(DataGroup userTimeRange) {
         ArrayList<DataGroup> noGroup = new ArrayList<>();

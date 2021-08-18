@@ -2,12 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="46361059-fd6d-4bf8-970c-a6001dea7b57" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/display/ChartDisplay.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/display/DisplayData.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/display/TabularDisplay.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/G22_JavaProject/main/Date.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/G22_JavaProject/main/Date.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/G22_JavaProject/main/Summary.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/G22_JavaProject/main/Summary.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/G22_JavaProject/main/UserInterface.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/G22_JavaProject/main/UserInterface.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/Data.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/Data.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Date.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Date.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/Data.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/processeddata/Data.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/DataGroup.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/processeddata/DataGroup.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Date.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Data.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Summary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Summary.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/UserInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/UserInterface.java" afterDir="false" />
     </list>

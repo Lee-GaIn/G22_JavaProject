@@ -1,4 +1,4 @@
-package data;
+package processeddata;
 
 import java.util.ArrayList;
 
@@ -25,8 +25,7 @@ public class DataGroup {
 
     public void displayDG() {
         for (Data d : groupedData) {
-            System.out.println(d);;
-            System.out.println();
+            System.out.printf("%s\n", d);
         }
     }
 
