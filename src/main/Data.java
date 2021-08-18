@@ -35,21 +35,21 @@ public class Data {
         String[] dateAndNum = userTime.split(",");
         if (Pattern.matches(dateCheck, dateAndNum[0])) {
             String date = dateAndNum[0];
-            if (dateAndNum[1].contains("days")) {
+            if (dateAndNum[1].contains("day")) {
                 String[] numOnly = dateAndNum[1].split(" ");
                 int numOfDays = Integer.parseInt(numOnly[0]);
                 LocalDate startDate = strToLocalDate(date);
                 LocalDate endDate = startDate.plusDays(numOfDays);
-                timeRange.add(startDate);
-                timeRange.add(endDate);
+                timeRange[0] = startDate;
+                timeRange[1] = endDate;
             }
-            if (dateAndNum[1].contains("weeks")) {
+            if (dateAndNum[1].contains("week")) {
                 String[] numOnly = dateAndNum[1].split(" ");
                 int numOfWeeks = Integer.parseInt(numOnly[0]) * 7;
                 LocalDate startDate = strToLocalDate(date);
                 LocalDate endDate = startDate.plusDays(numOfWeeks);
-                timeRange.add(startDate);
-                timeRange.add(endDate);
+                timeRange[0] = startDate;
+                timeRange[1] = endDate;
             }
         }
 
@@ -63,16 +63,16 @@ public class Data {
                 int numDays = Integer.parseInt(getNum[0]);
                 LocalDate endDate = strToLocalDate(getDate);
                 LocalDate particularDate = endDate.minusDays(numDays);
-                timeRange.add(particularDate);
-                timeRange.add(endDate);
+                timeRange[0] = particularDate;
+                timeRange[1] = endDate;
             }
             if (dateSplit[0].contains("weeks")) {
                 String[] getNum = dateSplit[0].split(" ");
                 int numWeeks = Integer.parseInt(getNum[0]) * 7;
                 LocalDate endDate = strToLocalDate(getDate);
                 LocalDate particularDate = endDate.minusDays(numWeeks);
-                timeRange.add(particularDate);
-                timeRange.add(endDate);
+                timeRange[0] = particularDate;
+                timeRange[1] = endDate;
             }
         }
         // exception
@@ -156,33 +156,31 @@ public class Data {
         return LocalDate.of(year, month, day);
     }
 
-    public void showData(){
+    public void showData() {
         System.out.println(this.toString());
     }
 
-    static DataGroup ListOfDates(ArrayList<LocalDate> userTimeRange) {
+    static DataGroup ListOfDates(LocalDate[] userTimeRange) {
         DataGroup dg = new DataGroup();
-        LocalDate start = userTimeRange.get(0);
-        dg.addData(new Data(start));
-        LocalDate end = userTimeRange.get(1);
-
+        LocalDate start = userTimeRange[0];
+        dg.addData(new processeddata.Data(start));
+        LocalDate end = userTimeRange[1];
         int count = 1;
         LocalDate nextDate = start.plusDays(count);
-        while (nextDate.isBefore(end))
-        {
+        while (nextDate.isBefore(end)) {
             count++;
-            dg.addData(new Data(nextDate));
+            dg.addData(new processeddata.Data(nextDate));
             nextDate = start.plusDays(count);
         }
-        dg.addData(new Data(end));
+        dg.addData(new processeddata.Data(end));
         return dg;
     }
 
 
     static ArrayList<DataGroup> noGrouping(DataGroup userTimeRange) {
         ArrayList<DataGroup> noGroup = new ArrayList<>();
-        for (int i = 0; i< userTimeRange.getSize(); i++)
-        {
+        int size = userTimeRange.getSize();
+        for (int i = 0; i < size; i++) {
             DataGroup dg = new DataGroup();
             dg.addData(userTimeRange.getData(i));
             noGroup.add(dg);
@@ -195,16 +193,13 @@ public class Data {
         int numGroups = numOfGroups;
         int size = userTimeRange.getSize();
         int count = 0;
-        for (int i = 0; i< numOfGroups; i++)
-        {
-            int numElements = size/numGroups;
-            if (size%numGroups !=0)
-            {
+        for (int i = 0; i < numOfGroups; i++) {
+            int numElements = size / numGroups;
+            if (size % numGroups !=0) {
                 numElements++;
             }
             DataGroup dg = new DataGroup();
-            for (int j = 0; j< numElements; j++)
-            {
+            for (int j = 0; j < numElements; j++) {
                 dg.addData(userTimeRange.getData(count));
                 count++;
             }
@@ -218,13 +213,15 @@ public class Data {
     static ArrayList<DataGroup> groupByDayNum(DataGroup userTimeRange, int numOfDays) {
         ArrayList<DataGroup> groups = new ArrayList<>();
         int i = 0;
-        while (i < userTimeRange.getSize())
-        {
+        int size = userTimeRange.getSize();
+        if (size % numOfDays != 0) {
+            System.out.println("ERROR: 'The dates cannot be divided into equal groups!'");
+            System.exit(1);
+        }
+        while (i < size) {
             DataGroup dg = new DataGroup();
-            for (int j = 0; j< numOfDays; j++)
-            {
-                if (i < userTimeRange.getSize())
-                {
+            for (int j = 0; j < numOfDays; j++) {
+                if (i < size) {
                     dg.addData(userTimeRange.getData(i));
                     i++;
                 }
