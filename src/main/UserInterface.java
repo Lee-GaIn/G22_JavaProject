@@ -17,13 +17,11 @@ public class UserInterface {
         while (ans.equalsIgnoreCase("Y")){
             // Data part
             Data userData = Data.createDataObj();
-            System.out.println(userData);
+            userData.showData();
 
             // Summary part
             ArrayList<Summary> summaryList = Summary.createSummaryObj(userData);
-            for(Summary s: summaryList){
-                System.out.println(s);
-            }
+            Summary.showSummaryList(summaryList);
 
             // Display part
             DisplayData displayData = DisplayData.createDisplayDataObj(summaryList);

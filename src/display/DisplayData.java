@@ -6,9 +6,9 @@ import main.UserInterface;
 import java.util.ArrayList;
 
 public class DisplayData {
-    ArrayList<Summary> data;
-    ArrayList<String> col;
-    ArrayList<String> row;
+    private ArrayList<Summary> data;
+    private ArrayList<String> col;
+    private ArrayList<String> row;
 
     // Constructor
     protected DisplayData(ArrayList<Summary> data){
@@ -16,11 +16,15 @@ public class DisplayData {
     }
 
     // Getter and setter
+    protected ArrayList<Summary> getData() {
+        return data;
+    }
+
+    protected ArrayList<String> getRow() {
+        return row;
+    }
 
     // Method
-    public String toString(){
-        return "test";
-    }
     public static DisplayData createDisplayDataObj(ArrayList<Summary> summaryList){
         String displayMenu = """
                             [STEP 3]
@@ -41,12 +45,15 @@ public class DisplayData {
             case 2:
                 dd = new ChartDisplay(summaryList);
                 break;
+            default:
+                // raise error
         }
-
         return dd;
     }
 
-    public void display(){}
-
-
+    public void display(){
+        for(String r: row){
+            System.out.print(r);
+        }
+    }
 }

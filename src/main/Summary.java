@@ -132,6 +132,12 @@ public class Summary {
         return timeRange[0] + "," + timeRange[1];
     }
 
+    public static void showSummaryList(ArrayList<Summary> summaryList){
+        for(Summary s: summaryList){
+            System.out.println(s);
+        }
+    }
+
     private static int getNewTotal(ArrayList<processeddata.Data> db, int metric){
         int value = 0;
         for(processeddata.Data dt : db){
@@ -174,4 +180,6 @@ public class Summary {
 
         return value;
     }
+
+
 }
