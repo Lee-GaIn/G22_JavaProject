@@ -1,21 +1,22 @@
 package main;
 
-import data.*;
+import processeddata.DataGroup;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Summary {
-    private String[] timeRange;
+    private LocalDate[] timeRange;
     private int value;
 
     // Constructor
-    Summary(String[] timeRange, int value){
+    Summary(LocalDate[] timeRange, int value){
         this.timeRange = timeRange;
         this.value = value;
     }
 
     // Getter and Setter
-    public String[] getTimeRange() {
+    public LocalDate[] getTimeRange() {
         return timeRange;
     }
 
@@ -24,44 +25,48 @@ public class Summary {
     }
 
     // Method
-    public static ArrayList<Summary> createSummaryObj(Date userDateObj) throws Exception {
+    public String toString(){ return String.format("Time range: %s\nValue: %d\n",timeRangeToString(), getValue());
+    }
+
+    public static ArrayList<Summary> createSummaryObj(Data userDataObj) throws Exception {
         // part 1
-         String groupingConditionMenu = "[STEP 2]" +
-                "\n************************************************************\n " +
-                "Grouping condition\n" +
-                "\t[1] No grouping\n" +
-                "\t[2] Number of groups\n" +
-                "\t[3] Number of days\n" +
-                "************************************************************\n" +
-                "Please choose your grouping condition(1/2/3)>> ";
+         String groupingConditionMenu = """
+                                        [STEP 2]
+                                        ************************************************************
+                                        Grouping condition
+                                        \t[1] No grouping
+                                        \t[2] Number of groups
+                                        \t[3] Number of days
+                                        ************************************************************
+                                        Please choose your grouping condition(1/2/3)>>\s""";
         UserInterface.displayMenu(groupingConditionMenu);
         int groupingCondition = UserInterface.getIntUserInput();
 
-        LocalDate[] userTimeRange = userDateObj.getTimeRange();
-        DataGroup baseDayGroup = Date.ListOfDates(userTimeRange);
+        LocalDate[] userTimeRange = userDataObj.getTimeRange();
+        DataGroup baseDayGroup = Data.ListOfDates(userTimeRange);
         ArrayList<DataGroup> groupedDayList = new ArrayList<>();
 
         switch (groupingCondition){
             case 1:
-                groupedDayList = Date.noGrouping(baseDayGroup);
+                groupedDayList = Data.noGrouping(baseDayGroup);
                 break;
             case 2:
                 UserInterface.displayMenu("Please enter the number of groups you want to create. (Integer value)>> ");
                 int numOfGroups = UserInterface.getIntUserInput();
 
-                groupedDayList = Date.groupByGroupNum(baseDayGroup, numOfGroups);
+                groupedDayList = Data.groupByGroupNum(baseDayGroup, numOfGroups);
                 break;
             case 3:
                 UserInterface.displayMenu("Please enter the number of days in a group. (Integer value)>> ");
                 int numOfDays = UserInterface.getIntUserInput();
 
-                groupedDayList = Date.groupByDayNum(baseDayGroup, numOfDays);
+                groupedDayList = Data.groupByDayNum(baseDayGroup, numOfDays);
                 break;
             default:
                 // write some code after studying exceptions on the lecture.
         }
 
-        ArrayList<DataGroup> analyzedData = Data.getData(userDateObj, groupedDayList);
+        ArrayList<DataGroup> analyzedData = processeddata.Data.getData(userDataObj, groupedDayList);
 
         // FIXME: 2021-08-10 Lee Gain
         System.out.println("Analyzed result+++++++++++++++++++++++++++++++++++++++++++");
@@ -72,31 +77,33 @@ public class Summary {
 
 
         // part 3
-        String metricMenu = "\n************************************************************\n " +
-                "Available metric\n" +
-                "\t[1] Positive cases\n" +
-                "\t[2] Deaths\n" +
-                "\t[3] People vaccinated\n" +
-                "************************************************************\n" +
-                "Please choose your metric(1/2/3)>> ";
+        String metricMenu = """
+                            ************************************************************
+                            Available metric
+                            \t[1] Positive cases
+                            \t[2] Deaths
+                            \t[3] People vaccinated
+                            ************************************************************
+                            Please choose your metric(1/2/3)>>\s""";
         UserInterface.displayMenu(metricMenu);
         int metric = UserInterface.getIntUserInput();
 
-        String resultTypesMenu = "\n************************************************************\n " +
-                "Available result types\n" +
-                "\t[1] New Total\n" +
-                "\t[2] Up To\n" +
-                "************************************************************\n" +
-                "Please choose your result types(1/2)>> ";
+        String resultTypesMenu = """
+                                ************************************************************
+                                Available result types
+                                \t[1] New Total
+                                \t[2] Up To
+                                ************************************************************
+                                Please choose your result types(1/2)>>\s""";
         UserInterface.displayMenu(resultTypesMenu);
         int resultType = UserInterface.getIntUserInput();
 
         ArrayList<Summary> summaryList = new ArrayList<>();
         for(DataGroup dg : analyzedData) {
-            ArrayList<Data> dtArr = dg.getGroupedData();
-            String firstDate = dtArr.get(0).dateToString();
-            String lastDate = dtArr.get(dtArr.toArray().length - 1).dateToString();
-            String[] timeRange = new String[]{firstDate, lastDate};
+            ArrayList<processeddata.Data> dtArr = dg.getGroupedData();
+            LocalDate firstDate = dtArr.get(0).getDate();
+            LocalDate lastDate = dtArr.get(dtArr.toArray().length - 1).getDate();
+            LocalDate[] timeRange = new LocalDate[]{firstDate, lastDate};
             int value = 0;
 
             switch (resultType) {
@@ -117,23 +124,17 @@ public class Summary {
 
         // FIXME: 2021-08-14
         System.out.println("Final result+++++++++++++++++++++++++++++++++++++++++++");
-        for(Summary s: summaryList){
-            System.out.println(s);
-        }
 
         return summaryList;
     }
 
-    private String timeRangeToString(){
-        return timeRange[0] + "~" + timeRange[1];
+    public String timeRangeToString(){
+        return timeRange[0] + "," + timeRange[1];
     }
 
-    public String toString(){ return String.format("Time range: %s\nValue: %d\n",timeRangeToString(), getValue());
-    }
-
-    private static int getNewTotal(ArrayList<Data> db, int metric){
+    private static int getNewTotal(ArrayList<processeddata.Data> db, int metric){
         int value = 0;
-        for(Data dt : db){
+        for(processeddata.Data dt : db){
             switch (metric){
                 case 1:
                     value += dt.getNewCases();
@@ -152,10 +153,10 @@ public class Summary {
         return value;
     }
 
-    private static int getUpTo(ArrayList<Data> db, int metric){
+    private static int getUpTo(ArrayList<processeddata.Data> db, int metric){
         int value = 0;
         int dbLength = db.toArray().length;
-        Data lastDateData = db.get(dbLength - 1);
+        processeddata.Data lastDateData = db.get(dbLength - 1);
         switch (metric) {
             case 1:
                 value = lastDateData.getTotalCases();

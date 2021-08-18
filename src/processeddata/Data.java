@@ -1,6 +1,5 @@
-package data;
+package processeddata;
 
-import main.Date;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.time.LocalDate;
@@ -87,15 +86,21 @@ public class Data {
     }
 
     public String toString() {
-        return String.format("Date: %s\nNew Cases: %d\nNew Deaths: %d\nNew total of people vaccinated: %d\n" +
-                            "Total of positive cases: %d\nTotal of deaths: %d\nPeople Vaccinated: %d",
-                            getDate(), getNewCases(), getNewDeaths(), getNewPeopleVaccinated(),
-                            getTotalCases(),getTotalDeaths(),getPeopleVaccinated());
+        String formatStr = """
+                            Date: %s
+                            New Cases: %d
+                            New Deaths: %d
+                            New total of people vaccinated: %d
+                            Total of positive cases: %d
+                            Total of deaths: %d
+                            People Vaccinated: %d""";
+        return String.format(formatStr, getDate(), getNewCases(), getNewDeaths(), getNewPeopleVaccinated(),
+                                        getTotalCases(),getTotalDeaths(),getPeopleVaccinated());
     }
 
-    public static ArrayList<DataGroup> getData(Date userDate, ArrayList<DataGroup> dgArr) throws Exception {
+    public static ArrayList<DataGroup> getData(main.Data userData, ArrayList<DataGroup> dgArr) throws Exception {
         ArrayList<DataGroup> updatedDataGroups = new ArrayList<>();
-        String geographicArea = userDate.getGeographicArea();
+        String geographicArea = userData.getGeographicArea();
         ArrayList<String[]> dbOfGeographicArea = getDatabase(geographicArea);
 
         for (DataGroup dg : dgArr) {
@@ -151,7 +156,7 @@ public class Data {
         for (int i = 0; i < dataArrLength; i++) {
             for (int j = 0; j < dbArrLength; j++) {
                 String[] curRow = dbOfGeographicArea.get(j);
-                LocalDate tempDate = Date.strToLocalDate(curRow[3]);
+                LocalDate tempDate = main.Data.strToLocalDate(curRow[3]);
                 LocalDate userDate = dataArr.get(i).getDate();
 
                 if(curRow[4] != null && !(curRow[4].isEmpty())){
