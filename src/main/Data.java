@@ -156,6 +156,10 @@ public class Data {
         return LocalDate.of(year, month, day);
     }
 
+    public void showData(){
+        System.out.println(this.toString());
+    }
+
     static DataGroup ListOfDates(ArrayList<LocalDate> userTimeRange) {
         DataGroup dg = new DataGroup();
         LocalDate start = userTimeRange.get(0);
