@@ -22,7 +22,7 @@ public class ChartDisplay extends DisplayData {
     public void display() {
         setValue();
         int size = values.size();
-        if (size >= 80) {
+        if (size > 79) {
             System.out.println ("ERROR: The maximum numbers of groups allowed is 79!");
             System.exit(2);
         }
@@ -52,18 +52,19 @@ public class ChartDisplay extends DisplayData {
     public void setValue() {
         ArrayList<Summary> sum = getData();
         for (int i = 0; i < sum.size(); i++) {
-            values.add( sum.get(i).getValue());
+            values.add(sum.get(i).getValue());
         }
     }
 
     public void setUp() {
         int max = findMax();
-        int time = chart[0].length/values.size();
+        int time = chart[0].length / values.size();
         int count = 0;
         int col = 1;
-        for (int i = 0; i< values.size(); i++) {
-            int row = (int) (values.get(count) * 23 / max + 0.5);
-            int rowAct = Math.abs(row - 23);
+        for (int i = 0; i < values.size(); i++) {
+            int val = values.get(count);
+            int row = (int) (values.get(count) * 22 / max + 0.5);
+            int rowAct = Math.abs(row - 22);
             chart[rowAct][col] = "*";
             count++;
             col += time;
