@@ -1,12 +1,13 @@
 package main;
 
 import display.DisplayData;
+import util.ExceptionManager;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class UserInterface {
-    public static void main(String[] args) throws  Exception{
+    public static void main(String[] args){
         Scanner sc = new Scanner(System.in);
 
         displayMenu("""
@@ -15,20 +16,25 @@ public class UserInterface {
         String ans = sc.nextLine();
 
         while (ans.equalsIgnoreCase("Y")){
-            // Data part
-            Data userData = Data.createDataObj();
-            userData.showData();
+            try{
+                // Data part
+                Data userData = Data.createDataObj();
+                userData.showData();
 
-            // Summary part
-            ArrayList<Summary> summaryList = Summary.createSummaryObj(userData);
-            Summary.showSummaryList(summaryList);
+                // Summary part
+                ArrayList<Summary> summaryList = Summary.createSummaryObj(userData);
+                Summary.showSummaryList(summaryList);
 
-            // Display part
-            DisplayData displayData = DisplayData.createDisplayDataObj(summaryList);
-            displayData.display();
+                // Display part
+                DisplayData displayData = DisplayData.createDisplayDataObj(summaryList);
+                displayData.display();
 
-            // etc
-            displayMenu("Do you want to analyze the data again? (Y/N)>> ");
+            } catch (Exception e){
+                String errMsg = "\n" + e.getMessage();
+                System.out.print(errMsg);
+            }
+
+            displayMenu("\nDo you want to analyze the data again? (Y/N)>> ");
             ans = sc.nextLine();
         }
 
@@ -36,17 +42,29 @@ public class UserInterface {
     }
 
     public static void displayMenu(String menu){
-        System.out.printf(menu);
+        System.out.print(menu);
     }
 
     public static int getIntUserInput(){
         Scanner sc = new Scanner(System.in);
-        int res = Integer.parseInt(sc.nextLine().trim());
-        System.out.printf("\n");
+        int res;
 
-        // FIXME: 2021-08-18
-        // if user do not put available input like "abc"
+        try {
+            res = Integer.parseInt(sc.nextLine().trim());
+        } catch (NumberFormatException e){
+            throw new NumberFormatException("The system detected invalid input. The valid value is a number.");
+        }
+        System.out.print("\n");
+        return res;
+    }
 
+    public static String getGeographicUserInput() throws Exception{
+        Scanner sc = new Scanner(System.in);
+        String res = sc.nextLine().trim();
+        if(!(ExceptionManager.isValidGeographicInput(res))){
+            throw new Exception("The system detected invalid input. Please check your geographic input again.");
+        }
+        System.out.print("\n");
         return res;
     }
 }
