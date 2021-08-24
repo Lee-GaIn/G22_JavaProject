@@ -3,11 +3,11 @@
 1. Contribution information
 
 
-    Lee Gain(s3878170): 
+    Lee Gain(s3878170): +2
     
-    name(s): 
+    Bui Nguyen Ngoc Tuan(s3877673): -1
     
-    name(s): 
+    Vo Tran Khanh Linh(s3878600): -1
     
     name(s): 
   
