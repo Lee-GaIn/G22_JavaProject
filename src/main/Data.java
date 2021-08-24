@@ -95,14 +95,15 @@ public class Data {
         return String.format("\nGeographic Area: %s \nStart date: %s \nEnd date: %s \n", geographicArea, timeRange[0], timeRange[1]);
     }
 
-    public static Data createDataObj() {
+    public static Data createDataObj() throws Exception{
         String date = "";
         Scanner sc = new Scanner(System.in);
 
         // Choose geographic area.
-        UserInterface.displayMenu("[STEP 1] \nPlease enter a continent or country name you want to choose." +
-                "(Vietnam, Asia...)>> ");
-        String geographicArea = sc.nextLine().trim();
+        UserInterface.displayMenu("""
+                                    [STEP 1]
+                                    Please enter a continent or country name you want to choose. (Vietnam, Asia...)>>\s""");
+        String geographicArea = UserInterface.getGeographicUserInput();
         UserInterface.displayMenu("\n");
 
         // Choose date
@@ -141,9 +142,7 @@ public class Data {
                 date = particularDate3 + "," + endDate3;
                 break;
             default:
-                // make exception later
-                // FIXME: 2021-08-14
-                // user can give not 1/2/3
+               //
         }
         return new Data(geographicArea, date);
     }
@@ -179,7 +178,6 @@ public class Data {
         dg.addData(new processeddata.Data(end));
         return dg;
     }
-
 
     static ArrayList<DataGroup> noGrouping(DataGroup userTimeRange) {
         ArrayList<DataGroup> noGroup = new ArrayList<>();
