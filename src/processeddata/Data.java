@@ -138,6 +138,15 @@ public class Data {
                         row[i] = tempRow[i];
                     }
                 }
+
+                if(Integer.parseInt(row[4]) <= 0){
+                    row[4] = "0";
+                }
+
+                if(Integer.parseInt(row[5]) <= 0){
+                    row[5] = "0";
+                }
+
                 db.add(row);
             }
             line = fileContainer.readLine();
@@ -179,7 +188,6 @@ public class Data {
                             peopleVaccinated = prevPV;
                             newPeopleVaccinated = prevPV;
                         }
-
                         newPeopleVaccinated = newPeopleVaccinated - prevPV;
                     }
 
