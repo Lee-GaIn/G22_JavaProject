@@ -6,9 +6,8 @@ import main.UserInterface;
 import java.util.ArrayList;
 
 public class DisplayData {
-    private ArrayList<Summary> data;
-    private ArrayList<String> col;
-    private ArrayList<String> row;
+    private ArrayList<Summary> data = new ArrayList<>();
+    private ArrayList<String> row = new ArrayList<>();
 
     // Constructor
     protected DisplayData(ArrayList<Summary> data){

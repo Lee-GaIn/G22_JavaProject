@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
+    <list default="true" id="46361059-fd6d-4bf8-970c-a6001dea7b57" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/G22_JavaProject/display/ChartDisplay.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/G22_JavaProject/display/ChartDisplay.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/G22_JavaProject/display/DisplayData.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/G22_JavaProject/display/DisplayData.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/G22_JavaProject/display/TabularDisplay.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/G22_JavaProject/display/TabularDisplay.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/G22_JavaProject/main/Data.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/G22_JavaProject/main/Data.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/G22_JavaProject/main/Summary.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/G22_JavaProject/main/Summary.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/G22_JavaProject/main/UserInterface.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/G22_JavaProject/main/UserInterface.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/G22_JavaProject/main/test.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/display/DisplayData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/display/DisplayData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Data.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Data.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/processeddata/Data.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/processeddata/Data.java" afterDir="false" />
+    </list>
     <list default="true" id="46361059-fd6d-4bf8-970c-a6001dea7b57" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

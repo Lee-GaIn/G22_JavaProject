@@ -75,8 +75,11 @@ public class Data {
                 timeRange[1] = endDate;
             }
         }
-        // exception
 
+        // exception
+        // invalid form
+        // start date > end date
+        // out of range (not 2020-2021)
     }
 
     public String getGeographicArea() {
@@ -139,7 +142,8 @@ public class Data {
                 break;
             default:
                 // make exception later
-                // FIXME: 2021-08-14 
+                // FIXME: 2021-08-14
+                // user can give not 1/2/3
         }
         return new Data(geographicArea, date);
     }
