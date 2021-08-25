@@ -26,7 +26,6 @@ public class ChartDisplay extends DisplayData {
         int size = values.size();
         if (size > 79) {
             System.out.println ("ERROR: The maximum numbers of groups allowed is 79!");
-            System.exit(2);
         } else {
             for (int i = 0; i < chart.length; i++) {
                 for (int j = 0; j < chart[0].length; j++) {
