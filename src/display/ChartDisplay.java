@@ -1,10 +1,12 @@
 package display;
 
 import main.Summary;
-
 import java.util.ArrayList;
 
 public class ChartDisplay extends DisplayData {
+    private String[][] chart = new String[24][80];
+    private ArrayList<Integer> values = new ArrayList<>();
+
     //Constructor
     protected ChartDisplay(ArrayList<Summary> data) {
         super(data);
