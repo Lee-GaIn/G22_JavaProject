@@ -5,14 +5,6 @@ import java.util.ArrayList;
 public class DataGroup {
     private ArrayList<Data> groupedData = new ArrayList<>();
 
-    // Constructor
-    public DataGroup() {
-    }
-
-    public DataGroup(ArrayList<Data> groupedData) {
-        this.groupedData = groupedData;
-    }
-
     //Getter and Setter
     public ArrayList<Data> getGroupedData() {
         return groupedData;

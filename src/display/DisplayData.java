@@ -1,7 +1,7 @@
 package display;
 
 import main.Summary;
-import main.UserInterface;
+import util.UserInputManager;
 
 import java.util.ArrayList;
 
@@ -33,8 +33,8 @@ public class DisplayData {
                             \t[2] Chart display
                             ************************************************************
                             Please choose your grouping condition(1/2)>>\s""";
-        UserInterface.displayMenu(displayMenu);
-        int display = UserInterface.getIntUserInput();
+        UserInputManager.displayMenu(displayMenu);
+        int display = UserInputManager.getIntUserInput();
 
         DisplayData dd = new DisplayData(summaryList);
         switch (display){

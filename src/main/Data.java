@@ -1,10 +1,10 @@
 package main;
 
 import processeddata.DataGroup;
+import util.UserInputManager;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Scanner;
 import java.util.regex.Pattern;
 
 public class Data {
@@ -97,16 +97,15 @@ public class Data {
 
     public static Data createDataObj() throws Exception{
         String date = "";
-        Scanner sc = new Scanner(System.in);
 
         // Choose geographic area.
-        UserInterface.displayMenu("""
+        UserInputManager.displayMenu("""
                                     [STEP 1]
                                     Please enter a continent or country name you want to choose. (Vietnam, Asia...)>>\s""");
-        String geographicArea = UserInterface.getGeographicUserInput();
-        UserInterface.displayMenu("\n");
+        String geographicArea = UserInputManager.getGeographicUserInput();
+        UserInputManager.displayMenu("\n");
 
-        // Choose date
+        // Choose date.
         String menu = """
                     ************************************************************
                     Available form for determining date.
@@ -115,30 +114,30 @@ public class Data {
                     \t[3] A number of days or weeks to a specific date
                     ************************************************************
                     Please enter a number to decide the form of date range(1/2/3)>>\s""";
-        UserInterface.displayMenu(menu);
-        int dateMethod = UserInterface.getIntUserInput();
+        UserInputManager.displayMenu(menu);
+        int dateMethod = UserInputManager.getIntUserInput();
 
         switch (dateMethod) {
             case 1:
-                UserInterface.displayMenu("Please enter a start date(mm/dd/yyyy)>> ");
-                String startDate1 = sc.nextLine();
-                UserInterface.displayMenu("Please enter an end date(mm/dd/yyyy)>> ");
-                String endDate1 = sc.nextLine();
+                UserInputManager.displayMenu("Please enter a start date(mm/dd/yyyy)>> ");
+                String startDate1 = UserInputManager.getStrUserInput();
+                UserInputManager.displayMenu("Please enter an end date(mm/dd/yyyy)>> ");
+                String endDate1 = UserInputManager.getStrUserInput();
                 date = startDate1 + "," + endDate1;
                 break;
             case 2:
-                UserInterface.displayMenu("Please enter a start date(mm/dd/yyyy)>> ");
-                String startDate2 = sc.nextLine();
-                UserInterface.displayMenu("Please enter a number of days or weeks(n days, n weeks)>> ");
-                String particularDate2 = sc.nextLine();
+                UserInputManager.displayMenu("Please enter a start date(mm/dd/yyyy)>> ");
+                String startDate2 = UserInputManager.getStrUserInput();
+                UserInputManager.displayMenu("Please enter a number of days or weeks(n days, n weeks)>> ");
+                String particularDate2 = UserInputManager.getStrUserInput();
 
                 date = startDate2 + "," + particularDate2;
                 break;
             case 3:
-                UserInterface.displayMenu("Please enter a number of days or weeks(n days, n weeks)>> ");
-                String particularDate3 = sc.nextLine();
-                UserInterface.displayMenu("Please enter an end date(mm/dd/yyyy)>> ");
-                String endDate3 = sc.nextLine();
+                UserInputManager.displayMenu("Please enter a number of days or weeks(n days, n weeks)>> ");
+                String particularDate3 = UserInputManager.getStrUserInput();
+                UserInputManager.displayMenu("Please enter an end date(mm/dd/yyyy)>> ");
+                String endDate3 = UserInputManager.getStrUserInput();
                 date = particularDate3 + "," + endDate3;
                 break;
             default:
@@ -160,7 +159,7 @@ public class Data {
     }
 
     public void showData() {
-        System.out.println(this.toString());
+        System.out.println(this);
     }
 
     static DataGroup ListOfDates(LocalDate[] userTimeRange) {
