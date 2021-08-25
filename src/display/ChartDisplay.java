@@ -12,8 +12,6 @@ public class ChartDisplay extends DisplayData {
         super(data);
         setRow();
     }
-    private String[][] chart = new String[24][80];
-    private ArrayList<Integer> values = new ArrayList<>();
 
     //Getter and setter
     private void setRow() {

@@ -58,20 +58,20 @@ public class Data {
         String[] dateSplit = userTime.split(",");
         if (Pattern.matches(dateValid, dateSplit[1])) {
             String getDate = dateSplit[1];
-            if (dateSplit[0].contains("days")) {
+            if (dateSplit[0].contains("day")) {
                 String[] getNum = dateSplit[0].split(" ");
                 int numDays = Integer.parseInt(getNum[0]);
                 LocalDate endDate = strToLocalDate(getDate);
-                LocalDate particularDate = endDate.minusDays(numDays);
-                timeRange[0] = particularDate;
+                LocalDate startDate = endDate.minusDays(numDays);
+                timeRange[0] = startDate;
                 timeRange[1] = endDate;
             }
-            if (dateSplit[0].contains("weeks")) {
+            if (dateSplit[0].contains("week")) {
                 String[] getNum = dateSplit[0].split(" ");
                 int numWeeks = Integer.parseInt(getNum[0]) * 7;
                 LocalDate endDate = strToLocalDate(getDate);
-                LocalDate particularDate = endDate.minusDays(numWeeks);
-                timeRange[0] = particularDate;
+                LocalDate startDate = endDate.minusDays(numWeeks);
+                timeRange[0] = startDate;
                 timeRange[1] = endDate;
             }
         }
