@@ -1,6 +1,7 @@
 package main;
 
 import processeddata.DataGroup;
+import util.UserInputManager;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -39,8 +40,8 @@ public class Summary {
                                         \t[3] Number of days
                                         ************************************************************
                                         Please choose your grouping condition(1/2/3)>>\s""";
-        UserInterface.displayMenu(groupingConditionMenu);
-        int groupingCondition = UserInterface.getIntUserInput();
+        UserInputManager.displayMenu(groupingConditionMenu);
+        int groupingCondition = UserInputManager.getIntUserInput();
 
         LocalDate[] userTimeRange = userDataObj.getTimeRange();
         DataGroup baseDayGroup = Data.ListOfDates(userTimeRange);
@@ -51,14 +52,14 @@ public class Summary {
                 groupedDayList = Data.noGrouping(baseDayGroup);
                 break;
             case 2:
-                UserInterface.displayMenu("Please enter the number of groups you want to create. (Integer value)>> ");
-                int numOfGroups = UserInterface.getIntUserInput();
+                UserInputManager.displayMenu("Please enter the number of groups you want to create. (Integer value)>> ");
+                int numOfGroups = UserInputManager.getIntUserInput();
 
                 groupedDayList = Data.groupByGroupNum(baseDayGroup, numOfGroups);
                 break;
             case 3:
-                UserInterface.displayMenu("Please enter the number of days in a group. (Integer value)>> ");
-                int numOfDays = UserInterface.getIntUserInput();
+                UserInputManager.displayMenu("Please enter the number of days in a group. (Integer value)>> ");
+                int numOfDays = UserInputManager.getIntUserInput();
 
                 groupedDayList = Data.groupByDayNum(baseDayGroup, numOfDays);
                 break;
@@ -85,8 +86,8 @@ public class Summary {
                             \t[3] People vaccinated
                             ************************************************************
                             Please choose your metric(1/2/3)>>\s""";
-        UserInterface.displayMenu(metricMenu);
-        int metric = UserInterface.getIntUserInput();
+        UserInputManager.displayMenu(metricMenu);
+        int metric = UserInputManager.getIntUserInput();
 
         String resultTypesMenu = """
                                 ************************************************************
@@ -95,8 +96,8 @@ public class Summary {
                                 \t[2] Up To
                                 ************************************************************
                                 Please choose your result types(1/2)>>\s""";
-        UserInterface.displayMenu(resultTypesMenu);
-        int resultType = UserInterface.getIntUserInput();
+        UserInputManager.displayMenu(resultTypesMenu);
+        int resultType = UserInputManager.getIntUserInput();
 
         ArrayList<Summary> summaryList = new ArrayList<>();
         for(DataGroup dg : analyzedData) {

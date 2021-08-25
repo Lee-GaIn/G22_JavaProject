@@ -81,10 +81,6 @@ public class Data {
     }
 
     //Method
-    public String dateToString(){
-        return date.toString();
-    }
-
     public String toString() {
         String formatStr = """
                             Date: %s
