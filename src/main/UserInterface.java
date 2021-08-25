@@ -13,7 +13,7 @@ public class UserInterface {
         UserInputManager.displayMenu("""
                    Welcome! This is an analysis machine for COVID-19 data from 2020 to 2021.
                    Do you want to analyze the data? (Y/N)>>\s""");
-        String ans = sc.nextLine();
+        String ans = UserInputManager.getStrUserInput();
 
         while (ans.equalsIgnoreCase("Y")){
             try{
