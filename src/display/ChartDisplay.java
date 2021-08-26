@@ -13,43 +13,6 @@ public class ChartDisplay extends DisplayData {
     protected ChartDisplay(ArrayList<Summary> data) {
         super(data);
     }
-
-    //Getter and setter
-
-    //Method
-    @Override
-    public void display() throws ArithmeticException {
-        // This method displays a chart, with 79 being the maximum number of groups allowed
-        // If the number of groups exceeds 79 (80 or more), raise exception.
-
-        setValue();
-        int size = values.size();
-        ExceptionManager.checkChartSize(size);
-
-        for (int i = 0; i < chart.length; i++) {
-            for (int j = 0; j < chart[0].length; j++) {
-                chart[i][j] = " ";
-            }
-        }
-
-        for (int i = 0; i < chart[0].length; i++) {
-            chart[chart.length-1][i] = "_";
-        }
-
-        for (int i = 0; i < chart.length; i++) {
-            chart[i][0] ="|";
-        }
-
-        setUp();
-
-        for (int i = 0; i < chart.length; i++) {
-            for (int j = 0; j < chart[0].length; j++) {
-                System.out.print (chart[i][j]);
-            }
-            System.out.println("");
-        }
-    }
-
     private void setValue() {
         // This method gets all values of all groups.
 
@@ -90,4 +53,39 @@ public class ChartDisplay extends DisplayData {
         return max;
     }
 
+    //Getter and setter
+
+    //Method
+    @Override
+    public void display() throws ArithmeticException {
+        // This method displays a chart, with 79 being the maximum number of groups allowed
+        // If the number of groups exceeds 79 (80 or more), raise exception.
+
+        setValue();
+        int size = values.size();
+        ExceptionManager.checkChartSize(size);
+
+        for (int i = 0; i < chart.length; i++) {
+            for (int j = 0; j < chart[0].length; j++) {
+                chart[i][j] = " ";
+            }
+        }
+
+        for (int i = 0; i < chart[0].length; i++) {
+            chart[chart.length-1][i] = "_";
+        }
+
+        for (int i = 0; i < chart.length; i++) {
+            chart[i][0] ="|";
+        }
+
+        setUp();
+
+        for (int i = 0; i < chart.length; i++) {
+            for (int j = 0; j < chart[0].length; j++) {
+                System.out.print (chart[i][j]);
+            }
+            System.out.println("");
+        }
+    }
 }

@@ -206,19 +206,27 @@ public class Data {
         int numGroups = numOfGroups;
         int size = userTimeRange.getSize();
         int count = 0;
-        for (int i = 0; i < numOfGroups; i++) {
-            int numElements = size / numGroups;
-            if (size % numGroups !=0) {
-                numElements++;
+        if (numGroups == 0) {
+            System.out.println("ERROR: The number of groups cannot be zero!");
+            System.exit(1);
+        } else if (size < numGroups) {
+            System.out.println("ERROR: The number of groups is bigger than the number of days input!");
+            System.exit(2);
+        } else {
+            for (int i = 0; i < numOfGroups; i++) {
+                int numElements = size / numGroups;
+                if (size % numGroups != 0) {
+                    numElements++;
+                }
+                DataGroup dg = new DataGroup();
+                for (int j = 0; j < numElements; j++) {
+                    dg.addData(userTimeRange.getData(count));
+                    count++;
+                }
+                groups.add(dg);
+                numGroups--;
+                size -= numElements;
             }
-            DataGroup dg = new DataGroup();
-            for (int j = 0; j < numElements; j++) {
-                dg.addData(userTimeRange.getData(count));
-                count++;
-            }
-            groups.add(dg);
-            numGroups--;
-            size-=numElements;
         }
         return groups;
     }
@@ -232,16 +240,21 @@ public class Data {
         ArrayList<DataGroup> groups = new ArrayList<>();
         int i = 0;
         int size = userTimeRange.getSize();
-        ExceptionManager.checkGroupNum(size, numOfDays);
-        while (i < size) {
-            DataGroup dg = new DataGroup();
-            for (int j = 0; j < numOfDays; j++) {
-                if (i < size) {
-                    dg.addData(userTimeRange.getData(i));
-                    i++;
+        if (numOfDays == 0) {
+            System.out.println("ERROR: The number of days in a group cannot be zero!");
+            System.exit(3);
+        } else {
+            ExceptionManager.checkGroupNum(size, numOfDays);
+            while (i < size) {
+                DataGroup dg = new DataGroup();
+                for (int j = 0; j < numOfDays; j++) {
+                    if (i < size) {
+                        dg.addData(userTimeRange.getData(i));
+                        i++;
+                    }
                 }
+                groups.add(dg);
             }
-            groups.add(dg);
         }
         return groups;
     }
