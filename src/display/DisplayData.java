@@ -1,6 +1,7 @@
 package display;
 
 import main.Summary;
+import util.ExceptionManager;
 import util.UserInputManager;
 
 import java.util.ArrayList;
@@ -19,7 +20,7 @@ public class DisplayData {
     }
 
     // Method
-    public static DisplayData createDisplayDataObj(ArrayList<Summary> summaryList) {
+    public static DisplayData createDisplayDataObj(ArrayList<Summary> summaryList) throws Exception {
         String displayMenu = """
                             [STEP 3]
                             ************************************************************
@@ -40,7 +41,7 @@ public class DisplayData {
                 dd = new ChartDisplay(summaryList);
                 break;
             default:
-                // raise error
+                ExceptionManager.throwInvalidOption();
         }
         return dd;
     }

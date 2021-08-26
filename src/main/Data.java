@@ -1,7 +1,9 @@
 package main;
 
 import processeddata.DataGroup;
+import util.ExceptionManager;
 import util.UserInputManager;
+import util.ValidationManager;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -12,13 +14,13 @@ public class Data {
     private LocalDate[] timeRange = new LocalDate[2];
 
     // Constructor
-    private Data(String geographicArea, String userTime) {
+    private Data(String geographicArea, String userTime) throws Exception {
         this.geographicArea = geographicArea;
         setTimeRange(userTime);
     }
 
     // Getter and Setter
-    private void setTimeRange(String userTime) {
+    private void setTimeRange(String userTime) throws Exception {
         // Set time range for option [1] A pair of start date and end date
         String dateToDate = "^(([0]?[1-9]|1[012])/([0]?[1-9]|[12][0-9]|3[01])/(2020|2021))," +
                 "(([0]?[1-9]|1[012])/([0]?[1-9]|[12][0-9]|3[01])/(2020|2021))$";
@@ -76,11 +78,9 @@ public class Data {
             }
         }
 
-        // exception
-        // invalid form
-        // start date > end date
-        // out of range (not 2020-2021)
-    }
+        ExceptionManager.checkTimeRangeException(timeRange);
+
+        }
 
     public String getGeographicArea() {
         return geographicArea;
@@ -91,6 +91,7 @@ public class Data {
     }
 
     // Method
+    @Override
     public String toString() {
         return String.format("\nGeographic Area: %s \nStart date: %s \nEnd date: %s \n", geographicArea, timeRange[0], timeRange[1]);
     }
@@ -141,7 +142,7 @@ public class Data {
                 date = particularDate3 + "," + endDate3;
                 break;
             default:
-               //
+                ExceptionManager.throwInvalidOption();
         }
         return new Data(geographicArea, date);
     }
@@ -222,19 +223,16 @@ public class Data {
         return groups;
     }
 
-    static ArrayList<DataGroup> groupByDayNum(DataGroup userTimeRange, int numOfDays) {
+    static ArrayList<DataGroup> groupByDayNum(DataGroup userTimeRange, int numOfDays) throws Exception {
         // This method receives DataGroup "userTimeRange" as an parameter
         // and returns ArrayList of DataGroup.
         // The number of dates in a group is decided by the user input
-        // if the divided groups do not have the same number of dates, return error.
+        // if the divided groups do not have the same number of dates, raise exception.
 
         ArrayList<DataGroup> groups = new ArrayList<>();
         int i = 0;
         int size = userTimeRange.getSize();
-        if (size % numOfDays != 0) {
-            System.out.println("ERROR: 'The dates cannot be divided into equal groups!'");
-            System.exit(1);
-        }
+        ExceptionManager.checkGroupNum(size, numOfDays);
         while (i < size) {
             DataGroup dg = new DataGroup();
             for (int j = 0; j < numOfDays; j++) {

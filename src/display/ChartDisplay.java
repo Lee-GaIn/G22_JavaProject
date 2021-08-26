@@ -1,6 +1,8 @@
 package display;
 
 import main.Summary;
+import util.ExceptionManager;
+
 import java.util.ArrayList;
 
 public class ChartDisplay extends DisplayData {
@@ -17,34 +19,35 @@ public class ChartDisplay extends DisplayData {
 
     //Method
     @Override
-    public void display() {
+    public void display() throws ArithmeticException {
         // This method displays a chart, with 79 being the maximum number of groups allowed
-        // If the number of groups exceeds 79 (80 or more), return error.
+        // If the number of groups exceeds 79 (80 or more), raise exception.
 
         setValue();
         int size = values.size();
-        if (size > 79) {
-            System.out.println ("ERROR: The maximum numbers of groups allowed is 79!");
-        } else {
-            for (int i = 0; i < chart.length; i++) {
-                for (int j = 0; j < chart[0].length; j++) {
-                    chart[i][j] = " ";
-                }
-            }
-            for (int i = 0; i < chart[0].length; i++) {
-                chart[chart.length-1][i] = "_";
-            }
-            for (int i = 0; i < chart.length; i++) {
-                chart[i][0] ="|";
-            }
-            setUp();
+        ExceptionManager.checkChartSize(size);
 
-            for (int i = 0; i < chart.length; i++) {
-                for (int j = 0; j < chart[0].length; j++) {
-                    System.out.print (chart[i][j]);
-                }
-                System.out.println("");
+        for (int i = 0; i < chart.length; i++) {
+            for (int j = 0; j < chart[0].length; j++) {
+                chart[i][j] = " ";
             }
+        }
+
+        for (int i = 0; i < chart[0].length; i++) {
+            chart[chart.length-1][i] = "_";
+        }
+
+        for (int i = 0; i < chart.length; i++) {
+            chart[i][0] ="|";
+        }
+
+        setUp();
+
+        for (int i = 0; i < chart.length; i++) {
+            for (int j = 0; j < chart[0].length; j++) {
+                System.out.print (chart[i][j]);
+            }
+            System.out.println("");
         }
     }
 

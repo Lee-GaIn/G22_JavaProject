@@ -1,6 +1,7 @@
 package main;
 
 import processeddata.DataGroup;
+import util.ExceptionManager;
 import util.UserInputManager;
 
 import java.time.LocalDate;
@@ -26,6 +27,7 @@ public class Summary {
     }
 
     // Method
+    @Override
     public String toString() { return String.format("Time range: %s\nValue: %d\n",timeRangeToString(), getValue());
     }
 
@@ -64,7 +66,7 @@ public class Summary {
                 groupedDayList = Data.groupByDayNum(baseDayGroup, numOfDays);
                 break;
             default:
-                // write some code after studying exceptions on the lecture.
+                ExceptionManager.throwInvalidOption();
         }
 
         ArrayList<DataGroup> analyzedData = processeddata.Data.getData(userDataObj, groupedDayList);
@@ -115,8 +117,7 @@ public class Summary {
                     value = getUpTo(dtArr, metric);
                     break;
                 default:
-                    //error control
-                    // FIXME: 2021-08-14
+                    ExceptionManager.throwInvalidOption();
             }
 
             Summary s = new Summary(timeRange, value);
@@ -139,7 +140,7 @@ public class Summary {
         }
     }
 
-    private static int getNewTotal(ArrayList<processeddata.Data> db, int metric){
+    private static int getNewTotal(ArrayList<processeddata.Data> db, int metric) throws Exception {
         int value = 0;
         for(processeddata.Data dt : db) {
             switch (metric) {
@@ -153,14 +154,13 @@ public class Summary {
                     value += dt.getNewPeopleVaccinated();
                     break;
                 default:
-                    //err
-                    // FIXME: 2021-08-14
+                    ExceptionManager.throwInvalidOption();
             }
         }
         return value;
     }
 
-    private static int getUpTo(ArrayList<processeddata.Data> db, int metric){
+    private static int getUpTo(ArrayList<processeddata.Data> db, int metric) throws Exception {
         int value = 0;
         int dbLength = db.toArray().length;
         processeddata.Data lastDateData = db.get(dbLength - 1);
@@ -175,8 +175,7 @@ public class Summary {
                 value = lastDateData.getPeopleVaccinated();
                 break;
             default:
-                //err
-                // FIXME: 2021-08-14
+                ExceptionManager.throwInvalidOption();
         }
 
         return value;

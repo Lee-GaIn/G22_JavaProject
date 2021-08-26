@@ -12,6 +12,7 @@ public class UserInterface {
 
         UserInputManager.displayMenu("""
                    Welcome! This is an analysis machine for COVID-19 data from 2020 to 2021.
+                   [STEP 0]
                    Do you want to analyze the data? (Y/N)>>\s""");
         String ans = UserInputManager.getStrUserInput();
 
@@ -30,11 +31,15 @@ public class UserInterface {
                 displayData.display();
 
             } catch (Exception e){
-                String errMsg = "\n" + e.getMessage();
+                String errMsg = "\nThe system detected error.\n" + e.getMessage() + "\n";
                 System.out.print(errMsg);
+                // FIXME: 2021-08-26 
+//                e.printStackTrace();
             }
 
-            UserInputManager.displayMenu("\nDo you want to analyze the data again? (Y/N)>> ");
+            UserInputManager.displayMenu("""
+                                        [STEP 0]
+                                        Do you want to analyze the data again? (Y/N)>> """);
             ans = sc.nextLine();
         }
         UserInputManager.displayMenu("Thank you for using our service.\n");
