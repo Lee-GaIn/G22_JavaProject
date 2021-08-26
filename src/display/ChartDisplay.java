@@ -13,7 +13,45 @@ public class ChartDisplay extends DisplayData {
     }
 
     //Getter and setter
+    private void setValue() {
+        // This method gets all values of all groups.
 
+        ArrayList<Summary> sum = getData();
+        for (Summary d : sum) {
+            values.add(d.getValue());
+        }
+    }
+
+    private void setUp() {
+        // This method assigns a coordinate [row][col] to each value
+        // and uses an asterisk (*) to put them on the chart.
+
+        int max = findMax();
+        int time = chart[0].length / values.size();
+        int count = 0;
+        int col = 1;
+        for (int i = 0; i < values.size(); i++) {
+            int row = (int) (values.get(count) * 22 / max + 0.5);
+            int rowAct = Math.abs(row - 22);
+            chart[rowAct][col] = "*";
+            count++;
+            col += time;
+        }
+    }
+
+    private int findMax() {
+        // This method finds the maximum value of all groups.
+        // This is for appointing the group with the highest value
+        // as the highest one in the chart.
+
+        int max = values.get(0);
+        for (int value : values) {
+            if (max < value) {
+                max = value;
+            }
+        }
+        return max;
+    }
 
     //Method
     @Override
@@ -39,52 +77,12 @@ public class ChartDisplay extends DisplayData {
             }
             setUp();
 
-            for (int i = 0; i < chart.length; i++) {
-                for (int j = 0; j < chart[0].length; j++) {
-                    System.out.print (chart[i][j]);
+            for (String[] row : chart) {
+                for (String col : row) {
+                    System.out.print(col);
                 }
-                System.out.println("");
+                System.out.println(" ");
             }
         }
-    }
-
-    public void setValue() {
-        // This method gets all values of all groups.
-
-        ArrayList<Summary> sum = getData();
-        for (int i = 0; i < sum.size(); i++) {
-            values.add(sum.get(i).getValue());
-        }
-    }
-
-    public void setUp() {
-        // This method assigns a coordinate [row][col] to each value
-        // and uses an asterisk (*) to put them on the chart.
-
-        int max = findMax();
-        int time = chart[0].length / values.size();
-        int count = 0;
-        int col = 1;
-        for (int i = 0; i < values.size(); i++) {
-            int row = (int) (values.get(count) * 22 / max + 0.5);
-            int rowAct = Math.abs(row - 22);
-            chart[rowAct][col] = "*";
-            count++;
-            col += time;
-        }
-    }
-
-    public int findMax() {
-        // This method finds the maximum value of all groups.
-        // This is for appointing the group with the highest value
-        // as the highest one in the chart.
-
-        int max = values.get(0);
-        for (int i = 0; i < values.size(); i++) {
-            if (max < values.get(i)) {
-                max = values.get(i);
-            }
-        }
-        return max;
     }
 }
