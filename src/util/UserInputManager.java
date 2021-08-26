@@ -7,7 +7,7 @@ public class UserInputManager {
         System.out.print(menu);
     }
 
-    public static int getIntUserInput(){
+    public static int getIntUserInput() {
         Scanner sc = new Scanner(System.in);
         int res;
 
@@ -20,7 +20,7 @@ public class UserInputManager {
         return res;
     }
 
-    public static String getGeographicUserInput() throws Exception{
+    public static String getGeographicUserInput() throws Exception {
         Scanner sc = new Scanner(System.in);
         String res = sc.nextLine().trim();
         if(!(ExceptionManager.isValidGeographicInput(res))){
@@ -30,7 +30,7 @@ public class UserInputManager {
         return res;
     }
 
-    public static String getStrUserInput(){
+    public static String getStrUserInput() {
         Scanner sc = new Scanner(System.in);
         return sc.nextLine().trim();
     }

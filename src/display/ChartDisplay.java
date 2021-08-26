@@ -10,14 +10,13 @@ public class ChartDisplay extends DisplayData {
     //Constructor
     protected ChartDisplay(ArrayList<Summary> data) {
         super(data);
-        setRow();
     }
 
     //Getter and setter
-    private void setRow() {
-    }
+
 
     //Method
+    @Override
     public void display() {
         // This method displays a chart, with 79 being the maximum number of groups allowed
         // If the number of groups exceeds 79 (80 or more), return error.
