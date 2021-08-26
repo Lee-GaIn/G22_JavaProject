@@ -5,21 +5,23 @@ import main.Summary;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class TabularDisplay extends DisplayData{
+public class TabularDisplay extends DisplayData {
+    private ArrayList<String> row = new ArrayList<>();
+
     //Constructor
-    protected TabularDisplay(ArrayList<Summary> data){
+    protected TabularDisplay(ArrayList<Summary> data) {
         super(data);
         setRow();
     }
 
     //Getter and setter
-    private void setRow(){
+    private void setRow() {
         String header = "Range\t\t\t\t\t\s\sValue\n";
         ArrayList<String> row = getRow();
         ArrayList<Summary> data = getData();
         row.add(header);
 
-        for(Summary s : data){
+        for(Summary s : data) {
             LocalDate[] timeRange = s.getTimeRange();
             int value = s.getValue();
             int isOneDate = (timeRange[0].equals(timeRange[1]))? 1: -1;
@@ -28,6 +30,18 @@ public class TabularDisplay extends DisplayData{
                 case 1 -> row.add(String.format("%s\t\t\t\t\s\s%d\n", timeRange[0], value));
                 case -1 -> row.add(String.format("%s - %s\s\s%d\n", timeRange[0], timeRange[1], value));
             }
+        }
+    }
+
+    protected ArrayList<String> getRow() {
+        return row;
+    }
+
+    //Method
+    @Override
+    public void display(){
+        for(String r: row) {
+            System.out.print(r);
         }
     }
 }

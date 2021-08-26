@@ -95,7 +95,7 @@ public class Data {
         return String.format("\nGeographic Area: %s \nStart date: %s \nEnd date: %s \n", geographicArea, timeRange[0], timeRange[1]);
     }
 
-    public static Data createDataObj() throws Exception{
+    public static Data createDataObj() throws Exception {
         String date = "";
 
         // Choose geographic area.

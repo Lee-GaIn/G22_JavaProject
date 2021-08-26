@@ -7,7 +7,6 @@ import java.util.ArrayList;
 
 public class DisplayData {
     private ArrayList<Summary> data = new ArrayList<>();
-    private ArrayList<String> row = new ArrayList<>();
 
     // Constructor
     protected DisplayData(ArrayList<Summary> data){
@@ -19,12 +18,8 @@ public class DisplayData {
         return data;
     }
 
-    protected ArrayList<String> getRow() {
-        return row;
-    }
-
     // Method
-    public static DisplayData createDisplayDataObj(ArrayList<Summary> summaryList){
+    public static DisplayData createDisplayDataObj(ArrayList<Summary> summaryList) {
         String displayMenu = """
                             [STEP 3]
                             ************************************************************
@@ -37,7 +32,7 @@ public class DisplayData {
         int display = UserInputManager.getIntUserInput();
 
         DisplayData dd = new DisplayData(summaryList);
-        switch (display){
+        switch (display) {
             case 1:
                 dd = new TabularDisplay(summaryList);
                 break;
@@ -51,8 +46,6 @@ public class DisplayData {
     }
 
     public void display(){
-        for(String r: row){
-            System.out.print(r);
-        }
+
     }
 }

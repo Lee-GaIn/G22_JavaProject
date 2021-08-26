@@ -11,7 +11,7 @@ public class Summary {
     private int value;
 
     // Constructor
-    Summary(LocalDate[] timeRange, int value){
+    Summary(LocalDate[] timeRange, int value) {
         this.timeRange = timeRange;
         this.value = value;
     }
@@ -26,7 +26,7 @@ public class Summary {
     }
 
     // Method
-    public String toString(){ return String.format("Time range: %s\nValue: %d\n",timeRangeToString(), getValue());
+    public String toString() { return String.format("Time range: %s\nValue: %d\n",timeRangeToString(), getValue());
     }
 
     public static ArrayList<Summary> createSummaryObj(Data userDataObj) throws Exception {
@@ -47,7 +47,7 @@ public class Summary {
         DataGroup baseDayGroup = Data.ListOfDates(userTimeRange);
         ArrayList<DataGroup> groupedDayList = new ArrayList<>();
 
-        switch (groupingCondition){
+        switch (groupingCondition) {
             case 1:
                 groupedDayList = Data.noGrouping(baseDayGroup);
                 break;
@@ -133,16 +133,16 @@ public class Summary {
         return timeRange[0] + "," + timeRange[1];
     }
 
-    public static void showSummaryList(ArrayList<Summary> summaryList){
-        for(Summary s: summaryList){
+    public static void showSummaryList(ArrayList<Summary> summaryList) {
+        for(Summary s: summaryList) {
             System.out.println(s);
         }
     }
 
     private static int getNewTotal(ArrayList<processeddata.Data> db, int metric){
         int value = 0;
-        for(processeddata.Data dt : db){
-            switch (metric){
+        for(processeddata.Data dt : db) {
+            switch (metric) {
                 case 1:
                     value += dt.getNewCases();
                     break;
