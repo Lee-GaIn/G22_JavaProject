@@ -53,25 +53,25 @@ public class Data {
             }
         }
 
-//      Set time range for option [3] A number of days or weeks to a specific date
+        // Set time range for option [3] A number of days or weeks to a specific date
         String dateValid = "^(([0]?[1-9]|1[012])/([0]?[1-9]|[12][0-9]|3[01])/(2020|2021))";
         String[] dateSplit = userTime.split(",");
         if (Pattern.matches(dateValid, dateSplit[1])) {
             String getDate = dateSplit[1];
-            if (dateSplit[0].contains("days")) {
+            if (dateSplit[0].contains("day")) {
                 String[] getNum = dateSplit[0].split(" ");
                 int numDays = Integer.parseInt(getNum[0]);
                 LocalDate endDate = strToLocalDate(getDate);
-                LocalDate particularDate = endDate.minusDays(numDays);
-                timeRange[0] = particularDate;
+                LocalDate startDate = endDate.minusDays(numDays);
+                timeRange[0] = startDate;
                 timeRange[1] = endDate;
             }
-            if (dateSplit[0].contains("weeks")) {
+            if (dateSplit[0].contains("week")) {
                 String[] getNum = dateSplit[0].split(" ");
                 int numWeeks = Integer.parseInt(getNum[0]) * 7;
                 LocalDate endDate = strToLocalDate(getDate);
-                LocalDate particularDate = endDate.minusDays(numWeeks);
-                timeRange[0] = particularDate;
+                LocalDate startDate = endDate.minusDays(numWeeks);
+                timeRange[0] = startDate;
                 timeRange[1] = endDate;
             }
         }
@@ -162,7 +162,10 @@ public class Data {
         System.out.println(this);
     }
 
-    static DataGroup ListOfDates(LocalDate[] userTimeRange) {
+    static DataGroup setDateList(LocalDate[] userTimeRange) {
+        // This method receives LocalDate "userTimeRange" as an parameter
+        // and returns DataGroup.
+
         DataGroup dg = new DataGroup();
         LocalDate start = userTimeRange[0];
         dg.addData(new processeddata.Data(start));
@@ -179,6 +182,10 @@ public class Data {
     }
 
     static ArrayList<DataGroup> noGrouping(DataGroup userTimeRange) {
+        // This method receives DataGroup "userTimeRange" as an parameter
+        // and returns ArrayList of DataGroup
+        // where each group only contains 1 date.
+
         ArrayList<DataGroup> noGroup = new ArrayList<>();
         int size = userTimeRange.getSize();
         for (int i = 0; i < size; i++) {
@@ -190,6 +197,10 @@ public class Data {
     }
 
     static ArrayList<DataGroup> groupByGroupNum(DataGroup userTimeRange, int numOfGroups) {
+        // This method receives DataGroup "userTimeRange" as an parameter
+        // and returns ArrayList of DataGroup.
+        // The number of groups is decided by the user input.
+
         ArrayList<DataGroup> groups = new ArrayList<>();
         int numGroups = numOfGroups;
         int size = userTimeRange.getSize();
@@ -212,6 +223,11 @@ public class Data {
     }
 
     static ArrayList<DataGroup> groupByDayNum(DataGroup userTimeRange, int numOfDays) {
+        // This method receives DataGroup "userTimeRange" as an parameter
+        // and returns ArrayList of DataGroup.
+        // The number of dates in a group is decided by the user input
+        // if the divided groups do not have the same number of dates, return error.
+
         ArrayList<DataGroup> groups = new ArrayList<>();
         int i = 0;
         int size = userTimeRange.getSize();

@@ -44,7 +44,7 @@ public class Summary {
         int groupingCondition = UserInputManager.getIntUserInput();
 
         LocalDate[] userTimeRange = userDataObj.getTimeRange();
-        DataGroup baseDayGroup = Data.ListOfDates(userTimeRange);
+        DataGroup baseDayGroup = Data.setDateList(userTimeRange);
         ArrayList<DataGroup> groupedDayList = new ArrayList<>();
 
         switch (groupingCondition) {
