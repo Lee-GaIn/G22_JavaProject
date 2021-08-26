@@ -1,5 +1,6 @@
 package util;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class UserInputManager {
@@ -7,25 +8,18 @@ public class UserInputManager {
         System.out.print(menu);
     }
 
-    public static int getIntUserInput() {
-        Scanner sc = new Scanner(System.in);
-        int res;
-
-        try {
-            res = Integer.parseInt(sc.nextLine().trim());
-        } catch (NumberFormatException e){
-            throw new NumberFormatException("The system detected invalid input. The valid value is a number.");
-        }
+    public static int getIntUserInput() throws NumberFormatException {
+        String input = getStrUserInput();
+        ExceptionManager.checkIntInput(input);
+        int res = Integer.parseInt(input);
         System.out.print("\n");
         return res;
     }
 
-    public static String getGeographicUserInput() throws Exception {
+    public static String getGeographicUserInput() throws InputMismatchException {
         Scanner sc = new Scanner(System.in);
         String res = sc.nextLine().trim();
-        if(!(ExceptionManager.isValidGeographicInput(res))){
-            throw new Exception("The system detected invalid input. Please check your geographic input again.");
-        }
+        ExceptionManager.checkGeographicException(res);
         System.out.print("\n");
         return res;
     }
