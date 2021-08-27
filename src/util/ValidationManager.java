@@ -76,7 +76,7 @@ public class ValidationManager {
         return numGroups == 0;
     }
 
-    static boolean isInt (String input) {
+    static boolean isInt(String input) {
         //This method accepts string "input" as a parameter.
         //and returns false if the "input" is not an instance of Integer.
         //Otherwise, returns true.
@@ -98,5 +98,13 @@ public class ValidationManager {
 
         return size <= 79;
 
+    }
+
+    static boolean isDataZero(int dataSize) {
+        //This method accepts integer "dataSize" as a parameter.
+        //and returns true if "dataSize" is zero.
+        //Otherwise, returns false.
+
+        return dataSize == 0;
     }
 }

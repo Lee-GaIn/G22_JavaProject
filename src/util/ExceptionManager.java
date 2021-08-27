@@ -39,7 +39,7 @@ public class ExceptionManager {
 
         if (!(ValidationManager.isValidTimeRange(timeRange))) {
             throw new IllegalArgumentException("""
-                                                The end date is before the start date. 
+                                                The end date is before the start date.
                                                 Please check your time range input again.""");
         }
 
@@ -107,9 +107,20 @@ public class ExceptionManager {
         if (!(ValidationManager.isValidChartSize(size))) {
             throw new ArithmeticException ("""
                                             Sorry for the inconvenience.
-                                            Our system detected that the number of groups is more than the allowed number(79).
+                                            The number of groups is more than the allowed number(79).
                                             """);
         }
     }
 
+    public static void checkDataSize(int dataSize) throws ArithmeticException {
+        //This method throws ArithmeticException
+        //if the system detected that there is no data to display.
+
+        if (ValidationManager.isDataZero(dataSize)) {
+            throw new ArithmeticException ("""
+                                            Sorry for the inconvenience.
+                                            There is no data to display.
+                                            """);
+        }
+    }
 }

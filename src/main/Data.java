@@ -13,7 +13,7 @@ public class Data {
     private LocalDate[] timeRange = new LocalDate[2];
 
     // Constructor
-    private Data(String geographicArea, String userTime) throws Exception {
+    private Data(String geographicArea, String userTime) {
         //This constructor accepts string "geographicArea" and string "userTime" as parameters.
         //and returns new Data instance
         //It raises an exception if the time range is invalid.
@@ -23,7 +23,7 @@ public class Data {
     }
 
     // Getter and Setter
-    private void setTimeRange(String userTime) throws Exception {
+    private void setTimeRange(String userTime) {
         //This setter method accepts string "userTime" as a parameter
         //and sets the time range attributes by the option that the user chooses.
         //It raises an exception if time range is invalid.
@@ -115,7 +115,7 @@ public class Data {
         return String.format("\nGeographic Area: %s \nStart date: %s \nEnd date: %s \n", geographicArea, timeRange[0], timeRange[1]);
     }
 
-    public static Data createDataObj() throws Exception {
+    public static Data createDataObj() {
         //This method ushers users to create a new data instance.
         //It returns a new data instance.
         //It throws an exception if the user input is invalid.
@@ -142,33 +142,28 @@ public class Data {
         int dateMethod = UserInputManager.getIntUserInput();
 
         switch (dateMethod) {
-            case 1:
+            case 1 -> {
                 UserInputManager.displayMenu("Please enter a start date(mm/dd/yyyy)>> ");
                 String startDate1 = UserInputManager.getStrUserInput();
                 UserInputManager.displayMenu("Please enter an end date(mm/dd/yyyy)>> ");
                 String endDate1 = UserInputManager.getStrUserInput();
                 date = startDate1 + "," + endDate1;
-                break;
-
-            case 2:
+            }
+            case 2 -> {
                 UserInputManager.displayMenu("Please enter a start date(mm/dd/yyyy)>> ");
                 String startDate2 = UserInputManager.getStrUserInput();
                 UserInputManager.displayMenu("Please enter a number of days or weeks(n days, n weeks)>> ");
                 String particularDate2 = UserInputManager.getStrUserInput();
-
                 date = startDate2 + "," + particularDate2;
-                break;
-
-            case 3:
+            }
+            case 3 -> {
                 UserInputManager.displayMenu("Please enter a number of days or weeks(n days, n weeks)>> ");
                 String particularDate3 = UserInputManager.getStrUserInput();
                 UserInputManager.displayMenu("Please enter an end date(mm/dd/yyyy)>> ");
                 String endDate3 = UserInputManager.getStrUserInput();
                 date = particularDate3 + "," + endDate3;
-                break;
-
-            default:
-                ExceptionManager.throwInvalidOption();
+            }
+            default -> ExceptionManager.throwInvalidOption();
         }
         return new Data(geographicArea, date);
     }
@@ -225,7 +220,7 @@ public class Data {
         return noGroup;
     }
 
-    static ArrayList<DataGroup> groupByGroupNum(DataGroup userTimeRange, int numOfGroups) throws Exception {
+    static ArrayList<DataGroup> groupByGroupNum(DataGroup userTimeRange, int numOfGroups) {
         // This method receives DataGroup "userTimeRange" as an parameter
         // and returns ArrayList of DataGroup.
         // The number of groups is decided by the user input.
@@ -254,7 +249,7 @@ public class Data {
         return groups;
     }
 
-    static ArrayList<DataGroup> groupByDayNum(DataGroup userTimeRange, int numOfDays) throws Exception {
+    static ArrayList<DataGroup> groupByDayNum(DataGroup userTimeRange, int numOfDays) {
         // This method receives DataGroup "userTimeRange" as an parameter
         // and returns ArrayList of DataGroup.
         // The number of dates in a group is decided by the user input

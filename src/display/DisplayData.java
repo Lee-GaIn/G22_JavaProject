@@ -12,7 +12,7 @@ public class DisplayData {
     // Constructor
     protected DisplayData(ArrayList<Summary> data){
         //This constructor accepts an array list of summary instances as a parameter
-        //and construct a new displaydata instance.
+        //and construct a new Displaydata instance.
 
         this.data = data;
     }
@@ -46,17 +46,9 @@ public class DisplayData {
 
         DisplayData dd = new DisplayData(summaryList);
         switch (display) {
-            case 1:
-                dd = new TabularDisplay(summaryList);
-                break;
-
-            case 2:
-                dd = new ChartDisplay(summaryList);
-                break;
-
-            default:
-                ExceptionManager.throwInvalidOption();
-
+            case 1 -> dd = new TabularDisplay(summaryList);
+            case 2 -> dd = new ChartDisplay(summaryList);
+            default -> ExceptionManager.throwInvalidOption();
         }
         return dd;
     }

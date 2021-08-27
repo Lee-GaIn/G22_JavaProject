@@ -32,13 +32,14 @@ public class UserInterface {
 
             } catch (Exception e){
                 String errMsg = "\nThe system detected error.\n" + e.getMessage()
-                                + "The system will return back to the [STEP 0] automatically.\n";
+                                + "The system will return back to the [STEP 0] automatically.";
                 UserInputManager.displayMenu(errMsg);
                 // FIXME: 2021-08-26 
 //                e.printStackTrace();
             }
 
             UserInputManager.displayMenu("""
+                                        
                                         [STEP 0]
                                         Do you want to analyze the data again? (Y/N)>>\s""");
             ans = sc.nextLine();
