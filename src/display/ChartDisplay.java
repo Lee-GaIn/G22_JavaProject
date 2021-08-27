@@ -13,8 +13,6 @@ public class ChartDisplay extends DisplayData {
     protected ChartDisplay(ArrayList<Summary> data) {
         super(data);
     }
-
-    //Getter and setter
     private void setValue() {
         // This method gets all values of all groups.
 
@@ -32,16 +30,35 @@ public class ChartDisplay extends DisplayData {
         int time = chart[0].length / values.size();
         int count = 0;
         int col = 1;
-        for (int i = 0; i < values.size(); i++) {
-            int row = (int) (values.get(count) * 22 / max + 0.5);
-            int rowAct = Math.abs(row - 22);
-            chart[rowAct][col] = "*";
-            count++;
-            col += time;
+        if (max == 0) {
+            System.out.println("ERROR: There is no data to display!");
+            System.exit(1);
+        } else {
+            for (int i = 0; i < values.size(); i++) {
+                int row = (int) (values.get(count) * 22 / max + 0.5);
+                int rowAct = Math.abs(row - 22);
+                chart[rowAct][col] = "*";
+                count++;
+                col += time;
+            }
         }
     }
 
+    private int findMax() {
+        // This method finds the maximum value of all groups.
+        // This is for appointing the group with the highest value
+        // as the highest one in the chart.
 
+        int max = values.get(0);
+        for (int value : values) {
+            if (max < value) {
+                max = value;
+            }
+        }
+        return max;
+    }
+
+    //Getter and setter
 
     //Method
     @Override
@@ -75,20 +92,5 @@ public class ChartDisplay extends DisplayData {
             }
             System.out.println("");
         }
-    }
-
-
-    private int findMax() {
-        // This method finds the maximum value of all groups.
-        // This is for appointing the group with the highest value
-        // as the highest one in the chart.
-
-        int max = values.get(0);
-        for (int value : values) {
-            if (max < value) {
-                max = value;
-            }
-        }
-        return max;
     }
 }
