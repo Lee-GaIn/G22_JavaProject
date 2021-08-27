@@ -43,12 +43,36 @@ public class ValidationManager {
         return true;
     }
 
-    static boolean isValidGroupNum(int size, int numOfDays) {
+    static boolean isValidNumOfDays(int size, int numOfDays) {
         // This method accepts size and numOfDays as an integer.
         // and returns false if size is not divided into numOfDays.
         // Otherwise, returns true.
 
         return size % numOfDays == 0;
+    }
+
+    static boolean isNumOfDaysZero(int numOfDays){
+        // This method accepts numOfDays as an integer.
+        // and returns true if numOfDays is zero.
+        // Otherwise, returns false.
+
+        return numOfDays == 0;
+    }
+
+    static boolean isValidNumOfGroups(int size, int numGroups){
+        // This method accepts size and numGroups as an integer.
+        // and returns false if size is larger than numGroups.
+        // Otherwise, returns true.
+
+        return size > numGroups;
+    }
+
+    static boolean isNumOfGroupZero(int numGroups){
+        // This method accepts numGroups as an integer.
+        // and returns true if numGroups is zero.
+        // Otherwise, returns false.
+
+        return numGroups == 0;
     }
 
     static boolean isInt (String input) {

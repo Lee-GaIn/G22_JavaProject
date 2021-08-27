@@ -13,6 +13,8 @@ public class ChartDisplay extends DisplayData {
     protected ChartDisplay(ArrayList<Summary> data) {
         super(data);
     }
+
+    //Getter and setter
     private void setValue() {
         // This method gets all values of all groups.
 
@@ -39,21 +41,7 @@ public class ChartDisplay extends DisplayData {
         }
     }
 
-    private int findMax() {
-        // This method finds the maximum value of all groups.
-        // This is for appointing the group with the highest value
-        // as the highest one in the chart.
 
-        int max = values.get(0);
-        for (int value : values) {
-            if (max < value) {
-                max = value;
-            }
-        }
-        return max;
-    }
-
-    //Getter and setter
 
     //Method
     @Override
@@ -87,5 +75,20 @@ public class ChartDisplay extends DisplayData {
             }
             System.out.println("");
         }
+    }
+
+
+    private int findMax() {
+        // This method finds the maximum value of all groups.
+        // This is for appointing the group with the highest value
+        // as the highest one in the chart.
+
+        int max = values.get(0);
+        for (int value : values) {
+            if (max < value) {
+                max = value;
+            }
+        }
+        return max;
     }
 }
