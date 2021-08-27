@@ -42,6 +42,7 @@ public class ChartDisplay extends DisplayData {
     }
 
 
+
     //Method
     @Override
     public void display() throws ArithmeticException {
@@ -75,6 +76,7 @@ public class ChartDisplay extends DisplayData {
             System.out.println("");
         }
     }
+
 
     private int findMax() {
         // This method finds the maximum value of all groups.

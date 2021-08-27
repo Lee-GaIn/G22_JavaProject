@@ -221,7 +221,6 @@ public class Data {
             groups.add(dg);
             numGroups--;
             size -= numElements;
-
         }
 
         return groups;
@@ -245,8 +244,8 @@ public class Data {
                     dg.addData(userTimeRange.getData(i));
                     i++;
                 }
+                groups.add(dg);
             }
-            groups.add(dg);
         }
         return groups;
     }
