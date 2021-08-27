@@ -13,26 +13,41 @@ public class Summary {
 
     // Constructor
     Summary(LocalDate[] timeRange, int value) {
+        //This constructor accepts Localdate list "timeRange" and integer "value" as parameters
+        //and construct a new instance of a summary.
+
         this.timeRange = timeRange;
         this.value = value;
     }
 
     // Getter and Setter
     public LocalDate[] getTimeRange() {
+        //This getter method returns timeRange.
+
         return timeRange;
     }
 
     public int getValue() {
+        //This getter method returns a value.
+
         return value;
     }
 
     // Method
     @Override
-    public String toString() { return String.format("Time range: %s\nValue: %d\n",timeRangeToString(), getValue());
+    public String toString() {
+        //This method returns the detail of an instance of a summary as a string.
+
+        return String.format("Time range: %s\nValue: %d\n",timeRangeToString(), getValue());
     }
 
     public static ArrayList<Summary> createSummaryObj(Data userDataObj) throws Exception {
-        // part 1
+        //This method ushers users to create an array list of summary instances.
+        //It returns an array list of summary instances.
+        //It throws an exception if the user input is invalid.
+
+        // Choose grouping condition
+
          String groupingConditionMenu = """
                                         [STEP 2]
                                         ************************************************************
@@ -53,20 +68,24 @@ public class Summary {
             case 1:
                 groupedDayList = Data.noGrouping(baseDayGroup);
                 break;
+
             case 2:
                 UserInputManager.displayMenu("Please enter the number of groups you want to create. (Integer value)>> ");
                 int numOfGroups = UserInputManager.getIntUserInput();
 
                 groupedDayList = Data.groupByGroupNum(baseDayGroup, numOfGroups);
                 break;
+
             case 3:
                 UserInputManager.displayMenu("Please enter the number of days in a group. (Integer value)>> ");
                 int numOfDays = UserInputManager.getIntUserInput();
 
                 groupedDayList = Data.groupByDayNum(baseDayGroup, numOfDays);
                 break;
+
             default:
                 ExceptionManager.throwInvalidOption();
+
         }
 
         ArrayList<DataGroup> analyzedData = processeddata.Data.getData(userDataObj, groupedDayList);
@@ -78,8 +97,8 @@ public class Summary {
             System.out.println("=================================");
         }
 
+        //Choose metric.
 
-        // part 3
         String metricMenu = """
                             ************************************************************
                             Available metric
@@ -90,6 +109,8 @@ public class Summary {
                             Please choose your metric(1/2/3)>>\s""";
         UserInputManager.displayMenu(metricMenu);
         int metric = UserInputManager.getIntUserInput();
+
+        //Choose result type.
 
         String resultTypesMenu = """
                                 ************************************************************
@@ -113,11 +134,14 @@ public class Summary {
                 case 1:
                     value = getNewTotal(dtArr, metric);
                     break;
+
                 case 2:
                     value = getUpTo(dtArr, metric);
                     break;
+
                 default:
                     ExceptionManager.throwInvalidOption();
+
             }
 
             Summary s = new Summary(timeRange, value);
@@ -130,52 +154,72 @@ public class Summary {
         return summaryList;
     }
 
-    public String timeRangeToString(){
+    private String timeRangeToString(){
+        //This method returns the detail of the time range as a string.
+
         return timeRange[0] + "," + timeRange[1];
     }
 
     public static void showSummaryList(ArrayList<Summary> summaryList) {
+        //This method shows the array list of summary instances.
         for(Summary s: summaryList) {
             System.out.println(s);
         }
     }
 
     private static int getNewTotal(ArrayList<processeddata.Data> db, int metric) throws Exception {
+        //This method accepts array list of data in processeddata package "db" and integer "metric"
+        //and returns a total of new cases of the data based on the metric that the user inputs.
+        //It throws an exception if the user input is invalid.
+
         int value = 0;
         for(processeddata.Data dt : db) {
             switch (metric) {
                 case 1:
                     value += dt.getNewCases();
                     break;
+
                 case 2:
                     value += dt.getNewDeaths();
                     break;
+
                 case 3:
                     value += dt.getNewPeopleVaccinated();
                     break;
+
                 default:
                     ExceptionManager.throwInvalidOption();
+
             }
         }
         return value;
     }
 
     private static int getUpTo(ArrayList<processeddata.Data> db, int metric) throws Exception {
+        //This method accepts array list of data in processeddata package "db" and integer "metric"
+        //and returns accumulated total data based on the metric that the user inputs.
+        //It throws an exception if the user input is invalid.
+
         int value = 0;
         int dbLength = db.toArray().length;
         processeddata.Data lastDateData = db.get(dbLength - 1);
+
         switch (metric) {
             case 1:
                 value = lastDateData.getTotalCases();
                 break;
+
             case 2:
                 value = lastDateData.getTotalDeaths();
                 break;
+
             case 3:
                 value = lastDateData.getPeopleVaccinated();
                 break;
+
             default:
                 ExceptionManager.throwInvalidOption();
+
         }
 
         return value;
