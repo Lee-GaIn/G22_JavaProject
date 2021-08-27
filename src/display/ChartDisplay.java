@@ -12,6 +12,7 @@ public class ChartDisplay extends DisplayData {
     //Constructor
     protected ChartDisplay(ArrayList<Summary> data) {
         super(data);
+        setValue();
     }
     
     //Getter and setter
@@ -24,36 +25,19 @@ public class ChartDisplay extends DisplayData {
         }
     }
 
-    private void setUp() {
-        //This method assigns a coordinate [row][col] to each value
-        //and uses an asterisk (*) to put them on the chart.
-        //If there is no data to display, raise exception.
-
-        int max = findMax();
-        int time = chart[0].length / values.size();
-        int count = 0;
-        int col = 1;
-        ExceptionManager.checkDataSize(max);
-
-
-        for (int i = 0; i < values.size(); i++) {
-            int row = (int) (values.get(count) * 22 / max + 0.5);
-            int rowAct = Math.abs(row - 22);
-            chart[rowAct][col] = "*";
-            count++;
-            col += time;
-        }
-    }
-
     //Method
     @Override
     public void display() throws ArithmeticException {
         //This method displays a chart, with 79 being the maximum number of groups allowed
         //If the number of groups exceeds 79 (80 or more), raise exception.
 
-        setValue();
         int size = values.size();
+        int max = findMax();
+        int time = chart[0].length / values.size();
+        int count = 0;
+        int col = 1;
         ExceptionManager.checkChartSize(size);
+        ExceptionManager.checkDataSize(max);
 
         for (int i = 0; i < chart.length; i++) {
             for (int j = 0; j < chart[0].length; j++) {
@@ -69,13 +53,19 @@ public class ChartDisplay extends DisplayData {
             chart[i][0] ="|";
         }
 
-        setUp();
+        for (int i = 0; i < values.size(); i++) {
+            int row = (int) (values.get(count) * 22 / max + 0.5);
+            int rowAct = Math.abs(row - 22);
+            chart[rowAct][col] = "*";
+            count++;
+            col += time;
+        }
 
         for (int i = 0; i < chart.length; i++) {
             for (int j = 0; j < chart[0].length; j++) {
                 System.out.print (chart[i][j]);
             }
-            System.out.println("");
+            System.out.println(" ");
         }
     }
 
