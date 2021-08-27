@@ -15,6 +15,32 @@ public class ChartDisplay extends DisplayData {
     }
 
     //Getter and setter
+    private void setValue() {
+        // This method gets all values of all groups.
+
+        ArrayList<Summary> sum = getData();
+        for (Summary d : sum) {
+            values.add(d.getValue());
+        }
+    }
+
+    private void setUp() {
+        // This method assigns a coordinate [row][col] to each value
+        // and uses an asterisk (*) to put them on the chart.
+
+        int max = findMax();
+        int time = chart[0].length / values.size();
+        int count = 0;
+        int col = 1;
+        for (int i = 0; i < values.size(); i++) {
+            int row = (int) (values.get(count) * 22 / max + 0.5);
+            int rowAct = Math.abs(row - 22);
+            chart[rowAct][col] = "*";
+            count++;
+            col += time;
+        }
+    }
+
 
     //Method
     @Override
@@ -50,32 +76,6 @@ public class ChartDisplay extends DisplayData {
         }
     }
 
-    private void setValue() {
-        // This method gets all values of all groups.
-
-        ArrayList<Summary> sum = getData();
-        for (Summary d : sum) {
-            values.add(d.getValue());
-        }
-    }
-
-    private void setUp() {
-        // This method assigns a coordinate [row][col] to each value
-        // and uses an asterisk (*) to put them on the chart.
-
-        int max = findMax();
-        int time = chart[0].length / values.size();
-        int count = 0;
-        int col = 1;
-        for (int i = 0; i < values.size(); i++) {
-            int row = (int) (values.get(count) * 22 / max + 0.5);
-            int rowAct = Math.abs(row - 22);
-            chart[rowAct][col] = "*";
-            count++;
-            col += time;
-        }
-    }
-
     private int findMax() {
         // This method finds the maximum value of all groups.
         // This is for appointing the group with the highest value
@@ -89,5 +89,4 @@ public class ChartDisplay extends DisplayData {
         }
         return max;
     }
-
 }

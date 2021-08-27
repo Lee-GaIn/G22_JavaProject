@@ -197,7 +197,7 @@ public class Data {
         return noGroup;
     }
 
-    static ArrayList<DataGroup> groupByGroupNum(DataGroup userTimeRange, int numOfGroups) {
+    static ArrayList<DataGroup> groupByGroupNum(DataGroup userTimeRange, int numOfGroups) throws Exception {
         // This method receives DataGroup "userTimeRange" as an parameter
         // and returns ArrayList of DataGroup.
         // The number of groups is decided by the user input.
@@ -206,9 +206,11 @@ public class Data {
         int numGroups = numOfGroups;
         int size = userTimeRange.getSize();
         int count = 0;
+        ExceptionManager.checkNumOfGroups(size, numGroups);
+
         for (int i = 0; i < numOfGroups; i++) {
             int numElements = size / numGroups;
-            if (size % numGroups !=0) {
+            if (size % numGroups != 0) {
                 numElements++;
             }
             DataGroup dg = new DataGroup();
@@ -218,8 +220,10 @@ public class Data {
             }
             groups.add(dg);
             numGroups--;
-            size-=numElements;
+            size -= numElements;
+
         }
+
         return groups;
     }
 
@@ -232,7 +236,8 @@ public class Data {
         ArrayList<DataGroup> groups = new ArrayList<>();
         int i = 0;
         int size = userTimeRange.getSize();
-        ExceptionManager.checkGroupNum(size, numOfDays);
+        ExceptionManager.checkNumOfDays(size, numOfDays);
+
         while (i < size) {
             DataGroup dg = new DataGroup();
             for (int j = 0; j < numOfDays; j++) {

@@ -43,25 +43,50 @@ public class ExceptionManager {
 
     public static void checkIntInput(String input) throws NumberFormatException {
         if (!(ValidationManager.isInt(input))) {
-            throw new NumberFormatException("The valid value is a number.");
+            throw new NumberFormatException("""
+                                            The valid value is a number.
+                                            Please check your input again.""");
         }
     }
 
-    public static void checkGroupNum(int size, int numOfDays) throws ArithmeticException {
-        if (!(ValidationManager.isValidGroupNum(size, numOfDays))) {
-            throw new ArithmeticException("""
-                                            The dates cannot be divided into equal groups!
-                                            Please check your time range input again.
+    public static void checkNumOfDays(int size, int numOfDays) throws IllegalArgumentException {
+        if(ValidationManager.isNumOfDaysZero(numOfDays)) {
+            throw new IllegalArgumentException("""
+                                                The number of groups cannot be zero.
+                                                Please check the number of groups input again.
+                                                 """);
+        }
+
+        if (!(ValidationManager.isValidNumOfDays(size, numOfDays))) {
+            throw new IllegalArgumentException("""
+                                            The dates cannot be divided into equal groups
+                                            Please check the number of groups input again.
                                             """);
         }
     }
 
-    public  static void checkChartSize(int size) {
+    public static void checkNumOfGroups(int size, int numGroups) throws IllegalArgumentException {
+        if(ValidationManager.isNumOfGroupZero(numGroups)) {
+            throw new IllegalArgumentException("""
+                                                The number of groups cannot be zero.
+                                                Please check the number of groups input again.
+                                                """);
+        }
+
+        if(!(ValidationManager.isValidNumOfGroups(size, numGroups))) {
+            throw new IllegalArgumentException("""
+                                                The number of groups is bigger than the number of days input
+                                                Please check the number of groups input again.
+                                                """);
+        }
+    }
+
+    public static void checkChartSize(int size) throws ArithmeticException {
         if(!(ValidationManager.isValidChartSize(size))) {
             throw new ArithmeticException ("""
                                             Sorry for the inconvenience.
                                             Our system detected that the number of groups is more than the allowed number(79).
-                                            The system will return back to the [STEP 0] automatically.""");
+                                            """);
         }
     }
 

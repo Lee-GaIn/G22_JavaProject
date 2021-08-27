@@ -31,15 +31,16 @@ public class UserInterface {
                 displayData.display();
 
             } catch (Exception e){
-                String errMsg = "\nThe system detected error.\n" + e.getMessage() + "\n";
-                System.out.print(errMsg);
+                String errMsg = "\nThe system detected error.\n" + e.getMessage()
+                                + "The system will return back to the [STEP 0] automatically.\n";
+                UserInputManager.displayMenu(errMsg);
                 // FIXME: 2021-08-26 
 //                e.printStackTrace();
             }
 
             UserInputManager.displayMenu("""
                                         [STEP 0]
-                                        Do you want to analyze the data again? (Y/N)>> """);
+                                        Do you want to analyze the data again? (Y/N)>>\s""");
             ans = sc.nextLine();
         }
         UserInputManager.displayMenu("Thank you for using our service.\n");
