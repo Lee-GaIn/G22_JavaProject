@@ -13,7 +13,7 @@ public class ChartDisplay extends DisplayData {
     protected ChartDisplay(ArrayList<Summary> data) {
         super(data);
     }
-
+    
     //Getter and setter
     private void setValue() {
         //This method gets all values of all groups.
@@ -92,4 +92,5 @@ public class ChartDisplay extends DisplayData {
         }
         return max;
     }
+ 
 }
