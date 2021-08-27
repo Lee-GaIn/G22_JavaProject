@@ -13,8 +13,10 @@ public class ChartDisplay extends DisplayData {
     protected ChartDisplay(ArrayList<Summary> data) {
         super(data);
     }
+    
+    //Getter and setter
     private void setValue() {
-        // This method gets all values of all groups.
+        //This method gets all values of all groups.
 
         ArrayList<Summary> sum = getData();
         for (Summary d : sum) {
@@ -23,48 +25,31 @@ public class ChartDisplay extends DisplayData {
     }
 
     private void setUp() {
-        // This method assigns a coordinate [row][col] to each value
-        // and uses an asterisk (*) to put them on the chart.
+        //This method assigns a coordinate [row][col] to each value
+        //and uses an asterisk (*) to put them on the chart.
+        //If there is no data to display, raise exception.
 
         int max = findMax();
         int time = chart[0].length / values.size();
         int count = 0;
         int col = 1;
-        if (max == 0) {
-            System.out.println("ERROR: There is no data to display!");
-            System.exit(1);
-        } else {
-            for (int i = 0; i < values.size(); i++) {
-                int row = (int) (values.get(count) * 22 / max + 0.5);
-                int rowAct = Math.abs(row - 22);
-                chart[rowAct][col] = "*";
-                count++;
-                col += time;
-            }
+        ExceptionManager.checkDataSize(max);
+
+
+        for (int i = 0; i < values.size(); i++) {
+            int row = (int) (values.get(count) * 22 / max + 0.5);
+            int rowAct = Math.abs(row - 22);
+            chart[rowAct][col] = "*";
+            count++;
+            col += time;
         }
     }
-
-    private int findMax() {
-        // This method finds the maximum value of all groups.
-        // This is for appointing the group with the highest value
-        // as the highest one in the chart.
-
-        int max = values.get(0);
-        for (int value : values) {
-            if (max < value) {
-                max = value;
-            }
-        }
-        return max;
-    }
-
-    //Getter and setter
 
     //Method
     @Override
     public void display() throws ArithmeticException {
-        // This method displays a chart, with 79 being the maximum number of groups allowed
-        // If the number of groups exceeds 79 (80 or more), raise exception.
+        //This method displays a chart, with 79 being the maximum number of groups allowed
+        //If the number of groups exceeds 79 (80 or more), raise exception.
 
         setValue();
         int size = values.size();
@@ -93,4 +78,19 @@ public class ChartDisplay extends DisplayData {
             System.out.println("");
         }
     }
+
+    private int findMax() {
+        //This method finds the maximum value of all groups.
+        //This is for appointing the group with the highest value
+        //as the highest one in the chart.
+
+        int max = values.get(0);
+        for (int value : values) {
+            if (max < value) {
+                max = value;
+            }
+        }
+        return max;
+    }
+ 
 }

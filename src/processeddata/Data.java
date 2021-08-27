@@ -1,7 +1,6 @@
 package processeddata;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.time.LocalDate;
@@ -18,7 +17,7 @@ public class Data {
 
     //Constructor
     public Data(LocalDate date) {
-        //This constructor accepts Localdate "date" as a parameter
+        //This constructor accepts LocalDate "date" as a parameter
         // and constructs a new data instance.
 
         this.date = date;
@@ -142,7 +141,7 @@ public class Data {
                                         getTotalCases(),getTotalDeaths(),getPeopleVaccinated());
     }
 
-    public static ArrayList<DataGroup> getData(main.Data userData, ArrayList<DataGroup> dgArr) throws FileNotFoundException, IOException {
+    public static ArrayList<DataGroup> getData(main.Data userData, ArrayList<DataGroup> dgArr) throws IOException {
         //This method accepts a Data instance in the main package "userData"
         //and an array list of DataGroup "dgArr"
         //and returns an array list of DataGroup.
@@ -162,7 +161,7 @@ public class Data {
         return updatedDataGroups;
     }
 
-    private static ArrayList<String[]> getDatabase(String geographicArea) throws FileNotFoundException, IOException {
+    private static ArrayList<String[]> getDatabase(String geographicArea) throws IOException {
         //It accepts string "geographicArea" as a parameter
         //and returns array list of string array which is the database for a particular country or continent.
         //If getDatabase method fails to find the data file, it throws FileNotFoundException.
