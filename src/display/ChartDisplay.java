@@ -8,7 +8,8 @@ import java.util.ArrayList;
 public class ChartDisplay extends DisplayData {
     private String[][] chart = new String[24][80];
     private ArrayList<Integer> values = new ArrayList<>();
-
+    private static final int line = 22;
+    private static final double round = 0.5;
     // Constructor
     protected ChartDisplay(ArrayList<Summary> data) {
         // This constructor accepts an array list of Summary instances as a parameter
@@ -57,8 +58,8 @@ public class ChartDisplay extends DisplayData {
         }
 
         for (int i = 0; i < values.size(); i++) {
-            int row = (int) (values.get(count) * 22 / max + 0.5);
-            int rowAct = Math.abs(row - 22);
+            int row = (int) (values.get(count) * line / max + round);
+            int rowAct = Math.abs(row - line);
             chart[rowAct][col] = "*";
             count++;
             col += time;
