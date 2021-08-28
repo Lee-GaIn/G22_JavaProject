@@ -4,16 +4,16 @@ import java.time.LocalDate;
 import java.util.InputMismatchException;
 
 public class ExceptionManager {
-    // FIXME: 2021-08-27 
-    // If the user does not provide the proper type of input or input is out of range,
-    // then InputMismatchException happens.
+    //  FIXME: 2021-08-27 
+    //  If the user does not provide the proper type of input or input is out of range,
+    //  then InputMismatchException happens.
 
-    // if(marks < 0 || marks > 100) // IllegalArgumentException
+    //  if(marks < 0 || marks > 100) //  IllegalArgumentException
 
-    // parse //NumberFormatException
+    //  parse // NumberFormatException
     public static void throwInvalidOption() throws InputMismatchException {
-        //This method throws InputMismatchException
-        //if the user chooses the unsupported option.
+        // This method throws InputMismatchException
+        // if the user chooses the unsupported option.
 
         throw new InputMismatchException("""
                                         The unsupported option was chosen.
@@ -21,8 +21,8 @@ public class ExceptionManager {
     }
 
     public static void checkGeographicException(String res) throws InputMismatchException {
-        //This method throws InputMismatchException
-        //if the user puts invalid geographic value.
+        // This method throws InputMismatchException
+        // if the user puts invalid geographic value.
 
         if (!(ValidationManager.isValidGeographicInput(res))) {
             throw new InputMismatchException("Please check your geographic input again.");
@@ -30,8 +30,8 @@ public class ExceptionManager {
     }
 
     public static void checkTimeRangeException(LocalDate[] timeRange) throws IllegalArgumentException {
-        //This method throws IllegalArgumentException
-        //if the user puts invalid time range value.
+        // This method throws IllegalArgumentException
+        // if the user puts invalid time range value.
 
         if (!(ValidationManager.isTimeRangeNotNull(timeRange))) {
             throw new NullPointerException("Please check your time range input again.");
@@ -52,8 +52,8 @@ public class ExceptionManager {
     }
 
     public static void checkIntInput(String input) throws NumberFormatException {
-        //This method throws NumberFormatException
-        //if the user does not put an integer value.
+        // This method throws NumberFormatException
+        // if the user does not put an integer value.
 
         if (!(ValidationManager.isInt(input))) {
             throw new NumberFormatException("""
@@ -63,8 +63,8 @@ public class ExceptionManager {
     }
 
     public static void checkNumOfDays(int size, int numOfDays) throws IllegalArgumentException {
-        //This method throws IllegalArgumentException
-        //if the user puts invalid the number of groups.
+        // This method throws IllegalArgumentException
+        // if the user puts invalid the number of groups.
 
         if (ValidationManager.isNumOfDaysZero(numOfDays)) {
             throw new IllegalArgumentException("""
@@ -82,8 +82,8 @@ public class ExceptionManager {
     }
 
     public static void checkNumOfGroups(int size, int numGroups) throws IllegalArgumentException {
-        //This method throws IllegalArgumentException
-        //if the user puts invalid the number of groups.
+        // This method throws IllegalArgumentException
+        // if the user puts invalid the number of groups.
 
         if (ValidationManager.isNumOfGroupZero(numGroups)) {
             throw new IllegalArgumentException("""
@@ -101,8 +101,8 @@ public class ExceptionManager {
     }
 
     public static void checkChartSize(int size) throws ArithmeticException {
-        //This method throws ArithmeticException
-        //if the system detected that the number of groups is inappropriate for the requirement.
+        // This method throws ArithmeticException
+        // if the system detected that the number of groups is inappropriate for the requirement.
 
         if (!(ValidationManager.isValidChartSize(size))) {
             throw new ArithmeticException ("""
@@ -113,8 +113,8 @@ public class ExceptionManager {
     }
 
     public static void checkDataSize(int dataSize) throws ArithmeticException {
-        //This method throws ArithmeticException
-        //if the system detected that there is no data to display.
+        // This method throws ArithmeticException
+        // if the system detected that there is no data to display.
 
         if (ValidationManager.isDataZero(dataSize)) {
             throw new ArithmeticException ("""

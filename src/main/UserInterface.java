@@ -4,16 +4,13 @@ import display.DisplayData;
 import util.UserInputManager;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class UserInterface {
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-
         UserInputManager.displayMenu("""
-                   Welcome! This is an analysis machine for COVID-19 data from 2020 to 2021.
-                   [STEP 0]
-                   Do you want to analyze the data? (Y/N)>>\s""");
+                                       Welcome! This is an analysis machine for COVID-19 data from 2020 to 2021.
+                                       [STEP 0]
+                                       Do you want to analyze the data? (Y/N)>>\s""");
         String ans = UserInputManager.getStrUserInput();
 
         while (ans.equalsIgnoreCase("Y")) {
@@ -32,18 +29,18 @@ public class UserInterface {
 
             } catch (Exception e){
                 String errMsg = "\nThe system detected error.\n" + e.getMessage()
-                                + "The system will return back to the [STEP 0] automatically.";
+                                + "The system will return back to the [STEP 0] automatically.\n\n";
                 UserInputManager.displayMenu(errMsg);
-                // FIXME: 2021-08-26 
+                // FIXME: 2021-08-26
 //                e.printStackTrace();
             }
 
             UserInputManager.displayMenu("""
-                                        
                                         [STEP 0]
                                         Do you want to analyze the data again? (Y/N)>>\s""");
-            ans = sc.nextLine();
+            ans = UserInputManager.getStrUserInput();
         }
+
         UserInputManager.displayMenu("Thank you for using our service.\n");
     }
 }

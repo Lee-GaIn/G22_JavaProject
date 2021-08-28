@@ -12,11 +12,11 @@ public class Data {
     private String geographicArea;
     private LocalDate[] timeRange = new LocalDate[2];
 
-    // Constructor
+    //  Constructor
     private Data(String geographicArea, String userTime) {
-        //This constructor accepts string "geographicArea" and string "userTime" as parameters.
-        //and returns new Data instance
-        //It raises an exception if the time range is invalid.
+        // This constructor accepts string "geographicArea" and string "userTime" as parameters.
+        // and returns new Data instance
+        // It raises an exception if the time range is invalid.
 
         this.geographicArea = geographicArea;
         setTimeRange(userTime);
@@ -24,9 +24,9 @@ public class Data {
 
     // Getter and Setter
     private void setTimeRange(String userTime) {
-        //This setter method accepts string "userTime" as a parameter
-        //and sets the time range attributes by the option that the user chooses.
-        //It raises an exception if time range is invalid.
+        // This setter method accepts string "userTime" as a parameter
+        // and sets the time range attributes by the option that the user chooses.
+        // It raises an exception if time range is invalid.
 
         // Set time range for option [1] A pair of start date and end date
 
@@ -96,13 +96,13 @@ public class Data {
         }
 
     public String getGeographicArea() {
-        //This getter method returns geographicArea as a string.
+        // This getter method returns geographicArea as a string.
 
         return geographicArea;
     }
 
     public LocalDate[] getTimeRange() {
-        //This getter method returns timeRange as a string.
+        // This getter method returns timeRange as a string.
 
         return timeRange;
     }
@@ -110,15 +110,15 @@ public class Data {
     // Method
     @Override
     public String toString() {
-        //This method returns the detail of the data instance as a string.
+        // This method returns the detail of the Data instance as a string.
 
         return String.format("\nGeographic Area: %s \nStart date: %s \nEnd date: %s \n", geographicArea, timeRange[0], timeRange[1]);
     }
 
     public static Data createDataObj() {
-        //This method ushers users to create a new data instance.
-        //It returns a new data instance.
-        //It throws an exception if the user input is invalid.
+        // This method ushers users to create a new Data instance.
+        // It returns a new Data instance.
+        // It throws an exception if the user input is invalid.
 
         // Choose geographic area.
 
@@ -181,7 +181,7 @@ public class Data {
     }
 
     public void showData() {
-        //This method shows the detail of a data instance.
+        // This method shows the detail of a Data instance.
 
         System.out.println(this);
     }
@@ -253,7 +253,7 @@ public class Data {
         // This method receives DataGroup "userTimeRange" as an parameter
         // and returns ArrayList of DataGroup.
         // The number of dates in a group is decided by the user input
-        // if the divided groups do not have the same number of dates, raise exception.
+        // If the divided groups do not have the same number of dates, it throws exception.
 
         ArrayList<DataGroup> groups = new ArrayList<>();
         int i = 0;

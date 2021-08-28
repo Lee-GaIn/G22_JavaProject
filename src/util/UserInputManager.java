@@ -4,16 +4,16 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class UserInputManager {
-    public static void displayMenu(String menu){
-        // This method accepts string "menu
-        // and display menu.
+    public static void displayMenu(String menu) {
+        // This method accepts string "menu"
+        // and displays menu.
 
         System.out.print(menu);
     }
 
     public static int getIntUserInput() throws NumberFormatException {
-        //This method get integer input from the user
-        //It throws NumberFormatException, if the user input is invalid.
+        // This method get integer input from the user
+        // It throws NumberFormatException, if the user input is invalid.
 
         String input = getStrUserInput();
         ExceptionManager.checkIntInput(input);
@@ -23,8 +23,8 @@ public class UserInputManager {
     }
 
     public static String getGeographicUserInput() throws InputMismatchException {
-        //This method get geographic input from the user
-        //It throws InputMismatchException, if the user input is invalid.
+        // This method get geographic input from the user
+        // It throws InputMismatchException, if the user input is invalid.
 
         String res = getStrUserInput();
         ExceptionManager.checkGeographicException(res);
@@ -33,7 +33,7 @@ public class UserInputManager {
     }
 
     public static String getStrUserInput() {
-        //This method get string input from the user.
+        // This method get string input from the user.
 
         Scanner sc = new Scanner(System.in);
         return sc.nextLine().trim();
