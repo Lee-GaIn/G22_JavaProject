@@ -51,6 +51,9 @@ public class TabularDisplay extends DisplayData {
     @Override
     public void display(){
         // This method displays a table for data of the instance.
+        // There are two columns.
+        // The first column shows the time range
+        // and the second column shows the value.
 
         for(String r : row) {
             System.out.print(r);
