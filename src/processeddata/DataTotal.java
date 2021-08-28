@@ -5,6 +5,8 @@ import util.ExceptionManager;
 import java.util.ArrayList;
 
 public class DataTotal {
+
+    // Methods
     public static int getNewTotal(ArrayList<Data> db, int metric) {
         // This method accepts array list of Data in processeddata package "db" and integer "metric"
         // and returns a total of new cases of the data based on the metric that the user inputs.

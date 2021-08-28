@@ -20,6 +20,17 @@ public class ExceptionManager {
                                         Please check your option input again.""");
     }
 
+    public static void checkIntInput(String input) throws NumberFormatException {
+        // This method throws NumberFormatException
+        // if the user does not put an integer value.
+
+        if (!(ValidationManager.isInt(input))) {
+            throw new NumberFormatException("""
+                                            The valid value is a number.
+                                            Please check your input again.""");
+        }
+    }
+
     public static void checkGeographicException(String res) throws InputMismatchException {
         // This method throws InputMismatchException
         // if the user puts invalid geographic value.
@@ -67,17 +78,6 @@ public class ExceptionManager {
                                                 Please check your time range input again.""");
         }
 
-    }
-
-    public static void checkIntInput(String input) throws NumberFormatException {
-        // This method throws NumberFormatException
-        // if the user does not put an integer value.
-
-        if (!(ValidationManager.isInt(input))) {
-            throw new NumberFormatException("""
-                                            The valid value is a number.
-                                            Please check your input again.""");
-        }
     }
 
     public static void checkNumOfDays(int size, int numOfDays) throws IllegalArgumentException {
