@@ -11,40 +11,40 @@ public class Summary {
     private LocalDate[] timeRange;
     private int value;
 
-    // Constructor
+    //  Constructor
     Summary(LocalDate[] timeRange, int value) {
-        //This constructor accepts LocalDate list "timeRange" and integer "value" as parameters
-        //and construct a new instance of a summary.
+        // This constructor accepts LocalDate list "timeRange" and integer "value" as parameters
+        // and construct a new instance of a Summary.
 
         this.timeRange = timeRange;
         this.value = value;
     }
 
-    // Getter and Setter
+    //  Getter and Setter
     public LocalDate[] getTimeRange() {
-        //This getter method returns timeRange.
+        // This getter method returns timeRange.
 
         return timeRange;
     }
 
     public int getValue() {
-        //This getter method returns a value.
+        // This getter method returns a value.
 
         return value;
     }
 
-    // Method
+    //  Method
     @Override
     public String toString() {
-        //This method returns the detail of an instance of a summary as a string.
+        // This method returns the detail of an instance of a Summary as a string.
 
-        return String.format("Time range: %s\nValue: %d\n",timeRangeToString(), getValue());
+        return String.format("Time range: %s\nValue: %d\n", timeRangeToString(), getValue());
     }
 
     public static ArrayList<Summary> createSummaryObj(Data userDataObj) throws Exception {
-        //This method ushers users to create an array list of summary instances.
-        //It returns an array list of summary instances.
-        //It throws an exception if the user input is invalid.
+        // This method ushers users to create an array list of Summary instances.
+        // It returns an array list of Summary instances.
+        // It throws an exception if the user input is invalid.
 
         // Choose grouping condition
 
@@ -88,7 +88,7 @@ public class Summary {
             System.out.println("=================================");
         }
 
-        //Choose metric.
+        // Choose metric.
 
         String metricMenu = """
                             ************************************************************
@@ -101,7 +101,7 @@ public class Summary {
         UserInputManager.displayMenu(metricMenu);
         int metric = UserInputManager.getIntUserInput();
 
-        //Choose result type.
+        // Choose result type.
 
         String resultTypesMenu = """
                                 ************************************************************
@@ -131,29 +131,29 @@ public class Summary {
             summaryList.add(s);
         }
 
-        // FIXME: 2021-08-14
+        //  FIXME: 2021-08-14
         System.out.println("Final result+++++++++++++++++++++++++++++++++++++++++++");
 
         return summaryList;
     }
 
-    private String timeRangeToString(){
-        //This method returns the detail of the time range as a string.
+    private String timeRangeToString() {
+        // This method returns the detail of the time range as a string.
 
         return timeRange[0] + "," + timeRange[1];
     }
 
     public static void showSummaryList(ArrayList<Summary> summaryList) {
-        //This method shows the array list of summary instances.
-        for(Summary s: summaryList) {
+        // This method shows the array list of Summary instances.
+        for(Summary s : summaryList) {
             System.out.println(s);
         }
     }
 
     private static int getNewTotal(ArrayList<processeddata.Data> db, int metric) {
-        //This method accepts array list of data in processeddata package "db" and integer "metric"
-        //and returns a total of new cases of the data based on the metric that the user inputs.
-        //It throws an exception if the user input is invalid.
+        // This method accepts array list of Data in processeddata package "db" and integer "metric"
+        // and returns a total of new cases of the data based on the metric that the user inputs.
+        // It throws an exception if the user input is invalid.
 
         int value = 0;
         for(processeddata.Data dt : db) {
@@ -168,9 +168,9 @@ public class Summary {
     }
 
     private static int getUpTo(ArrayList<processeddata.Data> db, int metric) {
-        //This method accepts array list of data in processeddata package "db" and integer "metric"
-        //and returns accumulated total data based on the metric that the user inputs.
-        //It throws an exception if the user input is invalid.
+        // This method accepts array list of Data in processeddata package "db" and integer "metric"
+        // and returns accumulated total data based on the metric that the user inputs.
+        // It throws an exception if the user input is invalid.
 
         int value = 0;
         int dbLength = db.toArray().length;

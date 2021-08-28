@@ -10,25 +10,25 @@ public class DisplayData {
     private ArrayList<Summary> data;
 
     // Constructor
-    protected DisplayData(ArrayList<Summary> data){
-        //This constructor accepts an array list of summary instances as a parameter
-        //and construct a new Displaydata instance.
+    protected DisplayData(ArrayList<Summary> data) {
+        // This constructor accepts an array list of Summary instances as a parameter
+        // and construct a new Displaydata instance.
 
         this.data = data;
     }
 
     // Getter and setter
     protected ArrayList<Summary> getData() {
-        //This getter method returns data of the display data instance.
+        // This getter method returns data of the DisplayData instance.
 
         return data;
     }
 
     // Method
-    public static DisplayData createDisplayDataObj(ArrayList<Summary> summaryList) throws Exception {
-        //This method accepts an array list of summary instances as a parameter
-        //and returns a new display data instance.
-        //It throws an exception if the user input is invalid.
+    public static DisplayData createDisplayDataObj(ArrayList<Summary> summaryList) {
+        // This method accepts an array list of Summary instances as a parameter
+        // and returns a new DisplayData instance.
+        // It throws an exception if the user input is invalid.
 
 
         // Choose the way to display data.
@@ -50,10 +50,15 @@ public class DisplayData {
             case 2 -> dd = new ChartDisplay(summaryList);
             default -> ExceptionManager.throwInvalidOption();
         }
+        
         return dd;
     }
 
     public void display(){
-        // FIXME: 2021-08-27 
+        // This method displays the data of the instance.
+
+        for(Summary s : data) {
+            System.out.println(s);
+        }
     }
 }

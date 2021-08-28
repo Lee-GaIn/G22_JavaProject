@@ -9,14 +9,17 @@ public class ChartDisplay extends DisplayData {
     private String[][] chart = new String[24][80];
     private ArrayList<Integer> values = new ArrayList<>();
 
-    //Constructor
+    // Constructor
     protected ChartDisplay(ArrayList<Summary> data) {
+        // This constructor accepts an array list of Summary instances as a parameter
+        // and construct a new ChartDisplay instance.
+        
         super(data);
     }
     
-    //Getter and setter
+    // Getter and setter
     private void setValue() {
-        //This method gets all values of all groups.
+        // This method gets all values of all groups.
 
         ArrayList<Summary> sum = getData();
         for (Summary d : sum) {
@@ -48,8 +51,8 @@ public class ChartDisplay extends DisplayData {
     //Method
     @Override
     public void display() throws ArithmeticException {
-        //This method displays a chart, with 79 being the maximum number of groups allowed
-        //If the number of groups exceeds 79 (80 or more), raise exception.
+        // This method displays a chart, with 79 being the maximum number of groups allowed
+        // If the number of groups exceeds 79 (80 or more),it throws exception.
 
         setValue();
         int size = values.size();
@@ -62,7 +65,7 @@ public class ChartDisplay extends DisplayData {
         }
 
         for (int i = 0; i < chart[0].length; i++) {
-            chart[chart.length-1][i] = "_";
+            chart[chart.length - 1][i] = "_";
         }
 
         for (int i = 0; i < chart.length; i++) {
@@ -75,14 +78,14 @@ public class ChartDisplay extends DisplayData {
             for (int j = 0; j < chart[0].length; j++) {
                 System.out.print (chart[i][j]);
             }
-            System.out.println("");
+            System.out.println(" ");
         }
     }
 
     private int findMax() {
-        //This method finds the maximum value of all groups.
-        //This is for appointing the group with the highest value
-        //as the highest one in the chart.
+        // This method finds the maximum value of all groups.
+        // This is for appointing the group with the highest value
+        // as the highest one in the chart.
 
         int max = values.get(0);
         for (int value : values) {
