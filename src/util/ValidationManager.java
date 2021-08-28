@@ -13,6 +13,24 @@ public class ValidationManager {
         return Pattern.matches(regexp, input);
     }
 
+    static boolean isValidDateForm(String date) {
+        // This method accepts string "date"
+        // and returns true if "date" satisfies the pattern.
+        // Otherwise, returns false.
+
+        String datePattern = "^(([0]?[1-9]|1[012])/([0]?[1-9]|[12][0-9]|3[01])/(2020|2021))$";
+        return Pattern.matches(datePattern, date);
+    }
+
+    static boolean isValidDayWeekForm(String timeRange) {
+        // This method accepts string "timeRange"
+        // and returns true if "timeRange" satisfies the pattern.
+        // Otherwise, returns false.
+
+        String dayWeekPattern = "^[0-9]+\\s?((day|days)|(week|weeks))$";
+        return Pattern.matches(dayWeekPattern, timeRange);
+    }
+
     static boolean isTimeRangeNotNull(LocalDate[] timeRange) {
         // This method accepts an array of LocalDate "timeRange" as a parameter
         // and returns true if both the start date and end date is not null.
@@ -26,7 +44,7 @@ public class ValidationManager {
         // and returns true if the end date is after the start date.
         // Otherwise, returns false.
 
-        return timeRange[1].compareTo(timeRange[0]) > 0;
+        return timeRange[1].compareTo(timeRange[0]) >= 0;
     }
 
     static boolean isValidYear(LocalDate[] timeRange) {
