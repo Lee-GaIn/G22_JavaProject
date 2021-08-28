@@ -7,6 +7,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Database {
+
+    // Methods
     public static ArrayList<DataGroup> getData(main.Data userData, ArrayList<DataGroup> dgArr) throws IOException {
         // This method accepts a Data instance in the main package "userData"
         // and an array list of DataGroup "dgArr"
