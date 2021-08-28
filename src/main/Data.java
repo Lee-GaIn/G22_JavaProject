@@ -147,6 +147,10 @@ public class Data {
                 String startDate1 = UserInputManager.getStrUserInput();
                 UserInputManager.displayMenu("Please enter an end date(mm/dd/yyyy)>> ");
                 String endDate1 = UserInputManager.getStrUserInput();
+
+                ExceptionManager.checkDateFormException(startDate1);
+                ExceptionManager.checkDateFormException(endDate1);
+
                 date = startDate1 + "," + endDate1;
             }
             case 2 -> {
@@ -154,6 +158,10 @@ public class Data {
                 String startDate2 = UserInputManager.getStrUserInput();
                 UserInputManager.displayMenu("Please enter a number of days or weeks(n days, n weeks)>> ");
                 String particularDate2 = UserInputManager.getStrUserInput();
+
+                ExceptionManager.checkDateFormException(startDate2);
+                ExceptionManager.checkTimeRangeFormException(particularDate2);
+
                 date = startDate2 + "," + particularDate2;
             }
             case 3 -> {
@@ -161,6 +169,10 @@ public class Data {
                 String particularDate3 = UserInputManager.getStrUserInput();
                 UserInputManager.displayMenu("Please enter an end date(mm/dd/yyyy)>> ");
                 String endDate3 = UserInputManager.getStrUserInput();
+
+                ExceptionManager.checkTimeRangeFormException(particularDate3);
+                ExceptionManager.checkDateFormException(endDate3);
+
                 date = particularDate3 + "," + endDate3;
             }
             default -> ExceptionManager.throwInvalidOption();

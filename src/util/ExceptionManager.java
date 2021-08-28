@@ -29,6 +29,24 @@ public class ExceptionManager {
         }
     }
 
+    public static void checkDateFormException(String date) throws InputMismatchException {
+        // This method throws InputMismatchException
+        // if the user puts invalid date form.
+
+        if (!(ValidationManager.isValidDateForm(date))) {
+            throw new InputMismatchException("Please check your date input again.");
+        }
+    }
+
+    public static void checkTimeRangeFormException(String timeRange) throws InputMismatchException {
+        // This method throws InputMismatchException
+        // if the user puts invalid time range form.
+
+        if (!(ValidationManager.isValidDayWeekForm(timeRange))) {
+            throw new InputMismatchException("Please check your time range input again.");
+        }
+    }
+
     public static void checkTimeRangeException(LocalDate[] timeRange) throws IllegalArgumentException {
         // This method throws IllegalArgumentException
         // if the user puts invalid time range value.
