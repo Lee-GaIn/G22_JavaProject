@@ -23,16 +23,20 @@ public class GroupDates {
 
         DataGroup dg = new DataGroup();
         LocalDate start = userTimeRange[0];
-        dg.addData(new processeddata.Data(start));
         LocalDate end = userTimeRange[1];
         int count = 1;
         LocalDate nextDate = start.plusDays(count);
-        while (nextDate.isBefore(end)) {
-            count++;
-            dg.addData(new processeddata.Data(nextDate));
-            nextDate = start.plusDays(count);
+        if (start.equals(end)) {
+            dg.addData(new processeddata.Data(start));
+        } else {
+            dg.addData(new processeddata.Data(start));
+            while (nextDate.isBefore(end)) {
+                count++;
+                dg.addData(new processeddata.Data(nextDate));
+                nextDate = start.plusDays(count);
+            }
+            dg.addData(new processeddata.Data(end));
         }
-        dg.addData(new processeddata.Data(end));
         return dg;
     }
 

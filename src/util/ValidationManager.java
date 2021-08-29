@@ -88,7 +88,7 @@ public class ValidationManager {
         // and returns false if "size" is larger than "numGroups".
         // Otherwise, returns true.
 
-        return size > numGroups;
+        return size >= numGroups;
     }
 
     static boolean isNumOfGroupZero(int numGroups) {
