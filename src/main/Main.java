@@ -5,7 +5,7 @@ import util.UserInputManager;
 
 import java.util.ArrayList;
 
-public class UserInterface {
+public class Main {
     public static void main(String[] args) {
         UserInputManager.displayMenu("""
                                        Welcome! This is an analysis machine for COVID-19 data from 2020 to 2021.
