@@ -80,6 +80,7 @@ public class GroupDates {
         ArrayList<DataGroup> groups = new ArrayList<>();
         int i = 0;
         int size = userTimeRange.getSize();
+        ExceptionManager.checkNumOfGroups(size, numOfDays);
         ExceptionManager.checkNumOfDays(size, numOfDays);
         while (i < size) {
             DataGroup dg = new DataGroup();
