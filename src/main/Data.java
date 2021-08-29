@@ -9,6 +9,7 @@ import java.util.regex.Pattern;
 public class Data {
     private String geographicArea;
     private LocalDate[] timeRange = new LocalDate[2];
+    private static final int numOfWeek = 7;
 
     //  Constructor
     private Data(String geographicArea, String userTime) {
@@ -56,7 +57,7 @@ public class Data {
             }
             if (dateAndNum[1].contains("week")) {
                 String[] numOnly = dateAndNum[1].split(" ");
-                int numOfWeeks = Integer.parseInt(numOnly[0]) * 7;
+                int numOfWeeks = Integer.parseInt(numOnly[0]) * numOfWeek;
                 LocalDate startDate = strToLocalDate(date);
                 LocalDate endDate = startDate.plusDays(numOfWeeks);
                 timeRange[0] = startDate;
@@ -81,7 +82,7 @@ public class Data {
             }
             if (dateSplit[0].contains("week")) {
                 String[] getNum = dateSplit[0].split(" ");
-                int numWeeks = Integer.parseInt(getNum[0]) * 7;
+                int numWeeks = Integer.parseInt(getNum[0]) * numOfWeek;
                 LocalDate endDate = strToLocalDate(getDate);
                 LocalDate startDate = endDate.minusDays(numWeeks);
                 timeRange[0] = startDate;
@@ -127,6 +128,7 @@ public class Data {
         UserInputManager.displayMenu("\n");
 
         // Choose date option.
+
         String date = "";
         String menu = """
                     ************************************************************
@@ -173,8 +175,10 @@ public class Data {
 
                 date = particularDate3 + "," + endDate3;
             }
+
             default -> ExceptionManager.throwInvalidOption();
         }
+
         return new Data(geographicArea, date);
     }
 
@@ -190,7 +194,7 @@ public class Data {
         return LocalDate.of(year, month, day);
     }
 
-    public void showData() {
+    public void displayData() {
         // This method shows the detail of a Data instance.
 
         System.out.println(this);
