@@ -32,7 +32,6 @@ public class Main {
 
                 // Summary part
                 ArrayList<Summary> summaryList = Summary.createSummaryObj(userData);
-                Summary.displaySummaryList(summaryList);
 
                 // Display part
                 DisplayData displayData = DisplayData.createDisplayDataObj(summaryList);

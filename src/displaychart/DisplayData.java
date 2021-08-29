@@ -38,7 +38,7 @@ public class DisplayData {
         // It throws an exception if the user input is invalid.
 
 
-        // Choose the way to displaychart data.
+        // Choose the way to display data.
 
         String displayMenu = """
                             [STEP 3]

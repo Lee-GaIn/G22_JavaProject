@@ -26,14 +26,6 @@ public class DataGroup {
         groupedData.add(dt);
     }
 
-    public void displayDG() {
-        // This method displays the detail of a DataGroup.
-
-        for (Data d : groupedData) {
-            System.out.printf("%s\n", d);
-        }
-    }
-
     public Data getData(int idx) {
         // This method accepts integer "idx"
         // and returns a Data instance of the particular index.
