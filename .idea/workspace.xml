@@ -4,18 +4,15 @@
     <list default="true" id="46361059-fd6d-4bf8-970c-a6001dea7b57" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/G22_JavaProject/display/ChartDisplay.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/G22_JavaProject/display/ChartDisplay.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/G22_JavaProject/main/Data.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/G22_JavaProject/main/Data.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/G22_JavaProject/main/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/G22_JavaProject/main/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/display/ChartDisplay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/display/ChartDisplay.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/display/DisplayData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/display/DisplayData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/display/TabularDisplay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/display/TabularDisplay.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/G22_JavaProject/display/TabularDisplay.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/G22_JavaProject/display/TabularDisplay.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/G22_JavaProject/main/Summary.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/G22_JavaProject/main/Summary.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/G22_JavaProject/processeddata/Data.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/G22_JavaProject/processeddata/Data.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/G22_JavaProject/processeddata/Database.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/G22_JavaProject/processeddata/Database.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/G22_JavaProject/processeddata/GroupDates.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/G22_JavaProject/processeddata/GroupDates.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/G22_JavaProject/util/ExceptionManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/G22_JavaProject/util/ExceptionManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/G22_JavaProject/util/ValidationManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/G22_JavaProject/util/ValidationManager.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Data.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Data.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Summary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Summary.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/processeddata/Data.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/processeddata/Data.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/processeddata/DataTotal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/processeddata/DataTotal.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/processeddata/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/processeddata/Database.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/util/ValidationManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/util/ValidationManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

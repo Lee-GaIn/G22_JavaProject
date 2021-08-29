@@ -32,8 +32,6 @@ public class Main {
                 String errMsg = "\nThe system detected error.\n" + e.getMessage()
                                 + "The system will return back to the [STEP 0] automatically.\n\n";
                 UserInputManager.displayMenu(errMsg);
-                // FIXME: 2021-08-26
-//                e.printStackTrace();
             }
 
             UserInputManager.displayMenu("""

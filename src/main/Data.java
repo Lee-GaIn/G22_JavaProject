@@ -9,7 +9,7 @@ import java.util.regex.Pattern;
 public class Data {
     private String geographicArea;
     private LocalDate[] timeRange = new LocalDate[2];
-    private static final int numOfWeek = 7;
+    private static final int NUM_OF_WEEK = 7;
 
     //  Constructor
     private Data(String geographicArea, String userTime) {
@@ -57,7 +57,7 @@ public class Data {
             }
             if (dateAndNum[1].contains("week")) {
                 String[] numOnly = dateAndNum[1].split(" ");
-                int numOfWeeks = Integer.parseInt(numOnly[0]) * numOfWeek;
+                int numOfWeeks = Integer.parseInt(numOnly[0]) * NUM_OF_WEEK;
                 LocalDate startDate = strToLocalDate(date);
                 LocalDate endDate = startDate.plusDays(numOfWeeks);
                 timeRange[0] = startDate;
@@ -82,7 +82,7 @@ public class Data {
             }
             if (dateSplit[0].contains("week")) {
                 String[] getNum = dateSplit[0].split(" ");
-                int numWeeks = Integer.parseInt(getNum[0]) * numOfWeek;
+                int numWeeks = Integer.parseInt(getNum[0]) * NUM_OF_WEEK;
                 LocalDate endDate = strToLocalDate(getDate);
                 LocalDate startDate = endDate.minusDays(numWeeks);
                 timeRange[0] = startDate;
