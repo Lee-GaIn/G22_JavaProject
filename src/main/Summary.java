@@ -3,18 +3,25 @@ package main;
 import processeddata.DataGroup;
 import processeddata.DataTotal;
 import processeddata.GroupDates;
+import util.DisplayManager;
 import util.ExceptionManager;
 import util.UserInputManager;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+/**
+ * The Summary class was created for ushering the user to create a new Summary instance.
+ * The user can choose a condition for grouping, metric and result types
+ * It also lets the user display the detail of the Summary instance.
+ */
+
 public class Summary {
     private LocalDate[] timeRange;
     private int value;
 
     //  Constructor
-    Summary(LocalDate[] timeRange, int value) {
+    private Summary(LocalDate[] timeRange, int value) {
         // This constructor accepts LocalDate list "timeRange" and integer "value" as parameters
         // and construct a new instance of a Summary.
 
@@ -59,7 +66,7 @@ public class Summary {
                                         \t[3] Number of days
                                         ************************************************************
                                         Please choose your grouping condition(1/2/3)>>\s""";
-        UserInputManager.displayMenu(groupingConditionMenu);
+        DisplayManager.displayMenu(groupingConditionMenu);
         int groupingCondition = UserInputManager.getIntUserInput();
 
         LocalDate[] userTimeRange = userDataObj.getTimeRange();
@@ -69,12 +76,12 @@ public class Summary {
         switch (groupingCondition) {
             case 1 -> groupedDayList = GroupDates.noGrouping(baseDayGroup);
             case 2 -> {
-                UserInputManager.displayMenu("Please enter the number of groups you want to create. (Integer value)>> ");
+                DisplayManager.displayMenu("Please enter the number of groups you want to create. (Integer value)>> ");
                 int numOfGroups = UserInputManager.getIntUserInput();
                 groupedDayList = GroupDates.groupByGroupNum(baseDayGroup, numOfGroups);
             }
             case 3 -> {
-                UserInputManager.displayMenu("Please enter the number of days in a group. (Integer value)>> ");
+                DisplayManager.displayMenu("Please enter the number of days in a group. (Integer value)>> ");
                 int numOfDays = UserInputManager.getIntUserInput();
                 groupedDayList = GroupDates.groupByDayNum(baseDayGroup, numOfDays);
             }
@@ -100,7 +107,7 @@ public class Summary {
                             \t[3] People vaccinated
                             ************************************************************
                             Please choose your metric(1/2/3)>>\s""";
-        UserInputManager.displayMenu(metricMenu);
+        DisplayManager.displayMenu(metricMenu);
         int metric = UserInputManager.getIntUserInput();
 
         // Choose result type.
@@ -112,7 +119,7 @@ public class Summary {
                                 \t[2] Up To
                                 ************************************************************
                                 Please choose your result types(1/2)>>\s""";
-        UserInputManager.displayMenu(resultTypesMenu);
+        DisplayManager.displayMenu(resultTypesMenu);
         int resultType = UserInputManager.getIntUserInput();
 
         ArrayList<Summary> summaryList = new ArrayList<>();
@@ -145,7 +152,7 @@ public class Summary {
         return timeRange[0] + "," + timeRange[1];
     }
 
-    public static void showSummaryList(ArrayList<Summary> summaryList) {
+    public static void displaySummaryList(ArrayList<Summary> summaryList) {
         // This method shows the array list of Summary instances.
 
         for(Summary s : summaryList) {

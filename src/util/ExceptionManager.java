@@ -3,6 +3,13 @@ package util;
 import java.time.LocalDate;
 import java.util.InputMismatchException;
 
+/**
+ * The ExceptionManager was created to manage exceptions for the analysis machine.
+ * This class checks user input and throws appropriated exception
+ * so that users can exit the programme when they want
+ * as well as the programme runs smoothly.
+ */
+
 public class ExceptionManager {
     public static void throwInvalidOption() throws InputMismatchException {
         // This method throws InputMismatchException
@@ -125,7 +132,7 @@ public class ExceptionManager {
 
     public static void checkDataSize(int dataSize) throws ArithmeticException {
         // This method throws ArithmeticException
-        // if the system detected that there is no data to display.
+        // if the system detected that there is no data to displaychart.
 
         if (ValidationManager.isDataZero(dataSize)) {
             throw new ArithmeticException ("""

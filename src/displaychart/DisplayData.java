@@ -1,10 +1,17 @@
-package display;
+package displaychart;
 
 import main.Summary;
+import util.DisplayManager;
 import util.ExceptionManager;
 import util.UserInputManager;
 
 import java.util.ArrayList;
+
+/**
+ * The DisplayData class was created for ushering the user to create a new DisplayData instance
+ * and to display the data in a specific form.
+ * The DisplayData is a parent class of both ChartDisplay and TabularDisplay.
+ */
 
 public class DisplayData {
     private ArrayList<Summary> data;
@@ -31,7 +38,7 @@ public class DisplayData {
         // It throws an exception if the user input is invalid.
 
 
-        // Choose the way to display data.
+        // Choose the way to displaychart data.
 
         String displayMenu = """
                             [STEP 3]
@@ -41,7 +48,7 @@ public class DisplayData {
                             \t[2] Chart display
                             ************************************************************
                             Please choose the way to display data.(1/2)>>\s""";
-        UserInputManager.displayMenu(displayMenu);
+        DisplayManager.displayMenu(displayMenu);
         int display = UserInputManager.getIntUserInput();
 
         DisplayData dd = new DisplayData(summaryList);

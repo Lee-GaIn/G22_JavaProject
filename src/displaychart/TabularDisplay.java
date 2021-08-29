@@ -1,9 +1,15 @@
-package display;
+package displaychart;
 
 import main.Summary;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+
+/**
+ * The TabularDisplay class was created for displaying data in a table.
+ * The table has two rows, which are 'Range' and 'Value'.
+ * The TabularDisplay is one of the child classes of DisplayData.
+ */
 
 public class TabularDisplay extends DisplayData {
     private ArrayList<String> row = new ArrayList<>();

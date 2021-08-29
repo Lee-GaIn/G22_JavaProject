@@ -3,6 +3,10 @@ package util;
 import java.time.LocalDate;
 import java.util.regex.Pattern;
 
+/**
+ * The ValidationManager was created to manage the validation of user input.
+ */
+
 public class ValidationManager {
 
     static boolean isValidGeographicInput(String input) {

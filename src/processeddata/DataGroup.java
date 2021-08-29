@@ -2,6 +2,13 @@ package processeddata;
 
 import java.util.ArrayList;
 
+/**
+ * The DataGroup class was created for grouping Data instances.
+ * It allows users to add Data an instance into DataGroup
+ *, get Data instance in the DataGroup depends on the index
+ *, get the size of the DataGroup instance and display the detail of the DataGroup instance.
+ */
+
 public class DataGroup {
     private ArrayList<Data> groupedData = new ArrayList<>();
 

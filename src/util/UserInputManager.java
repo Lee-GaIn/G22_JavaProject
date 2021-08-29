@@ -3,13 +3,11 @@ package util;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class UserInputManager {
-    public static void displayMenu(String menu) {
-        // This method accepts string "menu"
-        // and displays menu.
+/**
+ * The UserInputManager was created to manage user input.
+ */
 
-        System.out.print(menu);
-    }
+public class UserInputManager {
 
     public static int getIntUserInput() throws NumberFormatException {
         // This method get integer input from the user
