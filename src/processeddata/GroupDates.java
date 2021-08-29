@@ -18,7 +18,7 @@ public class GroupDates {
 
     // Methods
     public static DataGroup setDateList(LocalDate[] userTimeRange) {
-        // This method receives LocalDate "userTimeRange" as an parameter
+        // This method receives LocalDate "userTimeRange" as a parameter
         // and returns DataGroup.
 
         DataGroup dg = new DataGroup();
@@ -41,7 +41,7 @@ public class GroupDates {
     }
 
     public static ArrayList<DataGroup> noGrouping(DataGroup userTimeRange) {
-        // This method receives DataGroup "userTimeRange" as an parameter
+        // This method receives DataGroup "userTimeRange" as a parameter
         // and returns ArrayList of DataGroup
         // where each group only contains 1 date.
 
@@ -56,7 +56,7 @@ public class GroupDates {
     }
 
     public static ArrayList<DataGroup> groupByGroupNum(DataGroup userTimeRange, int numOfGroups) {
-        // This method receives DataGroup "userTimeRange" as an parameter
+        // This method receives DataGroup "userTimeRange" as a parameter
         // and returns ArrayList of DataGroup.
         // The number of groups is decided by the user input.
 
@@ -85,7 +85,7 @@ public class GroupDates {
     }
 
     public static ArrayList<DataGroup> groupByDayNum(DataGroup userTimeRange, int numOfDays) {
-        // This method receives DataGroup "userTimeRange" as an parameter
+        // This method receives DataGroup "userTimeRange" as a parameter
         // and returns ArrayList of DataGroup.
         // The number of dates in a group is decided by the user input
         // If the divided groups do not have the same number of dates, it throws exception.
