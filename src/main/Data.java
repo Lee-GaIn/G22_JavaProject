@@ -67,21 +67,18 @@ public class Data {
 
         // Set time range for option [3] A number of days or weeks to a specific date
 
-        String dateValid = "^(([0]?[1-9]|1[012])/([0]?[1-9]|[12][0-9]|3[01])/(2020|2021))";
-        String[] dateSplit = userTime.split(",");
-
-        if (Pattern.matches(dateValid, dateSplit[1])) {
-            String getDate = dateSplit[1];
-            if (dateSplit[0].contains("day")) {
-                String[] getNum = dateSplit[0].split(" ");
+        if (Pattern.matches(dateCheck, dateAndNum[1])) {
+            String getDate = dateAndNum[1];
+            if (dateAndNum[0].contains("day")) {
+                String[] getNum = dateAndNum[0].split(" ");
                 int numDays = Integer.parseInt(getNum[0]);
                 LocalDate endDate = strToLocalDate(getDate);
                 LocalDate startDate = endDate.minusDays(numDays);
                 timeRange[0] = startDate;
                 timeRange[1] = endDate;
             }
-            if (dateSplit[0].contains("week")) {
-                String[] getNum = dateSplit[0].split(" ");
+            if (dateAndNum[0].contains("week")) {
+                String[] getNum = dateAndNum[0].split(" ");
                 int numWeeks = Integer.parseInt(getNum[0]) * NUM_OF_WEEK;
                 LocalDate endDate = strToLocalDate(getDate);
                 LocalDate startDate = endDate.minusDays(numWeeks);
