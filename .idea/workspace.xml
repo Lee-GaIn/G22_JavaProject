@@ -2,10 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="46361059-fd6d-4bf8-970c-a6001dea7b57" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/processeddata/DataTotal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/processeddata/DataTotal.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/processeddata/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/processeddata/Database.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/util/ExceptionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/util/ExceptionManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/G22_JavaProject/display/ChartDisplay.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/G22_JavaProject/display/ChartDisplay.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/G22_JavaProject/main/UserInterface.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/G22_JavaProject/processeddata/DataTotal.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/G22_JavaProject/processeddata/DataTotal.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/G22_JavaProject/processeddata/Database.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/G22_JavaProject/processeddata/Database.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/G22_JavaProject/util/ExceptionManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/G22_JavaProject/util/ExceptionManager.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,7 +45,8 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/lib/poi-5.0.0/poi-scratchpad-5.0.0.jar" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -54,16 +58,16 @@
       <recent name="C:\Users\USER\Desktop\G22_JavaProject\src" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.UserInterface">
-    <configuration name="Summary" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="main.Summary" />
+  <component name="RunManager" selected="Application.Main">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="main.Main" />
       <module name="G22_JavaProject" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="UserInterface" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="main.UserInterface" />
+    <configuration name="Summary" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="main.Summary" />
       <module name="G22_JavaProject" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -76,10 +80,14 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Application.Summary" />
+      <item itemvalue="Application.test" />
+      <item itemvalue="Application.Main" />
+    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.UserInterface" />
-        <item itemvalue="Application.test" />
+        <item itemvalue="Application.Main" />
         <item itemvalue="Application.Summary" />
       </list>
     </recent_temporary>
@@ -92,8 +100,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1627377670387</updated>
+      <workItem from="1630221792347" duration="97000" />
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
