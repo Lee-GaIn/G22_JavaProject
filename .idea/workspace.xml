@@ -3,16 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="46361059-fd6d-4bf8-970c-a6001dea7b57" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/G22_JavaProject/display/ChartDisplay.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/G22_JavaProject/display/DisplayData.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/G22_JavaProject/display/TabularDisplay.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/G22_JavaProject/main/Data.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/G22_JavaProject/main/Data.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/G22_JavaProject/main/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/G22_JavaProject/main/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/G22_JavaProject/main/Summary.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/G22_JavaProject/main/Summary.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/G22_JavaProject/processeddata/GroupDates.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/G22_JavaProject/processeddata/GroupDates.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/G22_JavaProject/util/UserInputManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/G22_JavaProject/util/UserInputManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/G22_JavaProject/util/ValidationManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/G22_JavaProject/util/ValidationManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/processeddata/GroupDates.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/processeddata/GroupDates.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/displaychart/DisplayData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/displaychart/DisplayData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Summary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Summary.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/processeddata/DataGroup.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/processeddata/DataGroup.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

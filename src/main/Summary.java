@@ -13,7 +13,6 @@ import java.util.ArrayList;
 /**
  * The Summary class was created for ushering the user to create a new Summary instance.
  * The user can choose a condition for grouping, metric and result types
- * It also lets the user display the detail of the Summary instance.
  */
 
 public class Summary {
@@ -90,13 +89,6 @@ public class Summary {
 
         ArrayList<DataGroup> analyzedData = processeddata.Database.getData(userDataObj, groupedDayList);
 
-        // FIXME: 2021-08-10 Lee Gain
-        System.out.println("Analyzed result+++++++++++++++++++++++++++++++++++++++++++");
-        for (DataGroup dg : analyzedData) {
-            dg.displayDG();
-            System.out.println("=================================");
-        }
-
         // Choose metric.
 
         String metricMenu = """
@@ -140,9 +132,6 @@ public class Summary {
             summaryList.add(s);
         }
 
-        //  FIXME: 2021-08-14
-        System.out.println("Final result+++++++++++++++++++++++++++++++++++++++++++");
-
         return summaryList;
     }
 
@@ -150,14 +139,6 @@ public class Summary {
         // This method returns the detail of the time range as a string.
 
         return timeRange[0] + "," + timeRange[1];
-    }
-
-    public static void displaySummaryList(ArrayList<Summary> summaryList) {
-        // This method shows the array list of Summary instances.
-
-        for(Summary s : summaryList) {
-            System.out.println(s);
-        }
     }
 
 }
