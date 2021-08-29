@@ -7,9 +7,9 @@ import java.util.ArrayList;
 
 public class TabularDisplay extends DisplayData {
     private ArrayList<String> row = new ArrayList<>();
-    private static final String headerSpace = "\t\t\t\t\t\s\s";
-    private static final String noGroupSpace = "\t\t\t\t\s\s";
-    private static final String rangeSpace = "\s\s";
+    private static final String HEADER_SPACE = "\t\t\t\t\t\s\s";
+    private static final String NO_GROUP_SPACE = "\t\t\t\t\s\s";
+    private static final String RANGE_SPACE= "\s\s";
 
     // Constructor
     protected TabularDisplay(ArrayList<Summary> data) {
@@ -24,7 +24,7 @@ public class TabularDisplay extends DisplayData {
     private void setRow() {
         //  This setter method sets a row attribute for the instance.
 
-        String header = "Range" + headerSpace + "Value\n";
+        String header = "Range" + HEADER_SPACE + "Value\n";
         ArrayList<String> row = getRow();
         ArrayList<Summary> data = getData();
         row.add(header);
@@ -32,11 +32,11 @@ public class TabularDisplay extends DisplayData {
         for(Summary s : data) {
             LocalDate[] timeRange = s.getTimeRange();
             int value = s.getValue();
-            int isOneDate = (timeRange[0].equals(timeRange[1]))? 1: -1;
+            int isOneDate = (timeRange[0].equals(timeRange[1])) ? 1 : -1;
 
             switch (isOneDate) {
-                case 1 -> row.add(String.format("%s" + noGroupSpace + "%d\n", timeRange[0], value));
-                case -1 -> row.add(String.format("%s - %s"+ rangeSpace + "%d\n", timeRange[0], timeRange[1], value));
+                case 1 -> row.add(String.format("%s" + NO_GROUP_SPACE + "%d\n", timeRange[0], value));
+                case -1 -> row.add(String.format("%s - %s"+ RANGE_SPACE + "%d\n", timeRange[0], timeRange[1], value));
             }
         }
     }

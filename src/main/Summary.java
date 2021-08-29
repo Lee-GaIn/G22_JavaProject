@@ -147,6 +147,7 @@ public class Summary {
 
     public static void showSummaryList(ArrayList<Summary> summaryList) {
         // This method shows the array list of Summary instances.
+
         for(Summary s : summaryList) {
             System.out.println(s);
         }

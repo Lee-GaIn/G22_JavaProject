@@ -54,7 +54,7 @@ public class DisplayData {
         return dd;
     }
 
-    public void display(){
+    public void display() {
         // This method displays the data of the instance.
 
         for(Summary s : data) {

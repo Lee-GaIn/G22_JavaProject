@@ -7,6 +7,11 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Database {
+    private static final int GEOGRAPHIC_AREA = 2;
+    private static final int DATE = 3;
+    private static final int NEW_CASES = 4;
+    private static final int NEW_DEATHS = 5;
+    private static final int PEOPLE_VACCINATE = 6;
 
     // Methods
     public static ArrayList<DataGroup> getData(main.Data userData, ArrayList<DataGroup> dgArr) throws IOException {
@@ -46,14 +51,14 @@ public class Database {
             String[] tempRow = line.split(",");
             String[] row = new String[]{"","","","","0","0","0","0"};
 
-            if (tempRow[2].equalsIgnoreCase(geographicArea)) {
-                boolean isEmptyVP = (tempRow[6].equals("") || tempRow[6].isEmpty());
+            if (tempRow[GEOGRAPHIC_AREA].equalsIgnoreCase(geographicArea)) {
+                boolean isEmptyVP = (tempRow[PEOPLE_VACCINATE].equals("") || tempRow[PEOPLE_VACCINATE].isEmpty());
 
                 if(!isEmptyVP) {
-                    prevVaccinatedPpl = tempRow[6];
+                    prevVaccinatedPpl = tempRow[PEOPLE_VACCINATE];
 
                 } else {
-                    tempRow[6] = prevVaccinatedPpl;
+                    tempRow[PEOPLE_VACCINATE] = prevVaccinatedPpl;
                 }
 
                 for (int i = 0; i < tempRow.length; i++) {
@@ -62,12 +67,12 @@ public class Database {
                     }
                 }
 
-                if(Integer.parseInt(row[4]) <= 0) {
-                    row[4] = "0";
+                if(Integer.parseInt(row[NEW_CASES]) <= 0) {
+                    row[NEW_CASES] = "0";
                 }
 
-                if(Integer.parseInt(row[5]) <= 0) {
-                    row[5] = "0";
+                if(Integer.parseInt(row[NEW_DEATHS]) <= 0) {
+                    row[NEW_DEATHS] = "0";
                 }
 
                 db.add(row);
@@ -94,26 +99,26 @@ public class Database {
         for (int i = 0; i < dataArrLength; i++) {
             for (int j = 0; j < dbArrLength; j++) {
                 String[] curRow = dbOfGeographicArea.get(j);
-                LocalDate tempDate = main.Data.strToLocalDate(curRow[3]);
+                LocalDate tempDate = main.Data.strToLocalDate(curRow[DATE]);
                 LocalDate userDate = dataArr.get(i).getDate();
 
-                if (curRow[4] != null && !(curRow[4].isEmpty())) {
-                    totalCases += Integer.parseInt(curRow[4]);
+                if (curRow[NEW_CASES] != null && !(curRow[NEW_CASES].isEmpty())) {
+                    totalCases += Integer.parseInt(curRow[NEW_CASES]);
                 }
 
-                if (curRow[5] != null && !(curRow[5].isEmpty())) {
-                    totalDeaths += Integer.parseInt(curRow[5]);
+                if (curRow[NEW_DEATHS] != null && !(curRow[NEW_DEATHS].isEmpty())) {
+                    totalDeaths += Integer.parseInt(curRow[NEW_DEATHS]);
                 }
 
                 if (tempDate.isEqual(userDate)) {
-                    int newCases = Integer.parseInt(curRow[4]);
-                    int newDeaths = Integer.parseInt(curRow[5]);
-                    int newPeopleVaccinated = Integer.parseInt(curRow[6]);
-                    int peopleVaccinated = Integer.parseInt(curRow[6]);
+                    int newCases = Integer.parseInt(curRow[NEW_CASES]);
+                    int newDeaths = Integer.parseInt(curRow[NEW_DEATHS]);
+                    int newPeopleVaccinated = Integer.parseInt(curRow[PEOPLE_VACCINATE]);
+                    int peopleVaccinated = Integer.parseInt(curRow[PEOPLE_VACCINATE]);
 
                     if (j != 0) {
                         String[] prevRow = dbOfGeographicArea.get(j - 1);
-                        int prevPV = Integer.parseInt(prevRow[6]);
+                        int prevPV = Integer.parseInt(prevRow[PEOPLE_VACCINATE]);
 
                         if(peopleVaccinated <= 0) {
                             peopleVaccinated = prevPV;

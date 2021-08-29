@@ -13,7 +13,7 @@ public class DataTotal {
         // It throws an exception if the user input is invalid.
 
         int value = 0;
-        for(processeddata.Data dt : db) {
+        for (processeddata.Data dt : db) {
             switch (metric) {
                 case 1 -> value += dt.getNewCases();
                 case 2 -> value += dt.getNewDeaths();

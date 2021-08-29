@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.regex.Pattern;
 
 public class ValidationManager {
+
     static boolean isValidGeographicInput(String input) {
         // This method accepts string "input" as a parameter
         // and returns true if "input" does not include any number.
@@ -34,7 +35,7 @@ public class ValidationManager {
     static boolean isTimeRangeNotNull(LocalDate[] timeRange) {
         // This method accepts an array of LocalDate "timeRange" as a parameter
         // and returns true if both the start date and end date is not null.
-        // Otherwise returns false.
+        // Otherwise, returns false.
 
         return (timeRange[0] != null && timeRange[1] != null);
     }

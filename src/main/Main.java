@@ -9,6 +9,7 @@ public class Main {
     public static void main(String[] args) {
         UserInputManager.displayMenu("""
                                        Welcome! This is an analysis machine for COVID-19 data from 2020 to 2021.
+                                       
                                        [STEP 0]
                                        Do you want to analyze the data? (Y/N)>>\s""");
         String ans = UserInputManager.getStrUserInput();
@@ -17,7 +18,7 @@ public class Main {
             try{
                 // Data part
                 Data userData = Data.createDataObj();
-                userData.showData();
+                userData.displayData();
 
                 // Summary part
                 ArrayList<Summary> summaryList = Summary.createSummaryObj(userData);
@@ -27,7 +28,7 @@ public class Main {
                 DisplayData displayData = DisplayData.createDisplayDataObj(summaryList);
                 displayData.display();
 
-            } catch (Exception e){
+            } catch (Exception e) {
                 String errMsg = "\nThe system detected error.\n" + e.getMessage()
                                 + "The system will return back to the [STEP 0] automatically.\n\n";
                 UserInputManager.displayMenu(errMsg);

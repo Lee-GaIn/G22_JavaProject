@@ -14,7 +14,7 @@ public class Data {
     // Constructor
     public Data(LocalDate date) {
         // This constructor accepts LocalDate "date" as a parameter
-        //  and constructs a new Data instance.
+        // and constructs a new Data instance.
 
         this.date = date;
     }
@@ -22,10 +22,10 @@ public class Data {
     // Getter and Setter
     private void setNewCases(int newCases) {
         // This setter accepts integer "newCases" as a parameter
-        //  and set "newCases" attributes.
-        //  if "newCases" is smaller than 0, it does not set the "newCases".
+        // and set "newCases" attributes.
+        // if "newCases" is smaller than 0, it does not set the "newCases".
 
-        if(newCases < 0) {
+        if (newCases < 0) {
             return;
         }
 
@@ -34,10 +34,10 @@ public class Data {
 
     private void setNewDeaths(int newDeaths) {
         // This setter accepts integer "newDeaths" as a parameter
-        //  and set "newDeaths" attributes.
-        //  if "newDeaths" is smaller than 0, it does not set the "newDeaths".
+        // and set "newDeaths" attributes.
+        // if "newDeaths" is smaller than 0, it does not set the "newDeaths".
 
-        if(newDeaths < 0) {
+        if (newDeaths < 0) {
             return;
         }
 
@@ -46,10 +46,10 @@ public class Data {
 
     private void setNewPeopleVaccinated(int newPeopleVaccinated) {
         // This setter accepts integer "newPeopleVaccinated" as a parameter
-        //  and set "newPeopleVaccinated" attributes.
-        //  if "newPeopleVaccinated" is smaller than 0, it does not set the "newPeopleVaccinated".
+        // and set "newPeopleVaccinated" attributes.
+        // if "newPeopleVaccinated" is smaller than 0, it does not set the "newPeopleVaccinated".
 
-        if(newPeopleVaccinated < 0) {
+        if (newPeopleVaccinated < 0) {
             return;
         }
 
@@ -58,21 +58,21 @@ public class Data {
 
     private void setPeopleVaccinated(int peopleVaccinated) {
         // This setter accepts integer "peopleVaccinated" as a parameter
-        //  and set "peopleVaccinated" attributes.
+        // and set "peopleVaccinated" attributes.
 
         this.peopleVaccinated = peopleVaccinated;
     }
 
     private void setTotalCases(int totalCases) {
         // This setter accepts integer "totalCases" as a parameter
-        //  and set "totalCases" attributes.
+        // and set "totalCases" attributes.
 
         this.totalCases = totalCases;
     }
 
     private void setTotalDeaths(int totalDeaths) {
         // This setter accepts integer "totalDeaths" as a parameter
-        //  and set "totalDeaths" attributes.
+        // and set "totalDeaths" attributes.
 
         this.totalDeaths = totalDeaths;
     }
@@ -134,10 +134,13 @@ public class Data {
                             People Vaccinated: %d""";
 
         return String.format(formatStr, getDate(), getNewCases(), getNewDeaths(), getNewPeopleVaccinated(),
-                                        getTotalCases(),getTotalDeaths(),getPeopleVaccinated());
+                                        getTotalCases(), getTotalDeaths(), getPeopleVaccinated());
     }
 
     void editFields(int newCases, int newDeaths, int newPeopleVaccinated, int totalCases, int totalDeaths, int peopleVaccinated) {
+        // This method accepts integer "newCases" , "newDeaths", "newPeopleVaccinated", "totalCases", "totalDeaths", "peopleVaccinated"
+        // as parameters and sets fields of the Data instance.
+
         setNewCases(newCases);
         setNewDeaths(newDeaths);
         setNewPeopleVaccinated(newPeopleVaccinated);
