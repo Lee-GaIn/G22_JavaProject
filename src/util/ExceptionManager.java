@@ -4,13 +4,6 @@ import java.time.LocalDate;
 import java.util.InputMismatchException;
 
 public class ExceptionManager {
-    //  FIXME: 2021-08-27 
-    //  If the user does not provide the proper type of input or input is out of range,
-    //  then InputMismatchException happens.
-
-    //  if(marks < 0 || marks > 100) //  IllegalArgumentException
-
-    //  parse // NumberFormatException
     public static void throwInvalidOption() throws InputMismatchException {
         // This method throws InputMismatchException
         // if the user chooses the unsupported option.
