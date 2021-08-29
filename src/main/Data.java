@@ -191,7 +191,7 @@ public class Data {
     }
 
     public static LocalDate strToLocalDate(String aDate) {
-        // This method receives string "aDate" (mm/dd/yyyy) as an parameter
+        // This method receives string "aDate" (mm/dd/yyyy) as a parameter
         // and returns LocalDate.
 
         String[] aDateArr = aDate.split("/");

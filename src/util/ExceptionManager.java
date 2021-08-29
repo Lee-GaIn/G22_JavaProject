@@ -132,7 +132,7 @@ public class ExceptionManager {
 
     public static void checkDataSize(int dataSize) throws ArithmeticException {
         // This method throws ArithmeticException
-        // if the system detected that there is no data to displaychart.
+        // if the system detected that there is no data to display.
 
         if (ValidationManager.isDataZero(dataSize)) {
             throw new ArithmeticException ("""

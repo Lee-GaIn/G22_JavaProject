@@ -55,7 +55,7 @@ public class Summary {
         // It returns an array list of Summary instances.
         // It throws an exception if the user input is invalid.
 
-        // Choose grouping condition
+        // Choose 'grouping condition'.
 
          String groupingConditionMenu = """
                                         [STEP 2]
