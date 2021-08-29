@@ -81,7 +81,6 @@ public class GroupDates {
         int i = 0;
         int size = userTimeRange.getSize();
         ExceptionManager.checkNumOfDays(size, numOfDays);
-
         while (i < size) {
             DataGroup dg = new DataGroup();
             for (int j = 0; j < numOfDays; j++) {
@@ -89,8 +88,8 @@ public class GroupDates {
                     dg.addData(userTimeRange.getData(i));
                     i++;
                 }
-                groups.add(dg);
             }
+            groups.add(dg);
         }
         return groups;
     }
