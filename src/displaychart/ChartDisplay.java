@@ -1,9 +1,18 @@
-package display;
+package displaychart;
 
 import main.Summary;
 import util.ExceptionManager;
 
 import java.util.ArrayList;
+
+/**
+ * The ChartDisplay class was created for displaying data in a chart.
+ * The chart is a textual chart.
+ * It has 24 rows and 80 columns.
+ * This class displays 79 groups at most.
+ * If the number for groups is larger than 79, it throws an exception.
+ * The ChartDisplay is one of the child classes of DisplayData.
+ */
 
 public class ChartDisplay extends DisplayData {
     private String[][] chart = new String[24][80];
@@ -34,7 +43,7 @@ public class ChartDisplay extends DisplayData {
     @Override
     public void display() throws ArithmeticException {
         // This method displays a chart, with 79 being the maximum number of groups allowed
-        // If the number of groups exceeds 79 (80 or more),it throws exception.
+        // If the number of groups exceeds 79 (80 or more), it throws exception.
 
         int size = values.size();
         int max = findMax();

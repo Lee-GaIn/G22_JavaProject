@@ -2,6 +2,10 @@ package processeddata;
 
 import java.time.LocalDate;
 
+/**
+ * The Data class was created for storing data of each date.
+ */
+
 public class Data {
     private LocalDate date;
     private int newCases;

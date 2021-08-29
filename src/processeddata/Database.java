@@ -6,6 +6,11 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+/**
+ * The Database class was created for collecting data from the CSV file.
+ * The absolute path for CSV file is "src\\..\\lib\\covid-data.csv".
+ */
+
 public class Database {
     private static final int GEOGRAPHIC_AREA = 2;
     private static final int DATE = 3;

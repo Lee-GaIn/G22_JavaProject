@@ -4,6 +4,13 @@ import util.ExceptionManager;
 
 import java.util.ArrayList;
 
+/**
+ * The DataTotal class was created to get the total of the data.
+ * There are two metrics to get the total of the data.
+ * The first metric is to get a new total of the data
+ * , and the second metric is to get the accumulated total of the data.
+ */
+
 public class DataTotal {
 
     // Methods

@@ -1,10 +1,18 @@
 package main;
 
+import util.DisplayManager;
 import util.ExceptionManager;
 import util.UserInputManager;
 
 import java.time.LocalDate;
 import java.util.regex.Pattern;
+
+/**
+ * The Data class was created for ushering the user to create a new Data instance.
+ * The user can enter a continent or country name they want to search
+ * The user also can choose a form of the date range.
+ * It also lets the user display the detail of the Data instance.
+ */
 
 public class Data {
     private String geographicArea;
@@ -118,11 +126,11 @@ public class Data {
 
         // Choose geographic area.
 
-        UserInputManager.displayMenu("""
+        DisplayManager.displayMenu("""
                                     [STEP 1]
                                     Please enter a continent or country name you want to choose. (Vietnam, Asia...)>>\s""");
         String geographicArea = UserInputManager.getGeographicUserInput();
-        UserInputManager.displayMenu("\n");
+        DisplayManager.displayMenu("\n");
 
         // Choose date option.
 
@@ -135,14 +143,14 @@ public class Data {
                     \t[3] A number of days or weeks to a specific date
                     ************************************************************
                     Please enter a number to decide the form of date range(1/2/3)>>\s""";
-        UserInputManager.displayMenu(menu);
+        DisplayManager.displayMenu(menu);
         int dateMethod = UserInputManager.getIntUserInput();
 
         switch (dateMethod) {
             case 1 -> {
-                UserInputManager.displayMenu("Please enter a start date(mm/dd/yyyy)>> ");
+                DisplayManager.displayMenu("Please enter a start date(mm/dd/yyyy)>> ");
                 String startDate1 = UserInputManager.getStrUserInput();
-                UserInputManager.displayMenu("Please enter an end date(mm/dd/yyyy)>> ");
+                DisplayManager.displayMenu("Please enter an end date(mm/dd/yyyy)>> ");
                 String endDate1 = UserInputManager.getStrUserInput();
 
                 ExceptionManager.checkDateFormException(startDate1);
@@ -151,9 +159,9 @@ public class Data {
                 date = startDate1 + "," + endDate1;
             }
             case 2 -> {
-                UserInputManager.displayMenu("Please enter a start date(mm/dd/yyyy)>> ");
+                DisplayManager.displayMenu("Please enter a start date(mm/dd/yyyy)>> ");
                 String startDate2 = UserInputManager.getStrUserInput();
-                UserInputManager.displayMenu("Please enter a number of days or weeks(n days, n weeks)>> ");
+                DisplayManager.displayMenu("Please enter a number of days or weeks(n days, n weeks)>> ");
                 String particularDate2 = UserInputManager.getStrUserInput();
 
                 ExceptionManager.checkDateFormException(startDate2);
@@ -162,9 +170,9 @@ public class Data {
                 date = startDate2 + "," + particularDate2;
             }
             case 3 -> {
-                UserInputManager.displayMenu("Please enter a number of days or weeks(n days, n weeks)>> ");
+                DisplayManager.displayMenu("Please enter a number of days or weeks(n days, n weeks)>> ");
                 String particularDate3 = UserInputManager.getStrUserInput();
-                UserInputManager.displayMenu("Please enter an end date(mm/dd/yyyy)>> ");
+                DisplayManager.displayMenu("Please enter an end date(mm/dd/yyyy)>> ");
                 String endDate3 = UserInputManager.getStrUserInput();
 
                 ExceptionManager.checkTimeRangeFormException(particularDate3);

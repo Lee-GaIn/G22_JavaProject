@@ -5,6 +5,15 @@ import util.ExceptionManager;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+/**
+ * The GroupDates class was created to get grouped days list.
+ * There are three metrics to get grouped dates list.
+ * The first metric is grouping days individually.
+ * The second metric is grouping days by the number of a group.
+ * The last metric is grouping days by the number of days for a group
+ * so that every group has the same number of days.
+ */
+
 public class GroupDates {
 
     // Methods
