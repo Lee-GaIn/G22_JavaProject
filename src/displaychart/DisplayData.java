@@ -13,7 +13,7 @@ import java.util.ArrayList;
  * The DisplayData is a parent class of both ChartDisplay and TabularDisplay.
  */
 
-public class DisplayData {
+public abstract class DisplayData {
     private ArrayList<Summary> data;
 
     // Constructor
@@ -51,21 +51,22 @@ public class DisplayData {
         DisplayManager.displayMenu(displayMenu);
         int display = UserInputManager.getIntUserInput();
 
-        DisplayData dd = new DisplayData(summaryList);
+        DisplayData dd = new TabularDisplay(summaryList);
         switch (display) {
-            case 1 -> dd = new TabularDisplay(summaryList);
-            case 2 -> dd = new ChartDisplay(summaryList);
-            default -> ExceptionManager.throwInvalidOption();
+            case 1:
+                break;
+
+            case 2:
+                dd = new ChartDisplay(summaryList);
+                break;
+
+            default:
+                ExceptionManager.throwInvalidOption();
+
         }
         
         return dd;
     }
 
-    public void display() {
-        // This method displays the data of the instance.
-
-        for(Summary s : data) {
-            System.out.println(s);
-        }
-    }
+    public abstract void display();
 }
