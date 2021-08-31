@@ -11,6 +11,7 @@ import java.util.InputMismatchException;
  */
 
 public class ExceptionManager {
+    // Methods
     public static void throwInvalidOption() throws InputMismatchException {
         // This method throws InputMismatchException
         // if the user chooses the unsupported option.

@@ -8,7 +8,7 @@ import java.util.Scanner;
  */
 
 public class UserInputManager {
-
+    // Methods
     public static int getIntUserInput() throws NumberFormatException {
         // This method get integer input from the user
         // It throws NumberFormatException, if the user input is invalid.

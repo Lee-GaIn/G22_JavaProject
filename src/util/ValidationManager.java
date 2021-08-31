@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
  */
 
 public class ValidationManager {
-
+    // Methods
     static boolean isValidGeographicInput(String input) {
         // This method accepts string "input" as a parameter
         // and returns true if "input" does not include any number.
@@ -59,7 +59,7 @@ public class ValidationManager {
 
         for(LocalDate ld : timeRange) {
             int year = ld.getYear();
-            if(!(year == 2020 || year == 2021)){
+            if (!(year == 2020 || year == 2021)) {
                 return false;
             }
         }
@@ -120,7 +120,6 @@ public class ValidationManager {
         // Otherwise, returns false.
 
         return size <= 79;
-
     }
 
     static boolean isDataZero(int dataSize) {

@@ -59,7 +59,7 @@ public class Database {
             if (tempRow[GEOGRAPHIC_AREA].equalsIgnoreCase(geographicArea)) {
                 boolean isEmptyVP = (tempRow[PEOPLE_VACCINATE].equals("") || tempRow[PEOPLE_VACCINATE].isEmpty());
 
-                if(!isEmptyVP) {
+                if (!isEmptyVP) {
                     prevVaccinatedPpl = tempRow[PEOPLE_VACCINATE];
 
                 } else {
@@ -67,16 +67,16 @@ public class Database {
                 }
 
                 for (int i = 0; i < tempRow.length; i++) {
-                    if(tempRow[i] != null && !(tempRow[i].isEmpty())){
+                    if (tempRow[i] != null && !(tempRow[i].isEmpty())) {
                         row[i] = tempRow[i];
                     }
                 }
 
-                if(Integer.parseInt(row[NEW_CASES]) <= 0) {
+                if (Integer.parseInt(row[NEW_CASES]) <= 0) {
                     row[NEW_CASES] = "0";
                 }
 
-                if(Integer.parseInt(row[NEW_DEATHS]) <= 0) {
+                if (Integer.parseInt(row[NEW_DEATHS]) <= 0) {
                     row[NEW_DEATHS] = "0";
                 }
 
@@ -125,7 +125,7 @@ public class Database {
                         String[] prevRow = dbOfGeographicArea.get(j - 1);
                         int prevPV = Integer.parseInt(prevRow[PEOPLE_VACCINATE]);
 
-                        if(peopleVaccinated <= 0) {
+                        if (peopleVaccinated <= 0) {
                             peopleVaccinated = prevPV;
                             newPeopleVaccinated = prevPV;
                         }

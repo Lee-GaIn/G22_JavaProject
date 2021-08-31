@@ -35,7 +35,7 @@ public class TabularDisplay extends DisplayData {
         ArrayList<Summary> data = getData();
         row.add(header);
 
-        for(Summary s : data) {
+        for (Summary s : data) {
             LocalDate[] timeRange = s.getTimeRange();
             int value = s.getValue();
             int isOneDate = (timeRange[0].equals(timeRange[1])) ? 1 : -1;
@@ -55,7 +55,7 @@ public class TabularDisplay extends DisplayData {
 
     // Method
     @Override
-    public void display(){
+    public void display() {
         // This method displays a table for data of the instance.
         // There are two columns.
         // The first column shows the time range

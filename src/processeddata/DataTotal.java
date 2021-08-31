@@ -12,7 +12,6 @@ import java.util.ArrayList;
  */
 
 public class DataTotal {
-
     // Methods
     public static int getNewTotal(ArrayList<Data> db, int metric) {
         // This method accepts array list of Data in processeddata package "db" and integer "metric"
