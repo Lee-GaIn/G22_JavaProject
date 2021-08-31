@@ -5,6 +5,7 @@ package util;
  */
 
 public class DisplayManager {
+    // Methods
     public static void displayMenu(String menu) {
         // This method accepts string "menu"
         // and displays menu.
