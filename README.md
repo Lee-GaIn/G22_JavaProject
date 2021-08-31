@@ -9,7 +9,7 @@
     
     Vo Tran Khanh Linh(s3878600): -1
     
-    name(s): 
+    Chu Anh Minh(s3758870): 0 
   
 2. The project link
 
