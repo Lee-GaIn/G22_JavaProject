@@ -32,7 +32,7 @@ public class ValidationManager {
         // and returns true if "timeRange" satisfies the pattern.
         // Otherwise, returns false.
 
-        String dayWeekPattern = "^[0-9]+\\s?((day|days)|(week|weeks))$";
+        String dayWeekPattern = "^[0-9]+\\s?((day|days|DAY|DAYS)|(week|weeks|WEEK|WEEKS))$";
         return Pattern.matches(dayWeekPattern, timeRange);
     }
 
