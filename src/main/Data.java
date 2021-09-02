@@ -55,7 +55,8 @@ public class Data {
 
         if (Pattern.matches(dateCheck, dateAndNum[0])) {
             String date = dateAndNum[0];
-            if (dateAndNum[1].contains("day")) {
+            String dayOrWeek = dateAndNum[1].toLowerCase();
+            if (dayOrWeek.contains("day")) {
                 String[] numOnly = dateAndNum[1].split(" ");
                 int numOfDays = Integer.parseInt(numOnly[0]);
                 LocalDate startDate = strToLocalDate(date);
@@ -63,7 +64,7 @@ public class Data {
                 timeRange[0] = startDate;
                 timeRange[1] = endDate;
             }
-            if (dateAndNum[1].contains("week")) {
+            if (dayOrWeek.contains("week")) {
                 String[] numOnly = dateAndNum[1].split(" ");
                 int numOfWeeks = Integer.parseInt(numOnly[0]) * NUM_OF_WEEK;
                 LocalDate startDate = strToLocalDate(date);
@@ -77,7 +78,8 @@ public class Data {
 
         if (Pattern.matches(dateCheck, dateAndNum[1])) {
             String getDate = dateAndNum[1];
-            if (dateAndNum[0].contains("day")) {
+            String getDayOrWeek = dateAndNum[0].toLowerCase();
+            if (getDayOrWeek.contains("day")) {
                 String[] getNum = dateAndNum[0].split(" ");
                 int numDays = Integer.parseInt(getNum[0]);
                 LocalDate endDate = strToLocalDate(getDate);
@@ -85,7 +87,7 @@ public class Data {
                 timeRange[0] = startDate;
                 timeRange[1] = endDate;
             }
-            if (dateAndNum[0].contains("week")) {
+            if (getDayOrWeek.contains("week")) {
                 String[] getNum = dateAndNum[0].split(" ");
                 int numWeeks = Integer.parseInt(getNum[0]) * NUM_OF_WEEK;
                 LocalDate endDate = strToLocalDate(getDate);
