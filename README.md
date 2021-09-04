@@ -2,7 +2,6 @@
 
 1. Contribution information
 
-
     Lee Gain(s3878170): +2
     
     Bui Nguyen Ngoc Tuan(s3877673): -1
@@ -17,5 +16,7 @@
 
 
 3. The video link
+
+    https://youtu.be/7cnv6XvkUvo
 
 
